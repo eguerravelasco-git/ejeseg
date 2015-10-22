@@ -17,7 +17,7 @@ import master.logica.clases.*;
  */
 @ManagedBean
 @SessionScoped
-public class SesionUsuarioDataManager implements Serializable{
+public class SesionUsuarioDataManager implements Serializable {
     //datos usuario actual
 
     private Usuario sesionUsuario;
@@ -65,7 +65,7 @@ public class SesionUsuarioDataManager implements Serializable{
         this.intSesionTutor = 0;
         this.sesionUsuarioRoles = new ArrayList<UsuarioRol>();
         this.sesionPeriodos = new ArrayList<Periodos>();
-        this.temaSitio = "cupertino";
+        this.temaSitio = "redmond";
         System.out.println("Creando la sesion");
     }
     //destructor
@@ -98,9 +98,6 @@ public class SesionUsuarioDataManager implements Serializable{
     public void setSesionTutor(Tutor sesionTutor) {
         this.sesionTutor = sesionTutor;
     }
-    
-    
-   
 
     public Tutor getSesionTutorActual() {
         return sesionTutorActual;
@@ -118,16 +115,13 @@ public class SesionUsuarioDataManager implements Serializable{
         this.intSesionTutor = intSesionTutor;
     }
 
-    
-
-       public Periodos getSesionPeriodoActual() {
+    public Periodos getSesionPeriodoActual() {
         return sesionPeriodoActual;
     }
 
     public void setSesionPeriodoActual(Periodos sesionPeriodoActual) {
         this.sesionPeriodoActual = sesionPeriodoActual;
     }
-
 
     public Integer getIntSesionPeriodo() {
         return intSesionPeriodo;

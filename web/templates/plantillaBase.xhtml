@@ -30,7 +30,7 @@
                 <ui:insert name="top">
                     <h:form id="frmCabecera">
                         <h:panelGrid columns="1" cellpadding="0" cellspacing="0">
-                            <p:graphicImage value="/resources/images/banner_oscunach.png"  title="OSCUNACH"/>                            
+                            <p:graphicImage value="/resources/images/eje.png"  title="OSCUNACH"/>                            
                             <!-- <h1 align="center">
                                 <b>
                                      OBSERVATORIO DE SEGURIDAD CIUDADANA
@@ -68,26 +68,13 @@
             <div id="bottom">
                 <h:form id="frmPie">
                     <ui:insert name="bottom">
-                        <h:panelGrid columns="1" cellpadding="0" cellspacing="0" >
-                            <h:panelGrid columns="9" cellpadding="1" cellspacing="0">
-                                <h:commandLink value="Inicio" action="#{sesionUsuario.preparaLogin()}"/> 
-                                <h:outputLabel value="|"/>
-                                <h:commandLink value="Mapa del sitio" action="#"/>
-                                <h:outputLabel value="|"/>
-                                <h:commandLink value="Cont&aacute;ctanos" action="#"/>
-                                <h:outputLabel value="|"/>
-                                <h:commandLink value="Comentarios" action="#"/>
-                                <h:outputLabel value="|"/>
-                                <h:commandLink value="Cr&eacute;ditos" action="#"/>
-                            </h:panelGrid>
-                            <h:panelGrid>
-                                <p:graphicImage value="/resources/images/banner_ridech.png"  title="RIDECH"/>  
-                            </h:panelGrid>
-                            <h:panelGrid columns="2" cellpadding="1" cellspacing="0">
-                                <!--<h:commandLink value="Derechos de autor " target="_blank"  action="http://www.unach.edu.ec"/>-->                                
-                                <h:outputLabel value="© Derechos Reservados: Eje de Investigación de Seguridad Ciudadana y Género, ICITS, UNACH - 2015"/>
-                            </h:panelGrid>
-                        </h:panelGrid>
+                        <!--<p:separator/>
+                        <h:commandLink value="Inicio" action="#{sesionUsuario.preparaLogin()}"/> -->
+                        <p:separator/>
+                        <p:graphicImage value="/resources/images/banner_ridech.png"  title="RIDECH"/>      
+                        <p align="center">Campus "La Dolorosa" Avda. Eloy Alfaro y 10 de Agosto, 2do Piso. Teléfonos: (593) 3 3730910 Extensión 2150. </p>
+                        <p align="center"> ©Derechos Reservados: <a href="http://seguridadciudadana.unach.edu.ec/site/"> Eje de Investigación de Seguridad Ciudadana y Género</a>, ICITS, UNACH - 2015</p>
+                        <p align="center">Riobamba - Ecuador</p>
                     </ui:insert>
                 </h:form>
             </div>

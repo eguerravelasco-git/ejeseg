@@ -12,7 +12,8 @@ import java.util.ArrayList;
  * @author CristhianMoreno
  */
 public class CircuitoSubcircuitoRural {
-     public static ArrayList<String> obtenerCircuitoRural() {
+
+    public static ArrayList<String> obtenerCircuitoRural() {
         ArrayList<String> lst = new ArrayList<String>();
         try {
 
@@ -21,7 +22,7 @@ public class CircuitoSubcircuitoRural {
             lst.add("PUNIN");
             lst.add("QUIMIAG");
             lst.add("SAN LUIS");
-           
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -31,7 +32,7 @@ public class CircuitoSubcircuitoRural {
 
     public static ArrayList<String> obtenerSubcircuitoRural() {
         ArrayList<String> lst = new ArrayList<String>();
-        try {                   
+        try {
             lst.add("CALPI 1");
             lst.add("LICTO 1");
             lst.add("LICTO 2");
@@ -39,7 +40,7 @@ public class CircuitoSubcircuitoRural {
             lst.add("QUIMIAG 1");
             lst.add("SAN LUIS 1");
             lst.add("SAN LUIS 2");
-            
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

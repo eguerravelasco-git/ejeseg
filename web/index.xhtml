@@ -6,60 +6,35 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/templates/plantillaBase.xhtml">
-        <ui:define name="tituloNavegador">OSCUNACH</ui:define>
+        <ui:define name="tituloNavegador">EISCG - UNACH</ui:define>
         <ui:define name="content">
             <h:form id="frmIndex">
 
-                <h:panelGrid id="pnlIndexPrincipal" columns="1" class="center_content">
-                    <h:panelGrid cellpadding="0" cellspacing="10" columns="1">
-                        <p:panel id="basic" header="DETALLES DEL SISTEMA"  style="margin-bottom:20px">
-                            <h:panelGrid columns="1" cellpadding="5">                                
-                                <h:outputText
-                                    value="El Sistema de Gestión del Eje de Investigación de Seguridad Ciudadana y Género de la UNACH
-                                    permite que la ciudadanía observe los resultados de las Proyectos de Investigación que se realizan
-                                    dentro de esta Institución." />
-                            </h:panelGrid>
-                        </p:panel>
+                <p:panel id="basic2" header="Eje de Investigación de Seguridad Ciudadana y Género" style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="10">                       
+                        <h:outputText
+                            value="Suministra a la raíz de cada planta, a intervalos frecuentes, la misma cantidad de agua  a través de mangueras instaladas cerca de la zona radicular de las plantas. Su diseñado adecuadamente reduce el contacto del agua
+                            con el follaje, los tallos y los frutos logrando así, un mejor control del suelo, ahorro de agua, rendimiento de los cultivos sin erosionar el suelo ni perder nutrientes." />
                     </h:panelGrid>
-                    <h:panelGrid cellpadding="0" cellspacing="10" columns="2">
-                        <p:panel id="vif" header="IDENTIFICACIÓN SOCIOECONÓMICA Y GEOREFERENCIADA DE LAS VÍCTIMAS DE 
-                                 VIOLENCIA INTRAFAMILIAR PARA  LA APLICACIÓN DE POLÍTICAS PÚBLICAS EN LA CIUDAD DE 
-                                 RIOBAMBA, EN UN PERÍODO DE TIEMPO COMPRENDIDO ENTRE ENERO DEL 2010 A DICIEMBRE 2012" style="margin-bottom:20px">
-                            <h:panelGrid columns="1" cellpadding="10">                                
-                                <h:outputText
-                                    value="El Sistema de Gestión del Eje de Investigación de Seguridad Ciudadana y Género de la UNACH
-                                    permite que la ciudadanía observe los resultados de las Proyectos de Investigación que se realizan
-                                    dentro de esta Institución." />
-                            </h:panelGrid>
-                        </p:panel>
-                        
-                        <p:imageSwitch effect="shuffle" >
-                            <ui:repeat value="#{galeriasBean.imagesVif}" var="imagesVif">
-                                <p:graphicImage value="/resources/images/vif/#{imagesVif}" title="#{imagesVif}" 
-                                                alt="Eje de Investigación de Seguridad Ciudadana y Género - UNACH #{imagesVif}" />
-                            </ui:repeat>
-                        </p:imageSwitch>
-                        
-                        <p:imageSwitch effect="turnDown" >
-                            <ui:repeat value="#{galeriasBean.imagesVif}" var="imagesVif">
-                                <p:graphicImage value="/resources/images/vif/#{imagesVif}" title="#{imagesVif}" 
-                                                alt="Eje de Investigación de Seguridad Ciudadana y Género - UNACH #{imagesVif}" />
-                            </ui:repeat>
-                        </p:imageSwitch>
-                        
-                        <p:panel id="locales" header="GEOREFERENCIACIÓN E IDENTIFICACIÓN DE LOS ESTABLECIMIENTOS 
-                                 CONTROLADOS POR EL MINISTERIO DEL INTERIOR Y SU INCIDENCIA EN LA INSEGURIDAD 
-                                 CIUDADANA EN LA CIUDAD  DE RIOBAMBA"  style="margin-bottom:20px">
-                            <h:panelGrid columns="1" cellpadding="10">                                
-                                <h:outputText
-                                    value="El Sistema de Gestión del Eje de Investigación de Seguridad Ciudadana y Género de la UNACH
-                                    permite que la ciudadanía observe los resultados de las Proyectos de Investigación que se realizan
-                                    dentro de esta Institución." />
-                            </h:panelGrid>
-                        </p:panel>
+                </p:panel>  
 
-                    </h:panelGrid>
-                </h:panelGrid>                           
+                <h:panelGrid id="pngPrincipal" columns="2">
+                    <p:panel id="pnlMision" header="Misión" style="margin-bottom:20px">
+                        <p:panelGrid columns="2" style="margin-bottom:20px">                             
+                            <p:graphicImage value="/resources/images/mision.jpg"/> 
+                            <p>El Sistema de monitoreo 6LoWPAN permite consultar los datos provenientes de la red de sensores como: 
+                                humedad de suelo, temperatura y humedad relativa para luego ser analizados y tomar oportunas decisiones.</p>                        
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:panel id="basic1" header="Visión" style="margin-bottom:20px">
+                        <p:panelGrid columns="2" style="margin-bottom:20px">                             
+                            <p:graphicImage value="/resources/images/vision.jpg"/> 
+                            <p>El Sistema de monitoreo 6LoWPAN permite consultar los datos provenientes de la red de sensores como: 
+                                humedad de suelo, temperatura y humedad relativa para luego ser analizados y tomar oportunas decisiones.</p>                        
+                        </p:panelGrid>                 
+                    </p:panel>
+                </h:panelGrid>
+
             </h:form>           
         </ui:define>
     </ui:composition>
