@@ -93,7 +93,7 @@ public class CtrlUrbanoSubcircuitos {
     private CartesianChartModel circuitosGenero(int anio) {
         CartesianChartModel model = new CartesianChartModel();
         try {
-            lst = CircuitoSubcircuitoUrbano.obtenerCircuitoUrbano();
+            lst = CircuitoSubcircuitoUrbano.obtenerSubcircuitoUrbano();
             ChartSeries femenino = new ChartSeries();
             femenino.setLabel("Femenino");
             for (int i = 0; i < lst.size(); i++) {
