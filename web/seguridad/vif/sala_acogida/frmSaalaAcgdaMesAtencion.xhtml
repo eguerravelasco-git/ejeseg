@@ -16,17 +16,17 @@ and open the template in the editor.
         </title>
     </h:head>
     <h:body>
-        <ui:composition template="../../templates/plantillaInternaCenter.xhtml">
+        <ui:composition template="../../../templates/plantillaInternaCenter.xhtml">
             <ui:define name="top">Datos de la Sala de Primera Acogida</ui:define>
             <ui:define name="contenido">
                 <p:growl id="mensajes" autoUpdate="true" showDetail="true"/>
                 <h:form id="frmdatos" style="alignment-adjust: central">
                     <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
                     <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
-                    <p:panel id="pnlBusqueda">
+                    <p:panel id="pnlBusqueda" header="Buscar por año">
                         <p:panelGrid columns="3">
                             <p:outputLabel value="Seleccione un año: "/>
-                            <p:selectOneMenu value="#{ctrlSpaCircuitoSubcircuito.anioSel}">
+                            <p:selectOneMenu value="#{crtlSalaAcogidaMesAtencion.anioSel}">
                                 <f:selectItem itemValue="#{null}" itemLabel="Seleccione un año...."/>
                                 <f:selectItem itemValue="2011" itemLabel="2011"/>
                                 <f:selectItem itemValue="2012" itemLabel="2012"/>
@@ -35,41 +35,41 @@ and open the template in the editor.
                                 <f:selectItem itemValue="2015" itemLabel="2015"/>
                             </p:selectOneMenu>
                             <p:commandButton id="btnBuscar" icon="ui-icon-search" style="width:50px"  
-                                             title="Graficar " action="#{ctrlSpaCircuitoSubcircuito.graficar()}" 
+                                             title="Graficar " action="#{crtlSalaAcogidaMesAtencion.graficar()}" 
                                              update=":frmdatos:pnlGraficos, @form"/>                                   
                         </p:panelGrid>
                     </p:panel>
 
-                    <p:panel id="pnlGraficos" >
+                    <p:panel id="pnlGraficos" header="Estadísticas de las Atenciones por meses" >
 
-                        <p:accordionPanel style="max-height: 800px;max-width: 1200px">
-                            <p:tab title="Detalle general por circuitos" >
+                        <p:accordionPanel style="max-height: 800px;max-width: 1300px">
+                            <p:tab title="Atenciones por meses" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:lineChart   value="#{ctrlSpaCircuitoSubcircuito.graficaCircuito}" legendPosition="n" 
-                                               title="Detalle por circuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                               xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias"/>   
+                                <p:lineChart   value="#{crtlSalaAcogidaMesAtencion.graficaMeses}" legendPosition="n" 
+                                               title="Atenciones por meses" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                               xaxisLabel="Meses" xaxisAngle="0" yaxisLabel="#Victimas" animate="true"/>   
                             </p:tab>                                                                                           
                             
-                            <p:tab title="Detalle general por circuitos (Cuadro de Barras)" >
+                            <p:tab title="Atenciones por meses(Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:barChart   value="#{ctrlSpaCircuitoSubcircuito.graficaCircuito}" legendPosition="n" 
-                                              title="Detalle por circuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                              xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias"/>  
+                                <p:barChart   value="#{crtlSalaAcogidaMesAtencion.graficaMeses}" legendPosition="n" 
+                                              title="Atenciones por meses(Gráfico de Barras)" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                              xaxisLabel="Meses" xaxisAngle="0" yaxisLabel="#Victimas" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             
-                            <p:tab title="Detalle general por Subcircuitos" >
+                            <p:tab title="Atenciones por meses clasficadas por Género" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:lineChart   value="#{ctrlSpaCircuitoSubcircuito.graficaSubcircuito}" legendPosition="n" 
-                                               title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                               xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias"/>   
+                                <p:lineChart   value="#{crtlSalaAcogidaMesAtencion.graficaMesesGenero}" legendPosition="n" 
+                                               title="Atenciones por meses clasficadas por Género" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                               xaxisLabel="Meses" xaxisAngle="0" yaxisLabel="#Victimas" animate="true"/>   
                             </p:tab>                                                                                           
                             
-                            <p:tab title="Detalle general por subcircuitos (Cuadro de Barras)" >
+                            <p:tab title="Atenciones por meses clasficadas por Género(Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:barChart   value="#{ctrlSpaCircuitoSubcircuito.graficaSubcircuito}" legendPosition="n" 
-                                              title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                              xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias"/>  
+                                <p:barChart   value="#{crtlSalaAcogidaMesAtencion.graficaMesesGenero}" legendPosition="n" 
+                                              title="Atenciones por meses clasficadas por Género" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                              xaxisLabel="Meses" xaxisAngle="0" yaxisLabel="#Victimas" animate="true" />  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             <script type="text/javascript">

@@ -286,7 +286,7 @@ public class FBSalaAcgda {
         return lst;
     }
 
-    public static ArrayList<SalaAcgda> obtenerDatosDadoAnioRangoEdadGenero(int anio, String rango,String genero) throws Exception {
+    public static ArrayList<SalaAcgda> obtenerDatosDadoAnioRangoEdadGenero(int anio, String rango, String genero) throws Exception {
         ArrayList<SalaAcgda> lst = new ArrayList<SalaAcgda>();
         try {
             ArrayList<Parametro> lstP = new ArrayList<Parametro>();
@@ -302,4 +302,137 @@ public class FBSalaAcgda {
         }
         return lst;
     }
+
+    public static ArrayList<SalaAcgda> obtenerDatosDadoMesAtencion(int anio, String mes) throws Exception {
+        ArrayList<SalaAcgda> lst = new ArrayList<SalaAcgda>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_spa_dado_anio_mes_atencion(?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, mes));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+
+    public static ArrayList<SalaAcgda> obtenerDatosDadoMesAtencionGenero(int anio, String mes, String genero) throws Exception {
+        ArrayList<SalaAcgda> lst = new ArrayList<SalaAcgda>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_spa_dado_anio_mes_atencion_genero(?,?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, mes));
+            lstP.add(new Parametro(3, genero));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+
+    public static ArrayList<SalaAcgda> obtenerDatosDadoMesAgresion(int anio, String mes) throws Exception {
+        ArrayList<SalaAcgda> lst = new ArrayList<SalaAcgda>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from  vif.select_spa_dado_anio_mes_agresion(?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, mes));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+
+    public static ArrayList<SalaAcgda> obtenerDatosDadoMesAgresionGenero(int anio, String mes, String genero) throws Exception {
+        ArrayList<SalaAcgda> lst = new ArrayList<SalaAcgda>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_spa_dado_anio_mes_agresion_genero(?,?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, mes));
+            lstP.add(new Parametro(3, genero));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+
+    public static ArrayList<SalaAcgda> obtenerDatosDadoDiaAtencion(int anio, String dia) throws Exception {
+        ArrayList<SalaAcgda> lst = new ArrayList<SalaAcgda>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_spa_dado_anio_dia_atencion(?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, dia));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+
+    public static ArrayList<SalaAcgda> obtenerDatosDadoDiaAtencionGenero(int anio, String Dia, String genero) throws Exception {
+        ArrayList<SalaAcgda> lst = new ArrayList<SalaAcgda>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_spa_dado_anio_dia_atencion_genero(?,?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, Dia));
+            lstP.add(new Parametro(3, genero));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+
+    public static ArrayList<SalaAcgda> obtenerDatosDadoDiaAgresion(int anio, String dia) throws Exception {
+        ArrayList<SalaAcgda> lst = new ArrayList<SalaAcgda>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from  vif.select_spa_dado_anio_dia_agresion(?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, dia));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+
+    public static ArrayList<SalaAcgda> obtenerDatosDadoDiaAgresionGenero(int anio, String dia, String genero) throws Exception {
+        ArrayList<SalaAcgda> lst = new ArrayList<SalaAcgda>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_spa_dado_anio_dia_agresion_genero(?,?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, dia));
+            lstP.add(new Parametro(3, genero));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+
 }

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>
+            <ui:define name="Datos">Indicadores Datos VIF 2010</ui:define>
+        </title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../../../templates/plantillaInternaCenter.xhtml">
+            <ui:define name="top">Datos Comisaría de la Mujer</ui:define>
+            <ui:define name="contenido">
+                <p:growl id="mensajes" autoUpdate="true" showDetail="true"/>
+                <h:form id="frmdatos" style="alignment-adjust: central">
+                    <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
+                    <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
+                    <p:panel id="pnlBusquedas" header="Búsquedas">
+                        <p:panelGrid columns="3" id="pngBusquedas">
+                            <p:outputLabel value="Seleccione el año"/>
+                            <p:selectOneMenu value="#{ctrlDatosUrbano.anioSel}">
+                                <f:selectItem itemLabel="Seleccione..." itemValue="#{null}"/>
+                                <f:selectItem itemLabel="2010" itemValue="2010"/>
+                                <f:selectItem itemLabel="2011" itemValue="2011"/>
+                                <f:selectItem itemLabel="2012" itemValue="2012"/>
+                                                                
+                            </p:selectOneMenu>
+                            <p:commandButton action="#{ctrlDatosUrbano.obtenerDatosDadoAnio()}" value="Buscar"
+                                             update="tblDatos, @form"/>
+                        </p:panelGrid>
+                    </p:panel>
+
+                    <p:panel id="pnldatos" >
+
+                        <p:dataTable id="tblDatos" value="#{ctrlDatosUrbano.lst}" var="datos"  emptyMessage="No hay Registros"
+                                     paginator="true" rows="10" rowKey="#{datos.id}" style="alignment-adjust: initial" >
+
+                            <f:facet name="header">
+                                <p:outputLabel value="Casos de Vif de la Sala de Primera Acogida del HPGDR"/>
+                            </f:facet>
+
+
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha de Denuncia"/>
+                                </f:facet>
+                                <h:outputText value="#{datos.fecha_denuncia}"/>
+                            </p:column>
+
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Sexo Victima"/>
+                                </f:facet>
+                                <h:outputText value="#{datos.sexo_victima}"/>
+                            </p:column>
+
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Edad Victima"/>
+                                </f:facet>
+                                <h:outputText value="#{datos.edad_victima}"/>
+                            </p:column>
+
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Sexo Agresor"/>
+                                </f:facet>
+                                <h:outputText value="#{datos.sexo_agresor}"/>
+                            </p:column>
+
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Edad Agresor"/>
+                                </f:facet>
+                                <h:outputText value="#{datos.edad_agresor}"/>
+                            </p:column>
+
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Parentesco"/>
+                                </f:facet>
+                                <h:outputText value="#{datos.parentesco}"/>
+                            </p:column>
+
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Tipo de agresion"/>
+                                </f:facet>
+                                <h:outputText value="#{datos.tipo_de_violencia}"/>
+                            </p:column>
+
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Medidas de amparo"/>
+                                </f:facet>
+                                <h:outputText value="#{datos.medidas_de_amparo}"/>
+                            </p:column>
+
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Sentencia"/>
+                                </f:facet>
+                                <h:outputText value="#{datos.sentencia}"/>
+                            </p:column>
+
+                            <f:facet name="footer">  
+                                <h:commandLink>
+                                    <img src="../../resources/images/excel.png" alt=""/>
+                                    <p:dataExporter type="xls" target="tblDatos" fileName="datos" pageOnly="true" />
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <img src="../../resources/images/pdf.png" alt=""/>
+                                    <p:dataExporter type="pdf" target="tblDatos" fileName="datos" pageOnly="true" />
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <img src="../../resources/images/csv.png" alt=""/>
+                                    <p:dataExporter type="csv" target="tblDatos" fileName="datos" pageOnly="true" />
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <img src="../../resources/images/xml.png" alt=""/>
+                                    <p:dataExporter type="xml" target="tblDatos" fileName="datos" pageOnly="true" />
+                                </h:commandLink>
+                            </f:facet>
+
+                        </p:dataTable>    
+
+                    </p:panel>
+                </h:form>
+            </ui:define>
+            <ui:define name="dialogos">
+                <p:dialog modal="true" widgetVar="dlgStatus" header="Procesando" draggable="false" closable="false" 
+                          resizable="false"> 
+                    <p:graphicImage value="/resources/images/ajaxloadingbar.gif" />  
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
