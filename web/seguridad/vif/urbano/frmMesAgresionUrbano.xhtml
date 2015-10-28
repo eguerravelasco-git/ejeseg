@@ -23,51 +23,51 @@ and open the template in the editor.
                 <h:form id="frmdatos" style="alignment-adjust: central">
                     <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
                     <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
-                    <p:panel id="pnlBusqueda" header="Búsquedas...">
+                    <p:panel id="pnlBusqueda" header="Buscar por año">
                         <p:panelGrid columns="3">
                             <p:outputLabel value="Seleccione un año: "/>
-                            <p:selectOneMenu value="#{ctrlUrbanoTipoViolencia.anioSel}">
+                            <p:selectOneMenu value="#{ctrlUrbanoMesAgresion.anioSel}">
                                 <f:selectItem itemValue="#{null}" itemLabel="Seleccione un año...."/>
                                 <f:selectItem itemValue="2010" itemLabel="2010"/>
                                 <f:selectItem itemValue="2011" itemLabel="2011"/>
                                 <f:selectItem itemValue="2012" itemLabel="2012"/>                                
                             </p:selectOneMenu>
                             <p:commandButton id="btnBuscar" icon="ui-icon-search" style="width:50px"  
-                                             title="Graficar " action="#{ctrlUrbanoTipoViolencia.graficar()}" 
+                                             title="Graficar " action="#{ctrlUrbanoMesAgresion.graficar()}" 
                                              update=":frmdatos:pnlGraficos, @form"/>                                   
                         </p:panelGrid>
                     </p:panel>
 
-                    <p:panel id="pnlGraficos" header="Estadísticas Tipo de Violencia" >
+                    <p:panel id="pnlGraficos" header="Estadísticas de los días de atención" >
 
                         <p:accordionPanel style="max-height: 800px;max-width: 1300px">
-                            <p:tab title="Estadísticas por Tipo de Violencia" >
+                            <p:tab title="Denuncias clasficadas por Meses" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:lineChart   value="#{ctrlUrbanoTipoViolencia.graficaTipoViolencia}" legendPosition="n" 
-                                               title="Estadísticas por Tipo de Violencia" style="height:450px;width:1200px;text-decoration-style: dashed"
-                                               xaxisLabel="Tipo de Violencia" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>   
+                                <p:lineChart   value="#{ctrlUrbanoMesAgresion.graficaMeses}" legendPosition="n" 
+                                               title="Denuncias clasficadas por Meses" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                               xaxisLabel="Meses" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
                             
-                            <p:tab title="Estadísticas por Tipo de Violencia (Gráfico de Barras)" >
+                            <p:tab title="Denuncias clasficadas por Meses(Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:barChart   value="#{ctrlUrbanoTipoViolencia.graficaTipoViolencia}" legendPosition="n" 
-                                              title="Estadísticas por Tipo de Violencia (Gráfico de Barras)" style="height:450px;width:1200px;text-decoration-style: dashed"
-                                              xaxisLabel="Circuito" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>  
+                                <p:barChart   value="#{ctrlUrbanoMesAgresion.graficaMeses}" legendPosition="n" 
+                                              title="Denuncias clasficadas por Meses(Gráfico de Barras)" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                              xaxisLabel="Meses" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             
-                            <p:tab title="Estadísticas por Tipo de Violencia por género" >
+                            <p:tab title="Denuncias clasficadas por Meses y Género de la Víctima" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:lineChart   value="#{ctrlUrbanoTipoViolencia.graficaTipoViolenciaGenero}" legendPosition="n" 
-                                               title="Estadísticas por Tipo de Violencia por género" style="height:450px;width:1200px;text-decoration-style: dashed"
-                                               xaxisLabel="Tipo de Violencia" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>   
+                                <p:lineChart   value="#{ctrlUrbanoMesAgresion.graficaMesesGenero}" legendPosition="n" 
+                                               title="Denuncias clasficadas por Meses y Género de la Víctima" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                               xaxisLabel="Meses" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
                             
-                            <p:tab title="Estadísticas por Tipo de Violencia por género(Gráfico de Barras)" >
+                            <p:tab title="Denuncias clasficadas por Meses y Género de la Víctima(Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:barChart   value="#{ctrlUrbanoTipoViolencia.graficaTipoViolenciaGenero}" legendPosition="n" 
-                                              title="Estadísticas por Tipo de Violencia por género" style="height:450px;width:1200px;text-decoration-style: dashed"
-                                              xaxisLabel="Tipo de Violencia" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>  
+                                <p:barChart   value="#{ctrlUrbanoMesAgresion.graficaMesesGenero}" legendPosition="n" 
+                                              title="Denuncias clasficadas por Meses y Género de la Víctima" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                              xaxisLabel="Meses" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true" />  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             <script type="text/javascript">
