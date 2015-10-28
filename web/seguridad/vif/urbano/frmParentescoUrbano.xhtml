@@ -17,57 +17,57 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <ui:composition template="../../../templates/plantillaInternaCenter.xhtml">
-            <ui:define name="top">Datos de la Sala de Primera Acogida</ui:define>
+            <ui:define name="top">Denuncias recolectadas de la Comisaría de la Mujer</ui:define>
             <ui:define name="contenido">
                 <p:growl id="mensajes" autoUpdate="true" showDetail="true"/>
                 <h:form id="frmdatos" style="alignment-adjust: central">
                     <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
                     <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
-                    <p:panel id="pnlBusqueda" header="Búsquedas...">
+                    <p:panel id="pnlBusqueda">
                         <p:panelGrid columns="3">
                             <p:outputLabel value="Seleccione un año: "/>
-                            <p:selectOneMenu value="#{ctrlUrbanoTipoViolencia.anioSel}">
+                            <p:selectOneMenu value="#{ctrlUrbanoParentesco.anioSel}">
                                 <f:selectItem itemValue="#{null}" itemLabel="Seleccione un año...."/>
                                 <f:selectItem itemValue="2010" itemLabel="2010"/>
                                 <f:selectItem itemValue="2011" itemLabel="2011"/>
                                 <f:selectItem itemValue="2012" itemLabel="2012"/>                                
                             </p:selectOneMenu>
                             <p:commandButton id="btnBuscar" icon="ui-icon-search" style="width:50px"  
-                                             title="Graficar " action="#{ctrlUrbanoTipoViolencia.graficar()}" 
+                                             title="Graficar " action="#{ctrlUrbanoParentesco.graficar()}" 
                                              update=":frmdatos:pnlGraficos, @form"/>                                   
                         </p:panelGrid>
                     </p:panel>
 
-                    <p:panel id="pnlGraficos" header="Estadísticas Tipo de Violencia" >
+                    <p:panel id="pnlGraficos" >
 
-                        <p:accordionPanel style="max-height: 800px;max-width: 1300px">
-                            <p:tab title="Estadísticas por Tipo de Violencia" >
+                        <p:accordionPanel style="max-height: 800px;max-width: 1200px">
+                            <p:tab title="Estadísticas de acuerdo al Parentesco Victima - Agresor" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:lineChart   value="#{ctrlUrbanoTipoViolencia.graficaTipoViolencia}" legendPosition="n" 
-                                               title="Estadísticas por Tipo de Violencia" style="height:450px;width:1200px;text-decoration-style: dashed"
-                                               xaxisLabel="Tipo de Violencia" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>   
+                                <p:lineChart   value="#{ctrlUrbanoParentesco.graficaParentesco}" legendPosition="n" 
+                                               title="Estadísticas de acuerdo al Parentesco Victima - Agresor" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                               xaxisLabel="Estado Civil" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
                             
-                            <p:tab title="Estadísticas por Tipo de Violencia (Gráfico de Barras)" >
+                            <p:tab title="Estadísticas de acuerdo al Parentesco Victima - Agresor(Cuadro de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:barChart   value="#{ctrlUrbanoTipoViolencia.graficaTipoViolencia}" legendPosition="n" 
-                                              title="Estadísticas por Tipo de Violencia (Gráfico de Barras)" style="height:450px;width:1200px;text-decoration-style: dashed"
-                                              xaxisLabel="Circuito" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>  
+                                <p:barChart   value="#{ctrlUrbanoParentesco.graficaParentesco}" legendPosition="n" 
+                                              title="Detalle por circuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                              xaxisLabel="Estado Civil" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             
-                            <p:tab title="Estadísticas por Tipo de Violencia por género" >
+                            <p:tab title="Estadísticas de acuerdo al Parentesco Victima - Agresor y género de la Víctima" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:lineChart   value="#{ctrlUrbanoTipoViolencia.graficaTipoViolenciaGenero}" legendPosition="n" 
-                                               title="Estadísticas por Tipo de Violencia por género" style="height:450px;width:1200px;text-decoration-style: dashed"
-                                               xaxisLabel="Tipo de Violencia" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>   
+                                <p:lineChart   value="#{ctrlUrbanoParentesco.graficaParentescoGenero}" legendPosition="n" 
+                                               title="Estadísticas de acuerdo al Parentesco Victima - Agresor y género de la Víctima" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                               xaxisLabel="Estado Civil" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
                             
-                            <p:tab title="Estadísticas por Tipo de Violencia por género(Gráfico de Barras)" >
+                            <p:tab title="Estadísticas de acuerdo al Parentesco Victima - Agresor y género de la Víctima(Cuadro de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:barChart   value="#{ctrlUrbanoTipoViolencia.graficaTipoViolenciaGenero}" legendPosition="n" 
-                                              title="Estadísticas por Tipo de Violencia por género" style="height:450px;width:1200px;text-decoration-style: dashed"
-                                              xaxisLabel="Tipo de Violencia" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>  
+                                <p:barChart   value="#{ctrlUrbanoParentesco.graficaParentescoGenero}" legendPosition="n" 
+                                              title="Estadísticas de acuerdo al Parentesco Victima - Agresor y género de la Víctima" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                              xaxisLabel="Estado Civil" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             <script type="text/javascript">

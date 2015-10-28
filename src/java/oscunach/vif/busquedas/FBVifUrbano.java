@@ -171,7 +171,7 @@ public class FBVifUrbano {
         try {
             ArrayList<Parametro> lstP = new ArrayList<Parametro>();
             String sql = "select * from vif.select_tipos_violencia_vif_urbano_dado_anio(?)";
-            lstP.add(new Parametro(1, anio));            
+            lstP.add(new Parametro(1, anio));
             ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
             lst = llenarDatos(rs);
             rs = null;
@@ -180,7 +180,7 @@ public class FBVifUrbano {
         }
         return lst;
     }
-    
+
     public static ArrayList<VifUrbano> obtenerDatosDadoAnioTipoViolencia(int anio, String violencia) throws Exception {
         ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
         try {
@@ -205,6 +205,21 @@ public class FBVifUrbano {
             lstP.add(new Parametro(1, anio));
             lstP.add(new Parametro(2, violencia));
             lstP.add(new Parametro(3, genero));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+
+    public static ArrayList<VifUrbano> obtenerDatosEstadoCivilDadoAnio(int anio) throws Exception {
+        ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_vif_estado_civil_dado_anio(?)";
+            lstP.add(new Parametro(1, anio));
             ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
             lst = llenarDatos(rs);
             rs = null;
@@ -279,5 +294,187 @@ public class FBVifUrbano {
         }
         return lst;
     }
+
+    public static ArrayList<VifUrbano> obtenerDatosDadoAnioMesDenuncia(int anio, String mes) throws Exception {
+        ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_vif_dado_anio_mes_denuncia(?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, mes));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+
+    public static ArrayList<VifUrbano> obtenerDatosDadoAnioMesDenunciaGenero(int anio, String mes, String genero) throws Exception {
+        ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_vif_dado_anio_mes_denuncia_genero(?,?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, mes));
+            lstP.add(new Parametro(3, genero));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+
+    public static ArrayList<VifUrbano> obtenerDatosDadoAnioMesAgresion(int anio, String mes) throws Exception {
+        ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_vif_dado_anio_mes_agresion(?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, mes));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+
+    public static ArrayList<VifUrbano> obtenerDatosDadoAnioMesAgresionGenero(int anio, String mes, String genero) throws Exception {
+        ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_vif_dado_anio_mes_agresion_genero(?,?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, mes));
+            lstP.add(new Parametro(3, genero));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+    
+    public static ArrayList<VifUrbano> obtenerDatosDadoAnioDiaAgresion(int anio, String dia) throws Exception {
+        ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_vif_dado_anio_dia_agresion(?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, dia));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+
+    public static ArrayList<VifUrbano> obtenerDatosDadoAnioDiaAgresionGenero(int anio, String dia, String genero) throws Exception {
+        ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_vif_dado_anio_dia_agresion_genero(?,?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, dia));
+            lstP.add(new Parametro(3, genero));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+    
+    public static ArrayList<VifUrbano> obtenerDatosDadoAnioDiaDenuncia(int anio, String dia) throws Exception {
+        ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_vif_dado_anio_dia_denuncia(?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, dia));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+
+    public static ArrayList<VifUrbano> obtenerDatosDadoAnioDiaDenunciaGenero(int anio, String dia, String genero) throws Exception {
+        ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_vif_dado_anio_dia_denuncia_genero(?,?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, dia));
+            lstP.add(new Parametro(3, genero));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+    
+    
+    public static ArrayList<VifUrbano> obtenerParentescoDadoAnio(int anio) throws Exception {
+        ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_vif_parentesco_dado_anio(?)";
+            lstP.add(new Parametro(1, anio));            
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+    
+    public static ArrayList<VifUrbano> obtenerDatosDadoAnioParentesco(int anio, String parentesco) throws Exception {
+        ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_vif_dado_anio_parentesco(?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, parentesco));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+    
+     public static ArrayList<VifUrbano> obtenerDatosDadoAnioParentescoGenero(int anio, String parentesco,String genero) throws Exception {
+        ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_vif_dado_anio_parentesco_genero(?,?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, parentesco));
+            lstP.add(new Parametro(3, genero));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+    
 
 }
