@@ -26,48 +26,50 @@ and open the template in the editor.
                     <p:panel id="pnlBusqueda" header="Buscar por año">
                         <p:panelGrid columns="3">
                             <p:outputLabel value="Seleccione un año: "/>
-                            <p:selectOneMenu value="#{ctrlSalaAcogidaDiaAtencion.anioSel}">
+                            <p:selectOneMenu value="#{crtlSalaAcogidaMesAgresion.anioSel}">
                                 <f:selectItem itemValue="#{null}" itemLabel="Seleccione un año...."/>
-                                <f:selectItem itemValue="2011" itemLabel="2011"/>
-                                <f:selectItem itemValue="2012" itemLabel="2012"/>
-                                
+                               
+                                <f:selectItem itemValue="2013" itemLabel="2013"/>
+                                <f:selectItem itemValue="2014" itemLabel="2014"/>
+                                <f:selectItem itemValue="2015" itemLabel="2015"/>
+                                    <f:selectItem itemValue="2016" itemLabel="2016"/>
                             </p:selectOneMenu>
                             <p:commandButton id="btnBuscar" icon="ui-icon-search" style="width:50px"  
-                                             title="Graficar " action="#{ctrlSalaAcogidaDiaAtencion.graficar()}" 
+                                             title="Graficar " action="#{crtlSalaAcogidaMesAgresion.graficar()}" 
                                              update=":frmdatos:pnlGraficos, @form"/>                                   
                         </p:panelGrid>
                     </p:panel>
 
-                    <p:panel id="pnlGraficos" header="Estadísticas de los días de atención" >
+                    <p:panel id="pnlGraficos" header="Estadísticas de las agresiones por meses" >
 
                         <p:accordionPanel style="max-height: 800px;max-width: 1300px">
-                            <p:tab title="Dias de Atención" >
+                            <p:tab title="Agresiones por meses" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:lineChart   value="#{ctrlSalaAcogidaDiaAtencion.graficaDias}" legendPosition="n" 
-                                               title="Dias de Atención" style="height:450px;width:1200px;text-decoration-style: dashed"
-                                               xaxisLabel="Rango de Edades" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>   
+                                <p:lineChart   value="#{crtlSalaAcogidaMesAgresion.graficaMeses}" legendPosition="n" 
+                                               title="Agresiones por meses" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                               xaxisLabel="Meses" xaxisAngle="0" yaxisLabel="#Victimas" animate="true"/>   
                             </p:tab>                                                                                           
                             
-                            <p:tab title="Dias de Atención(Gráfico de Barras)" >
+                            <p:tab title="Agresiones por meses(Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:barChart   value="#{ctrlSalaAcogidaDiaAtencion.graficaDias}" legendPosition="n" 
-                                              title="Estadísticas por Rango de edades(Gráfico de Barras)" style="height:450px;width:1200px;text-decoration-style: dashed"
-                                              xaxisLabel="Rango de Edades" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>  
+                                <p:barChart   value="#{crtlSalaAcogidaMesAgresion.graficaMeses}" legendPosition="n" 
+                                              title="Agresiones por meses(Gráfico de Barras)" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                              xaxisLabel="Meses" xaxisAngle="0" yaxisLabel="#Victimas" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             
-                            <p:tab title="Dias de Atención por Género" >
+                            <p:tab title="Agresiones por meses clasficadas por Género" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:lineChart   value="#{ctrlSalaAcogidaDiaAtencion.graficaDiasGenero}" legendPosition="n" 
-                                               title="Dias de Atención por Género" style="height:450px;width:1200px;text-decoration-style: dashed"
-                                               xaxisLabel="Dias de Atención" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>   
+                                <p:lineChart   value="#{crtlSalaAcogidaMesAgresion.graficaMesesGenero}" legendPosition="n" 
+                                               title="Agresiones por meses clasficadas por Género" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                               xaxisLabel="Meses" xaxisAngle="0" yaxisLabel="#Victimas" animate="true"/>   
                             </p:tab>                                                                                           
                             
-                            <p:tab title="Dias de Atención por Género(Gráfico de Barras)" >
+                            <p:tab title="Agresiones por meses clasficadas por Género(Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:barChart   value="#{ctrlSalaAcogidaDiaAtencion.graficaDiasGenero}" legendPosition="n" 
-                                              title="Dias de Atención por Género" style="height:450px;width:1200px;text-decoration-style: dashed"
-                                              xaxisLabel="Dias de Atención" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true" />  
+                                <p:barChart   value="#{crtlSalaAcogidaMesAgresion.graficaMesesGenero}" legendPosition="n" 
+                                              title="Agresiones por meses clasficadas por Género" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                              xaxisLabel="Meses" xaxisAngle="0" yaxisLabel="#Victimas" animate="true" />  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             <script type="text/javascript">

@@ -28,11 +28,10 @@ and open the template in the editor.
                             <p:outputLabel value="Seleccione un año: "/>
                             <p:selectOneMenu value="#{ctrlTipoViolencia.anioSel}">
                                 <f:selectItem itemValue="#{null}" itemLabel="Seleccione un año...."/>
+
                                 <f:selectItem itemValue="2011" itemLabel="2011"/>
                                 <f:selectItem itemValue="2012" itemLabel="2012"/>
-                                <f:selectItem itemValue="2013" itemLabel="2013"/>
-                                <f:selectItem itemValue="2014" itemLabel="2014"/>
-                                <f:selectItem itemValue="2015" itemLabel="2015"/>
+
                             </p:selectOneMenu>
                             <p:commandButton id="btnBuscar" icon="ui-icon-search" style="width:50px"  
                                              title="Graficar " action="#{ctrlTipoViolencia.graficar()}" 
@@ -49,7 +48,7 @@ and open the template in the editor.
                                                title="Estadísticas por Tipo de Violencia" style="height:450px;width:1200px;text-decoration-style: dashed"
                                                xaxisLabel="Tipo de Violencia" xaxisAngle="0" yaxisLabel="# Denuncias"/>   
                             </p:tab>                                                                                           
-                            
+
                             <p:tab title="Estadísticas por Tipo de Violencia (Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlTipoViolencia.graficaTipoViolencia}" legendPosition="n" 
@@ -57,14 +56,14 @@ and open the template in the editor.
                                               xaxisLabel="Circuito" xaxisAngle="0" yaxisLabel="# Denuncias"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
-                            
+
                             <p:tab title="Estadísticas por Tipo de Violencia por género" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:lineChart   value="#{ctrlTipoViolencia.graficaTipoViolenciaGenero}" legendPosition="n" 
                                                title="Estadísticas por Tipo de Violencia por género" style="height:450px;width:1200px;text-decoration-style: dashed"
                                                xaxisLabel="Tipo de Violencia" xaxisAngle="0" yaxisLabel="# Denuncias"/>   
                             </p:tab>                                                                                           
-                            
+
                             <p:tab title="Estadísticas por Tipo de Violencia por género(Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlTipoViolencia.graficaTipoViolenciaGenero}" legendPosition="n" 

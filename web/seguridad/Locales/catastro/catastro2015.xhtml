@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>
+            <ui:define name="Datos">Indicadores Datos VIF 2010</ui:define>
+        </title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../../../templates/plantillaInternaCenter.xhtml">
+            <ui:define name="top">Catastro Intendencia 2015</ui:define>
+            <ui:define name="contenido">   
+                <h:form id="frmPrincipal">
+                    <p:growl autoUpdate="true"/>
+                    <table  align="center" cellpadding="0"
+                            cellspacing="0" border="0" width="600">
+                        <tr>
+                            <td >
+                                <p:panel id="pnlNuevoCatastro" header="Nuevo Establecimiento Comercial">
+                                    <p:panelGrid columns="4" id="pngNuevoCatastro" style="alignment-adjust: central">
+                                        <p:outputLabel for="txtOrpaf" value="ORPAF"/>
+                                        <p:inputText id="txtOrpaf" value="#{beanCatastroIntendencia2015.catastro.orpaf}" required="true" placeholder="Ej. 59409"/>                            
+                                        <p:outputLabel for="txtPropietario" value="PROPIETARIO"/>
+                                        <p:inputText id="txtPropietario" value="#{beanCatastroIntendencia2015.catastro.propietario}" required="true" placeholder="Ej. Edwin Maigua"/> 
+                                        <p:outputLabel for="txtRazon_social" value="RAZON SOCIAL"/>
+                                        <p:inputText id="txtRazon_social" value="#{beanCatastroIntendencia2015.catastro.razon_social}" required="true" placeholder="Ej. Viveres la facultad"/> 
+                                        <p:outputLabel for="txtDireccion" value="DIRECCION"/>
+                                        <p:inputText id="txtDireccion" value="#{beanCatastroIntendencia2015.catastro.direccion}" required="true" placeholder="Ej. Veloz"/> 
+                                        <p:outputLabel for="txtValor" value="VALOR"/>
+                                        <p:inputText id="txtValor" value="#{beanCatastroIntendencia2015.catastro.valor}" required="true" placeholder="Ej. 20,00"/> 
+                                        <p:outputLabel for="txtTipo_establecimiento" value="TIPO DE ESTABLECIMIENTO"/>
+                                        <p:inputText id="txtTipo_establecimiento" value="#{beanCatastroIntendencia2015.catastro.tipo_establecimiento}" required="true" placeholder="Ej. ABACERIA Y ABARROTE"/> 
+                                        <p:outputLabel for="txtParroquia" value="PARROQUIA"/>
+                                        <p:inputText id="txtParroquia" value="#{beanCatastroIntendencia2015.catastro.parroqui}" required="true" placeholder="Ej. Lizarzaburo"/> 
+                                        <p:outputLabel  value="CATEGORIA"/>
+                                        <p:selectOneMenu value="#{beanCatastroIntendencia2015.catastro.categoria}">
+                                            <f:selectItem itemLabel="Seleccione..." itemValue="#{null}" />
+                                            <f:selectItem itemLabel="categoria 1" itemValue="1"/>
+                                            <f:selectItem itemLabel="categoria 2" itemValue="2"/>
+                                            <f:selectItem itemLabel="categoria 3" itemValue="3"/>
+                                            <f:selectItem itemLabel="categoria 4" itemValue="4"/>
+                                        </p:selectOneMenu>
+                                        <p:column/>
+                                        <p:commandButton value="Insertar" action="#{beanCatastroIntendencia2015.insertar()}" update=":frmPrincipal:tblDatos, frmPrincipal" />
+                                        <p:commandButton value="Actualizar" action="#{beanCatastroIntendencia2015.actualizar()}" update="frmPrincipal">
+                                            <f:setPropertyActionListener target="#{beanCatastroIntendencia2015.codigo}" value="#{datos.codigo}"/>
+                                        </p:commandButton>
+                                    </p:panelGrid>
+                                </p:panel>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <p:panel id="pnlDatos" >
+                        <p:dataTable id="tblDatos" value="#{beanCatastroIntendencia2015.lstCatastro}" var="datos">
+                            <f:facet name="header">
+                                <p:outputLabel value="Catastro Intendencia 2015"/>
+                            </f:facet>
+                            
+                            <p:column>  
+                                <f:facet name="header">
+                                    <h:outputText value="ORPAF"/>
+                                </f:facet>
+                                <p:outputLabel value="#{datos.orpaf}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="PROPIETARIO"/>
+                                </f:facet>
+                                <p:outputLabel value="#{datos.propietario}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="RAZON SOCIAL"/>
+                                </f:facet>
+                                <p:outputLabel value="#{datos.razon_social}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="DIRECCION"/>
+                                </f:facet>
+                                <p:outputLabel value="#{datos.direccion}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="VALOR"/>
+                                </f:facet>
+                                <p:outputLabel value="#{datos.valor}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="TIPO ESTABLECIMIENTO"/>
+                                </f:facet>
+                                <p:outputLabel value="#{datos.tipo_establecimiento}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="PARROQUIA"/>
+                                </f:facet>
+                                <p:outputLabel value="#{datos.parroqui}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="CATEGORIA"/>
+                                </f:facet>
+                                <p:outputLabel value="#{datos.categoria}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="ACCIONES"/>
+
+                                </f:facet>
+                                <p:commandButton id="btnSeleccionar" value="Seleccionar" update=":frmPrincipal:pngNuevoCatastro" process="@this">
+                                    <f:setPropertyActionListener target="#{beanCatastroIntendencia2015.catastro}" value="#{datos}"/>
+                                </p:commandButton>
+                                <p:commandButton value="Eliminar" action="#{beanCatastroIntendencia2015.eliminar()}" update=":frmPrincipal" process="@this">
+                                    <f:setPropertyActionListener target="#{beanCatastroIntendencia2015.codigo}" value="#{datos.codigo}"/>                                    
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="dialogos">
+                <p:dialog modal="true" widgetVar="dlgStatus" header="Procesando" draggable="false" closable="false" 
+                          resizable="false"> 
+                    <p:graphicImage value="/resources/images/ajaxloadingbar.gif" />  
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
