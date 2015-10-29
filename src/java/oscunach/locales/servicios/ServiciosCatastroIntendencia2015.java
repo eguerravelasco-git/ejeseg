@@ -122,5 +122,39 @@ public class ServiciosCatastroIntendencia2015 {
         }
         return lst;
     }
+    
+     public static ArrayList<CatastroIntendencia2015> ObtenerCatastroIntendencia2015DatoPropietario(String propietario) throws Exception {
+        ArrayList<CatastroIntendencia2015> lst = new ArrayList<CatastroIntendencia2015>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from locales.f_select_catastro_intendencia_2015_dado_propietario(?)";
+            lstP.add(new Parametro(1, propietario));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+     public static ArrayList<CatastroIntendencia2015> ObtenerCatastroIntendencia2015DadoCodigo(int codigo) throws Exception{
+          ArrayList<CatastroIntendencia2015> lst = new ArrayList<CatastroIntendencia2015>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from locales.f_select_catastro_intendencia_2015_dado_codigo(?)";
+            lstP.add(new Parametro(1, codigo));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+         
+     }
+     
+
+     
+    
 
 }

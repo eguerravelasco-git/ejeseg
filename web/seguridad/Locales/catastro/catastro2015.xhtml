@@ -33,8 +33,6 @@ and open the template in the editor.
                                         <p:inputText id="txtPropietario" value="#{beanCatastroIntendencia2015.catastro.propietario}" required="true" placeholder="Ej. Edwin Maigua"/> 
                                         <p:outputLabel for="txtRazon_social" value="RAZON SOCIAL"/>
                                         <p:inputText id="txtRazon_social" value="#{beanCatastroIntendencia2015.catastro.razon_social}" required="true" placeholder="Ej. Viveres la facultad"/> 
-                                        <p:outputLabel for="txtDireccion" value="DIRECCION"/>
-                                        <p:inputText id="txtDireccion" value="#{beanCatastroIntendencia2015.catastro.direccion}" required="true" placeholder="Ej. Veloz"/> 
                                         <p:outputLabel for="txtValor" value="VALOR"/>
                                         <p:inputText id="txtValor" value="#{beanCatastroIntendencia2015.catastro.valor}" required="true" placeholder="Ej. 20,00"/> 
                                         <p:outputLabel for="txtTipo_establecimiento" value="TIPO DE ESTABLECIMIENTO"/>
@@ -60,12 +58,27 @@ and open the template in the editor.
                         </tr>
                     </table>
 
+                    <p:panelGrid columns="3">
+                        <f:facet name="header">
+                            <p:outputLabel value="Busquedas..."/>
+                            
+                        </f:facet>
+                        <p:outputLabel value="Ingrese un Nombre Propietario"/>
+                        <p:selectOneMenu id="cmbPropietarios" value="#{beanCatastroIntendencia2015.codigoSel}" effect="fold" editable="true">
+                            <f:selectItem itemLabel="Select One" itemValue="" />
+                            <f:selectItems value="#{beanCatastroIntendencia2015.lstCatastro}" var="propietarios" 
+                                           itemLabel="#{propietarios.propietario}" itemValue="#{propietarios.codigo}"/>
+                        </p:selectOneMenu>
+                        <p:commandButton id="btnBuscar" icon="ui-icon-search" style="width:50px" 
+                                         action="#{beanCatastroIntendencia2015.obtenerDatosDadosCodigo()}"
+                                         update=":frmPrincipal:pnlDatos" process="@this"/>
+                    </p:panelGrid>
                     <p:panel id="pnlDatos" >
                         <p:dataTable id="tblDatos" value="#{beanCatastroIntendencia2015.lstCatastro}" var="datos">
                             <f:facet name="header">
                                 <p:outputLabel value="Catastro Intendencia 2015"/>
                             </f:facet>
-                            
+
                             <p:column>  
                                 <f:facet name="header">
                                     <h:outputText value="ORPAF"/>
@@ -131,6 +144,7 @@ and open the template in the editor.
                             </p:column>
                         </p:dataTable>
                     </p:panel>
+
                 </h:form>
             </ui:define>
 

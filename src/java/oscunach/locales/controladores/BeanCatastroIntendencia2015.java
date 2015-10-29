@@ -12,6 +12,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import oscunach.locales.entidades.CatastroIntendencia2015;
 import oscunach.locales.servicios.ServiciosCatastroIntendencia2015;
+import recursos.Util;
 
 /**
  *
@@ -24,7 +25,26 @@ public class BeanCatastroIntendencia2015 {
     private ArrayList<CatastroIntendencia2015> lstCatastro;
     private CatastroIntendencia2015 catastro;
     private int codigo;
+    private String propietarioSel;
+    private int codigoSel;
 
+    public int getCodigoSel() {
+        return codigoSel;
+    }
+
+    public void setCodigoSel(int codigoSel) {
+        this.codigoSel = codigoSel;
+    }
+    
+    
+    public String getPropietarioSel() {
+        return propietarioSel;
+    }
+
+    public void setPropietarioSel(String propietarioSel) {
+        this.propietarioSel = propietarioSel;
+    }
+    
     public int getCodigo() {
         return codigo;
     }
@@ -102,6 +122,24 @@ public class BeanCatastroIntendencia2015 {
             FacesContext.getCurrentInstance().addMessage(null, mensaje);
 
         } catch (Exception e) {
+        }
+    }
+     public void obtenerDatosDadoPropietario() {
+        try {
+           lstCatastro = ServiciosCatastroIntendencia2015.ObtenerCatastroIntendencia2015DatoPropietario(propietarioSel);
+            System.out.println(lstCatastro.get(0).getPropietario());
+        } catch (Exception e) {
+            Util.addErrorMessage("public void ObtenerCatastroIntendencia2015DatoPropietario() dice: " + e.getMessage());
+            System.out.println("public void ObtenerCatastroIntendencia2015DatoPropietario() dice: " + e.getMessage());
+        }
+    }
+       public void obtenerDatosDadosCodigo() {
+        try {
+           lstCatastro = ServiciosCatastroIntendencia2015.ObtenerCatastroIntendencia2015DadoCodigo(codigoSel);
+            System.out.println(lstCatastro.get(0).getPropietario());
+        } catch (Exception e) {
+            Util.addErrorMessage("public void ObtenerCatastroIntendencia2015DadoCodigo() dice: " + e.getMessage());
+            System.out.println("public void ObtenerCatastroIntendencia2015DadoCodigo() dice: " + e.getMessage());
         }
     }
 
