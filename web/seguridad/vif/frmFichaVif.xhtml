@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>
+            <ui:define name="Circuito">Gestión de Circuitos</ui:define>
+        </title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../../templates/plantillaInternaCenter.xhtml">
+            <ui:define name="top">Gestión de Fichas</ui:define>
+            <ui:define name="contenido">
+                <p:growl id="mensajes" autoUpdate="true" showDetail="true"/>
+                <h:form id="frmfichas">
+                    <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                    <p:panel id="pnlFichas">
+                        <p:dataTable id="tblFichas" value="#{ficheBean.lstFicha}" 
+                                     var="ficha" 
+                                     paginator="true" rows="10" rowKey="#{ficha.id_ficha}" selectionMode="single" 
+                                     selection="#{ficheBean.fichaSel}">
+
+                            <f:facet name="header">
+                                <p:outputLabel value="GESTION DE DENUNCIAS"/>
+                            </f:facet>
+
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha Denuncia"/>
+                                </f:facet>
+                                <h:outputText value="#{ficha.fecha_denuncia}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Sexo Victima"/>
+                                </f:facet>
+                                <h:outputText value="#{ficha.sexo_victima}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Edad Victima"/>
+                                </f:facet>
+                                <h:outputText value="#{ficha.edad_victima}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Sexo Agresor"/>
+                                </f:facet>
+                                <h:outputText value="#{ficha.sexo_agresor}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Edad Agresor"/>
+                                </f:facet>
+                                <h:outputText value="#{ficha.edad_agresor}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Tipo de Violencia"/>
+                                </f:facet>
+                                <h:outputText value="#{ficha.tipo_violencia}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Relación de parentesco"/>
+                                </f:facet>
+                                <h:outputText value="#{ficha.parentesco_victima_agresor}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Medidas de Amparo"/>
+                                </f:facet>
+                                <h:outputText value="#{ficha.medidas_amparo}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Circuito"/>
+                                </f:facet>
+                                <h:outputText value="#{ficha.circuito}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="SubCircuito"/>
+                                </f:facet>
+                                <h:outputText value="#{ficha.subcircuito}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Lugar de agresion"/>
+                                </f:facet>
+                                <h:outputText value="#{ficha.lugar_agresion}"/>
+                            </p:column>
+
+                            <p:column exportable="false">
+                                <p:commandButton id="btnEditarFicha" icon="ui-icon-pencil"  title="Editar Ficha" 
+                                                 oncomplete="wdlgEditarFicha.show()" 
+                                                 process="@this" update=":dlgEditarFicha, @form">                                   
+                                    <f:setPropertyActionListener value="#{ficha}" 
+                                                                 target="#{ficheBean.fichaSel}"/>
+                                </p:commandButton>
+                               
+                            </p:column>
+                            
+                            
+
+
+                            <f:facet name="footer">      
+
+                                <p:commandButton id="btnNuevaFicha" value="Nueva" icon="ui-icon-newwin"
+                                                 oncomplete="wdlgNuevaFicha.show()" title="Nueva Ficha"/>  
+
+                                <h:commandLink>
+                                    <img src="../../resources/images/excel.png" alt=""/>
+                                    <p:dataExporter type="xls" target="tblFichas" fileName="Fichas" pageOnly="true" />
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <img src="../../resources/images/pdf.png" alt=""/>
+                                    <p:dataExporter type="pdf" target="tblFichas" fileName="Fichas" pageOnly="true" />
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <img src="../../resources/images/csv.png" alt=""/>
+                                    <p:dataExporter type="csv" target="tblFichas" fileName="Fichas" pageOnly="true" />
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <img src="../../resources/images/xml.png" alt=""/>
+                                    <p:dataExporter type="xml" target="tblFichas" fileName="Fichas" pageOnly="true" />
+                                </h:commandLink>
+                            </f:facet>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+            <ui:define name="dialogos">
+
+                <p:dialog id="dlgNuevaFicha" header="Nueva Ficha" widgetVar="wdlgNuevaFicha" 
+                          modal="true" closable="false" resizable="false"
+                          showEffect="clip" hideEffect="fold"> 
+                    <h:form id="frmNuevaFicha">
+                        <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                        <p:panel id="pnlDenunciante">
+                            <p:panelGrid id="pngNuevaFicha" columns="4">
+                                <p:outputLabel value="Ingrese la fecha de denuncia"/>
+                                <p:calendar id="fechaNacimiento" value="#{ficheBean.fechaDenuncia}" locale="de" navigator="true" pattern="yyyy/MM/dd" placeholder="yyyy/MM/dd" />
+                                <p:outputLabel value="Ingrese los datos del denunciante:"/>
+                                <p:inputText value="#{ficheBean.objFicha.denunciante}" required="true" placeholder="Ej. Angel Geovanny Cudco Pomagualli"/>                                                        
+                            </p:panelGrid>
+                        </p:panel>
+                        <p:panel id="pnlVictima">
+                            <f:facet name="header">
+                                <p:outputLabel value="Datos víctima..."/>
+                            </f:facet>
+                            <p:panelGrid id="pngVictima" columns="10">
+                                <p:outputLabel value="Nombres: "/>
+                                <p:inputText value="#{ficheBean.objFicha.nombres_victima}" required="true" placeholder="ej. Angel Geovanny"/>
+                                <p:outputLabel value="Apellidos: "/>
+                                <p:inputText value="#{ficheBean.objFicha.apellidos_victima}" required="true" placeholder="ej. Cudco Pomagualli"/>
+                                <p:outputLabel value="Género:"/>
+                                <p:selectOneMenu id="cmbGeneroVcitima" value="#{ficheBean.objFicha.sexo_victima}">
+                                    <f:selectItem itemLabel="Seleccione..." itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Femenino" itemValue="Femenino"/>
+                                    <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Edad:"/>
+                                <p:inputText value="#{ficheBean.objFicha.edad_victima}" required="true" placeholder="Ej. 26"/>
+                                <p:outputLabel value="Estado Civil:"/>
+                                <p:selectOneMenu id="cmbEstadoCivilV" value="#{ficheBean.objFicha.estado_civil_victima}">
+                                    <f:selectItem itemLabel="Seleccione..." itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Soltero/a" itemValue="Soltero/a"/>
+                                    <f:selectItem itemLabel="Casado/a" itemValue="Casado/a"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Dirección Domiciliaria:"/>
+                                <p:inputText value="#{ficheBean.objFicha.direccion_victima}" required="true" placeholder="Ej. Avda 11 de Noviembre y Juan Salinas"/>                                
+                                <p:outputLabel value="Domiciliado:"/>
+                                <p:inputText value="#{ficheBean.objFicha.domiciliado_victima}" required="true" placeholder="Ej. Riobamba"/>                                                                
+                                <p:outputLabel value="Nivel de Instruccion:"/>
+                                <p:inputText value="#{ficheBean.objFicha.nivel_instruccion_victima}" required="true" placeholder="Ej. Superior"/>
+                                <p:outputLabel value="Ocupación:"/>
+                                <p:inputText value="#{ficheBean.objFicha.ocupacion_victima}" required="true" placeholder="Ej. Vendedor Ambulante"/>
+                            </p:panelGrid>
+                        </p:panel>
+                        <p:panel id="pnlAgresor">
+                            <f:facet name="header">
+                                <p:outputLabel value="Datos agresor...."/>
+                            </f:facet>
+                            <p:panelGrid columns="8">
+                                <p:outputLabel value="Nombres y Apellidos:"/>
+                                <p:inputText value="#{ficheBean.objFicha.agresor}" required="true" placeholder="Ej. Angel Geovanny Cudco Pomagualli"/>
+                                <p:outputLabel value="Género:"/>
+                                <p:selectOneMenu id="cmbGeneroAgresor" value="#{ficheBean.objFicha.sexo_agresor}">
+                                    <f:selectItem itemLabel="Seleccione..." itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Femenino" itemValue="Femenino"/>
+                                    <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Edad:"/>
+                                <p:inputText value="#{ficheBean.objFicha.edad_agresor}" required="true" placeholder="Ej. 26"/>
+                                <p:outputLabel value="Estado Civil:"/>
+                                <p:selectOneMenu id="cmbEstadoCivilAg" value="#{ficheBean.objFicha.estado_civil_agresor}">
+                                    <f:selectItem itemLabel="Seleccione..." itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Soltero/a" itemValue="Soltero/a"/>
+                                    <f:selectItem itemLabel="Casado/a" itemValue="Casado/a"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Dirección Domiciliaria:"/>
+                                <p:inputText value="#{ficheBean.objFicha.direccion_agresor}" required="true" placeholder="Ej. Avda 11 de Noviembre y Juan Salinas"/>                                
+                                <p:outputLabel value="Domiciliado:"/>
+                                <p:inputText value="#{ficheBean.objFicha.domiciliado_agresor}" required="true" placeholder="Ej. Riobamba"/>                                                                
+                                <p:outputLabel value="Nivel de Instruccion:"/>
+                                <p:inputText value="#{ficheBean.objFicha.nivel_instruccion_agresor}" required="true" placeholder="Ej. Superior"/>
+                                <p:outputLabel value="Ocupación:"/>
+                                <p:inputText value="#{ficheBean.objFicha.ocupaccion_agresor}" required="true" placeholder="Ej. Vendedor Ambulante"/>                                                            
+                            </p:panelGrid>
+                        </p:panel>
+
+                        <p:panel id="pnlDetalleAgresion">
+                            <f:facet name="header">
+                                <p:outputLabel value="Detalles de la Agresión: "/>
+                            </f:facet>
+                            <p:panelGrid columns="8">
+                                <p:outputLabel value="Parentesco"/>
+                                <p:inputText value="#{ficheBean.objFicha.parentesco_victima_agresor}" required="true" placeholder="Ej. Hijo"/>
+                                <p:outputLabel value="Número de Hijos en común"/>
+                                <p:inputText value="#{ficheBean.objFicha.numero_hijos_comun}" required="true" />
+                                <p:outputLabel value="Tiempo de Convivencia:"/>
+                                <p:inputText value="#{ficheBean.objFicha.tiempo_convivencia}" required="true" placeholder="Ej. 2 meses"/>
+                                <p:outputLabel value="Lugar de la agresión:"/>
+                                <p:inputText value="#{ficheBean.objFicha.lugar_agresion}" required="true" placeholder="Ej. Casa"/>
+                                <p:outputLabel value="Tipo de Violencia:"/>
+                                <p:selectOneMenu id="cmbTipoViolencia" value="#{ficheBean.objFicha.tipo_violencia}">
+                                    <f:selectItem itemLabel="Seleccione..." itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Física" itemValue="Física"/>
+                                    <f:selectItem itemLabel="Psicológica" itemValue="Psicólogica"/>
+                                    <f:selectItem itemLabel="Sexual" itemValue="Sexual"/>
+                                    <f:selectItem itemLabel="Física y Psicológica" itemValue="Física y Psicológica"/>
+                                    <f:selectItem itemLabel="Física y Sexual" itemValue="Física y Sexual"/>
+                                    <f:selectItem itemLabel="Psicologica y Sexual" itemValue="Psicologica y Sexual"/>
+                                    <f:selectItem itemLabel="Física, Psicológica y Sexual" itemValue="Física, Psicológica y Sexual"/>
+                                </p:selectOneMenu>                                
+                                <p:outputLabel value="Fecha de agresión:"/>
+                                <p:calendar id="fechaAgresion" value="#{ficheBean.fechaAgresion}" locale="de" navigator="true" pattern="yyyy/MM/dd" placeholder="yyyy/MM/dd" />
+
+                                <p:outputLabel for="time" value="Hora de agresión:" />
+                                <p:calendar id="time" value="#{ficheBean.horaAgresion}" pattern="HH:mm:ss" timeOnly="true" placeholder="HH:mm:ss" />
+
+                                <p:outputLabel value="Reincidencia de la agresión"/>
+                                <p:inputText value="#{ficheBean.objFicha.reincidencia_agresion}" placeholder="Ej. Primera Vez"/>
+                                <p:outputLabel value="Objeto de la Agresión"/>
+                                <p:inputText value="#{ficheBean.objFicha.objeto_agresion}" placeholder="Ej. Cuerpo"/>
+                                <p:outputLabel value="Estado de conciencia Agresor"/>
+                                <p:inputText value="#{ficheBean.objFicha.estado_conciencia_agresor}" placeholder="Ef. Estado Etilico"/>
+                                <p:outputLabel value="Dirección agresión: "/>                                
+                                <p:commandButton icon="ui-icon-search" style="width:50px" oncomplete="wdlgDirecciones.show()"
+                                                     process="@this"/>
+                                <p:outputLabel value="Medidas de Amparo"/>
+                                <p:inputText value="#{ficheBean.objFicha.medidas_amparo}" placeholder="Ej. 1,2,3" required="true"/>
+                                <p:outputLabel value="Sentencia"/>
+                                <p:inputText value="#{ficheBean.objFicha.sentencia}" placeholder="Ej. 1,2,3" required="true"/>
+                                <p:outputLabel value="Apelación"/>
+                                <p:inputText value="#{ficheBean.objFicha.apelacion}" placeholder="Ej. 1,2,3" required="true"/>
+                                <p:outputLabel value="Boletas anteriores"/>
+                                <p:inputText value="#{ficheBean.objFicha.boletas_anteriores}" placeholder="Ej. 1,2,3" required="true"/>
+                                <p:outputLabel value="Boletas de remision"/>
+                                <p:inputText value="#{ficheBean.objFicha.boletas_remision}" placeholder="Ej. 1,2,3" required="true"/>                                
+                                <p:outputLabel value="Observaciones"/>
+                                <p:inputText value="#{ficheBean.objFicha.observaciones}" placeholder="Ej. 1,2,3" required="true"/>
+
+                            </p:panelGrid>                                                                
+                        </p:panel>
+
+                        <p:commandButton value="Aceptar" action="#{ficheBean.insertarFicha()}" 
+                                         update=":frmfichas:pnlFichas"/>
+                        <p:commandButton value="Cancelar" onclick="wdlgNuevaFicha.hide()" type="reset"/>
+                    </h:form>
+                </p:dialog>
+
+
+                <p:dialog id="dlgDirecciones" header="Direcciones" widgetVar="wdlgDirecciones" 
+                          modal="true" closable="false" resizable="false"
+                          showEffect="clip" hideEffect="fold"> 
+                    <h:form id="frmDirecciones">
+                        <p:panel id="pnlBusquedas">                                  
+                            <h:panelGrid cellspacing="10">                            
+                                <p:panelGrid columns="4">
+                                    <p:outputLabel value="Dirección: " />                                                               
+                                    <p:inputText value="#{ficheBean.direccionBuscar}" placeholder="Ej. Avda 11 de Noviembre y Juan Salinas"/>
+
+                                    <p:commandButton id="btnBuscarNumCaso" icon="ui-icon-search" style="width:50px"  
+                                                     title="Buscar " action="#{ficheBean.obtenerDireccionesPorCalle()}" 
+                                                     process="@form, @this" update=":frmDirecciones:tblDirecciones, @form">                                   
+                                    </p:commandButton>
+                                    <p:commandButton id="btnLimpiar" icon="ui-icon-arrowrefresh-1-e" style="width:50px"  
+                                                     title="Limpiar " action="#{ficheBean.obtnerDirecciones()}" 
+                                                     process="@form, @this" update=":frmDirecciones:tblDirecciones, @form">                                   
+                                    </p:commandButton>
+                                </p:panelGrid>
+
+                            </h:panelGrid>
+                        </p:panel>
+                        <p:dataTable id="tblDirecciones" value="#{ficheBean.lstDirecciones}" 
+                                     var="direcciones" 
+                                     paginator="true" rows="10" rowKey="#{direcciones.pk}" selectionMode="single" 
+                                     selection="#{ficheBean.direccionSel}">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Dirección"/>
+                                </f:facet>
+                                <h:outputText value="#{direcciones.calles}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Circuito"/>
+                                </f:facet>
+                                <h:outputText value="#{direcciones.circuito}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Subcircuito"/>
+                                </f:facet>
+                                <h:outputText value="#{direcciones.subcircuito}"/>
+                            </p:column>
+
+
+                        </p:dataTable>
+
+                        <p:commandButton value="Insertar" action="#{ficheBean.transferirDirecciones()}" 
+                                         update=":frmfichas:pnlFichas">
+                            <f:setPropertyActionListener target="#{ficheBean.objFicha.circuito}" value="#{ficheBean.direccionSel.circuito}" />
+                            <f:setPropertyActionListener target="#{ficheBean.objFicha.subcircuito}" value="#{ficheBean.direccionSel.subcircuito}" />
+                            <f:setPropertyActionListener target="#{ficheBean.objFicha.codigo_subcircuito}" value="#{ficheBean.direccionSel.codigo_subcircuito}" />
+                            <f:setPropertyActionListener target="#{ficheBean.objFicha.codigo_circuito}" value="#{ficheBean.direccionSel.codigo_circuito}" />
+                            <f:setPropertyActionListener target="#{ficheBean.objFicha.direccion_agresion}" value="#{ficheBean.direccionSel.calles}" />
+                            
+                        </p:commandButton>
+                        <p:commandButton value="Cancelar" onclick="wdlgDirecciones.hide()" type="reset"/>                        
+                    </h:form>
+                </p:dialog>
+
+                <p:dialog id="dlgEditarFicha" header="Editar Ficha" widgetVar="wdlgEditarFicha" 
+                          modal="true" closable="false" resizable="false"
+                          showEffect="clip" hideEffect="fold"> 
+                    <h:form id="frmEditarFicha">
+                        <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                        <p:panel id="pnlDenunciante">
+                            <p:panelGrid id="pngEditarFicha" columns="4">
+                                <p:outputLabel value="Ingrese la fecha de denuncia"/>
+                                <p:calendar id="fechaDenuncia" value="#{ficheBean.fechaDenuncia}" locale="de" navigator="true" pattern="yyyy/MM/dd" placeholder="yyyy/MM/dd" />
+                                <p:outputLabel value="Ingrese los datos del denunciante:"/>
+                                <p:inputText value="#{ficheBean.fichaSel.denunciante}" required="true" placeholder="Ej. Angel Geovanny Cudco Pomagualli"/>                                                        
+                            </p:panelGrid>
+                        </p:panel>
+                        <p:panel id="pnlVictima">
+                            <f:facet name="header">
+                                <p:outputLabel value="Datos víctima..."/>
+                            </f:facet>
+                            <p:panelGrid id="pngVictima" columns="10">
+                                <p:outputLabel value="Nombres: "/>
+                                <p:inputText value="#{ficheBean.fichaSel.nombres_victima}" required="true" placeholder="ej. Angel Geovanny"/>
+                                <p:outputLabel value="Apellidos: "/>
+                                <p:inputText value="#{ficheBean.fichaSel.apellidos_victima}" required="true" placeholder="ej. Cudco Pomagualli"/>
+                                <p:outputLabel value="Género:"/>
+                                <p:selectOneMenu id="cmbGeneroVcitima" value="#{ficheBean.fichaSel.sexo_victima}">
+                                    <f:selectItem itemLabel="Seleccione..." itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Femenino" itemValue="Femenino"/>
+                                    <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Edad:"/>
+                                <p:inputText value="#{ficheBean.fichaSel.edad_victima}" required="true" placeholder="Ej. 26"/>
+                                <p:outputLabel value="Estado Civil:"/>
+                                <p:selectOneMenu id="cmbEstadoCivilV" value="#{ficheBean.fichaSel.estado_civil_victima}">
+                                    <f:selectItem itemLabel="Seleccione..." itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Soltero/a" itemValue="Soltero/a"/>
+                                    <f:selectItem itemLabel="Casado/a" itemValue="Casado/a"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Dirección Domiciliaria:"/>
+                                <p:inputText value="#{ficheBean.fichaSel.direccion_victima}" required="true" placeholder="Ej. Avda 11 de Noviembre y Juan Salinas"/>                                
+                                <p:outputLabel value="Domiciliado:"/>
+                                <p:inputText value="#{ficheBean.fichaSel.domiciliado_victima}" required="true" placeholder="Ej. Riobamba"/>                                                                
+                                <p:outputLabel value="Nivel de Instruccion:"/>
+                                <p:inputText value="#{ficheBean.fichaSel.nivel_instruccion_victima}" required="true" placeholder="Ej. Superior"/>
+                                <p:outputLabel value="Ocupación:"/>
+                                <p:inputText value="#{ficheBean.fichaSel.ocupacion_victima}" required="true" placeholder="Ej. Vendedor Ambulante"/>
+                            </p:panelGrid>
+                        </p:panel>
+                        <p:panel id="pnlAgresor">
+                            <f:facet name="header">
+                                <p:outputLabel value="Datos agresor...."/>
+                            </f:facet>
+                            <p:panelGrid columns="8">
+                                <p:outputLabel value="Nombres y Apellidos:"/>
+                                <p:inputText value="#{ficheBean.fichaSel.agresor}" required="true" placeholder="Ej. Angel Geovanny Cudco Pomagualli"/>
+                                <p:outputLabel value="Género:"/>
+                                <p:selectOneMenu id="cmbGeneroAgresor" value="#{ficheBean.fichaSel.sexo_agresor}">
+                                    <f:selectItem itemLabel="Seleccione..." itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Femenino" itemValue="Femenino"/>
+                                    <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Edad:"/>
+                                <p:inputText value="#{ficheBean.fichaSel.edad_agresor}" required="true" placeholder="Ej. 26"/>
+                                <p:outputLabel value="Estado Civil:"/>
+                                <p:selectOneMenu id="cmbEstadoCivilAg" value="#{ficheBean.fichaSel.estado_civil_agresor}">
+                                    <f:selectItem itemLabel="Seleccione..." itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Soltero/a" itemValue="Soltero/a"/>
+                                    <f:selectItem itemLabel="Casado/a" itemValue="Casado/a"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Dirección Domiciliaria:"/>
+                                <p:inputText value="#{ficheBean.fichaSel.direccion_agresor}" required="true" placeholder="Ej. Avda 11 de Noviembre y Juan Salinas"/>                                
+                                <p:outputLabel value="Domiciliado:"/>
+                                <p:inputText value="#{ficheBean.fichaSel.domiciliado_agresor}" required="true" placeholder="Ej. Riobamba"/>                                                                
+                                <p:outputLabel value="Nivel de Instruccion:"/>
+                                <p:inputText value="#{ficheBean.fichaSel.nivel_instruccion_agresor}" required="true" placeholder="Ej. Superior"/>
+                                <p:outputLabel value="Ocupación:"/>
+                                <p:inputText value="#{ficheBean.fichaSel.ocupaccion_agresor}" required="true" placeholder="Ej. Vendedor Ambulante"/>                                                            
+                            </p:panelGrid>
+                        </p:panel>
+
+                        <p:panel id="pnlDetalleAgresion">
+                            <f:facet name="header">
+                                <p:outputLabel value="Detalles de la Agresión: "/>
+                            </f:facet>
+                            <p:panelGrid columns="8">
+                                <p:outputLabel value="Parentesco"/>
+                                <p:inputText value="#{ficheBean.fichaSel.parentesco_victima_agresor}" required="true" placeholder="Ej. Hijo"/>
+                                <p:outputLabel value="Número de Hijos en común"/>
+                                <p:inputText value="#{ficheBean.fichaSel.numero_hijos_comun}" required="true" />
+                                <p:outputLabel value="Tiempo de Convivencia:"/>
+                                <p:inputText value="#{ficheBean.fichaSel.tiempo_convivencia}" required="true" placeholder="Ej. 2 meses"/>
+                                <p:outputLabel value="Lugar de la agresión:"/>
+                                <p:inputText value="#{ficheBean.fichaSel.lugar_agresion}" required="true" placeholder="Ej. Casa"/>
+                                <p:outputLabel value="Tipo de Violencia:"/>
+                                <p:selectOneMenu id="cmbTipoViolencia" value="#{ficheBean.fichaSel.tipo_violencia}">
+                                    <f:selectItem itemLabel="Seleccione..." itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Física" itemValue="Física"/>
+                                    <f:selectItem itemLabel="Psicológica" itemValue="Psicólogica"/>
+                                    <f:selectItem itemLabel="Sexual" itemValue="Sexual"/>
+                                    <f:selectItem itemLabel="Física y Psicológica" itemValue="Física y Psicológica"/>
+                                    <f:selectItem itemLabel="Física y Sexual" itemValue="Física y Sexual"/>
+                                    <f:selectItem itemLabel="Psicologica y Sexual" itemValue="Psicologica y Sexual"/>
+                                    <f:selectItem itemLabel="Física, Psicológica y Sexual" itemValue="Física, Psicológica y Sexual"/>
+                                </p:selectOneMenu>                                
+                                <p:outputLabel value="Fecha de agresión:"/>
+                                <p:calendar id="fechaAgresion" value="#{ficheBean.fechaAgresion}" locale="de" navigator="true" pattern="yyyy/MM/dd" placeholder="yyyy/MM/dd" />
+
+                                <p:outputLabel for="time" value="Hora de agresión:" />
+                                <p:calendar id="time" value="#{ficheBean.horaAgresion}" pattern="HH:mm:ss" timeOnly="true" placeholder="HH:mm:ss" />
+
+                                <p:outputLabel value="Reincidencia de la agresión"/>
+                                <p:inputText value="#{ficheBean.fichaSel.reincidencia_agresion}" placeholder="Ej. Primera Vez"/>
+                                <p:outputLabel value="Objeto de la Agresión"/>
+                                <p:inputText value="#{ficheBean.fichaSel.objeto_agresion}" placeholder="Ej. Cuerpo"/>
+                                <p:outputLabel value="Estado de conciencia Agresor"/>
+                                <p:inputText value="#{ficheBean.fichaSel.estado_conciencia_agresor}" placeholder="Ef. Estado Etilico"/>
+                                <p:outputLabel value="Dirección agresión: "/>                                
+                                <p:commandButton icon="ui-icon-search" style="width:50px" oncomplete="wdlgDirecciones.show()"
+                                                     process="@this"/>
+                                <p:outputLabel value="Medidas de Amparo"/>
+                                <p:inputText value="#{ficheBean.fichaSel.medidas_amparo}" placeholder="Ej. 1,2,3" required="true"/>
+                                <p:outputLabel value="Sentencia"/>
+                                <p:inputText value="#{ficheBean.fichaSel.sentencia}" placeholder="Ej. 1,2,3" required="true"/>
+                                <p:outputLabel value="Apelación"/>
+                                <p:inputText value="#{ficheBean.fichaSel.apelacion}" placeholder="Ej. 1,2,3" required="true"/>
+                                <p:outputLabel value="Boletas anteriores"/>
+                                <p:inputText value="#{ficheBean.fichaSel.boletas_anteriores}" placeholder="Ej. 1,2,3" required="true"/>
+                                <p:outputLabel value="Boletas de remision"/>
+                                <p:inputText value="#{ficheBean.fichaSel.boletas_remision}" placeholder="Ej. 1,2,3" required="true"/>                                
+                                <p:outputLabel value="Observaciones"/>
+                                <p:inputText value="#{ficheBean.fichaSel.observaciones}" placeholder="Ej. 1,2,3" required="true"/>
+
+                            </p:panelGrid>                                                                
+                        </p:panel>
+
+                        <p:commandButton value="Aceptar" action="#{ficheBean.editarFicha()}" 
+                                         update=":frmfichas:pnlFichas"/>
+                        <p:commandButton value="Cancelar" onclick="wdlgEditarFicha.hide()" type="reset"/>
+                    </h:form>
+                </p:dialog>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <p:dialog modal="true" widgetVar="dlgStatus" header="Procesando" draggable="false" closable="false" 
+                          resizable="false"> 
+                    <p:graphicImage value="/resources/images/ajaxloadingbar.gif" />  
+                </p:dialog>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

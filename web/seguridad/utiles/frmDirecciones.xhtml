@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>
+            <ui:define name="Circuito">Gestión de Direcciones</ui:define>
+        </title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../../templates/plantillaInternaCenter.xhtml">
+            <ui:define name="top">Gestión de Direcciones</ui:define>
+            <ui:define name="contenido">
+                <p:growl id="mensajes" autoUpdate="true" showDetail="true"/>
+                <h:form id="frmdirecciones">
+                    <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                    <p:panel id="pnlBusquedasDirecciones">                                  
+                            <h:panelGrid cellspacing="10">                            
+                                <p:panelGrid columns="4">
+                                    <p:outputLabel value="Dirección: " />                                                               
+                                    <p:inputText value="#{direccionesCtrl.direccionBuscar}" placeholder="Ej. Avda 11 de Noviembre y Juan Salinas"/>
+
+                                    <p:commandButton id="btnBuscarNumCaso" icon="ui-icon-search" style="width:50px"  
+                                                     title="Buscar " action="#{direccionesCtrl.obtenerDireccionesPorCalle()}" 
+                                                     process="@form, @this" update=":frmdirecciones:tblDirecciones, @form">                                   
+                                    </p:commandButton>
+                                    <p:commandButton id="btnLimpiar" icon="ui-icon-arrowrefresh-1-e" style="width:50px"  
+                                                     title="Limpiar " action="#{direccionesCtrl.cargarDirecciones()}" 
+                                                     process="@form, @this" update=":frmdirecciones:tblDirecciones, @form">                                   
+                                    </p:commandButton>
+                                </p:panelGrid>
+
+                            </h:panelGrid>
+                    </p:panel>
+                    <p:panel id="pnlDirecciones">
+                        <p:dataTable id="tblDirecciones" value="#{direccionesCtrl.lstDirecciones}" 
+                                     var="direcciones" 
+                                     paginator="true" rows="20" rowKey="#{direcciones.pk}" selectionMode="single" 
+                                     selection="#{direccionesCtrl.direccionesSel}">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Calles"/>
+                                </f:facet>
+                                <h:outputText value="#{direcciones.calles}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Circuito"/>
+                                </f:facet>
+                                <h:outputText value="#{direcciones.circuito}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Codigo Circuito"/>
+                                </f:facet>
+                                <h:outputText value="#{direcciones.codigo_circuito}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Subcircuito"/>
+                                </f:facet>
+                                <h:outputText value="#{direcciones.subcircuito}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Codigo Subcircuito"/>
+                                </f:facet>
+                                <h:outputText value="#{direcciones.codigo_subcircuito}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Coordenada X"/>
+                                </f:facet>
+                                <h:outputText value="#{direcciones.x}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Coordenada Y"/>
+                                </f:facet>
+                                <h:outputText value="#{direcciones.y}"/>
+                            </p:column>
+
+
+
+                            <f:facet name="footer">  
+                                <p:commandButton id="btnNevaDireccion" value="Nueva" icon="ui-icon-newwin"
+                                                 oncomplete="wdlgNuevaDireccion.show()" title="Nueva Dirección"/>  
+
+                                <h:commandLink>
+                                    <img src="../../resources/images/excel.png" alt=""/>
+                                    <p:dataExporter type="xls" target="tblCircuito" fileName="Circuitos" pageOnly="true" />
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <img src="../../resources/images/pdf.png" alt=""/>
+                                    <p:dataExporter type="pdf" target="tblCircuito" fileName="Circuitos" pageOnly="true" />
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <img src="../../resources/images/csv.png" alt=""/>
+                                    <p:dataExporter type="csv" target="tblCircuito" fileName="Circuitos" pageOnly="true" />
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <img src="../../resources/images/xml.png" alt=""/>
+                                    <p:dataExporter type="xml" target="tblCircuito" fileName="Circuitos" pageOnly="true" />
+                                </h:commandLink>
+                            </f:facet>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+            <ui:define name="dialogos">
+
+
+                <p:dialog id="dlgNuevaDireccion" header="Nueva Direccion" widgetVar="wdlgNuevaDireccion" 
+                          modal="true" closable="false" resizable="false"
+                          showEffect="clip" hideEffect="fold"> 
+                    <h:form id="frmNuevaDireccion">
+                        <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                        <p:panelGrid id="pngNuevaDireccion" columns="2">
+                            <p:outputLabel value="Ingrese las Calles:"/>
+                            <p:inputTextarea value="#{direccionesCtrl.objDirecciones.calles}" required="true" placeholder="Ej. Avda . 11 de Noviembre y Juan Salinas"/>
+                            <p:outputLabel value="Ingrese la Coordenada X:"/>
+                            <p:inputText value="#{direccionesCtrl.objDirecciones.x}" required="true" placeholder="Ej. 753078.4467"/>
+                            <p:outputLabel value="Ingrese la Coordenada Y:"/>
+                            <p:inputText value="#{direccionesCtrl.objDirecciones.y}" required="true" placeholder="Ej. 9823355.357"/>
+                            <p:outputLabel value="Seleccione el subcircuito al que pertenece:"/>
+                            <p:commandButton icon="ui-icon-search" style="width:50px" oncomplete="wdlgSubcircuitos.show()"
+                                             process="@this"/>                               
+
+                        </p:panelGrid>
+                        <p:commandButton value="Aceptar" action="#{direccionesCtrl.insertarDireccion()}" 
+                                         update=":frmdirecciones:pnlDirecciones"/>
+                        <p:commandButton value="Cancelar" onclick="wdlgNuevaDireccion.hide()" type="reset"/>
+                    </h:form>
+                </p:dialog>
+
+                <p:dialog id="dlgSubcircuitos" header="Subcircuitos" widgetVar="wdlgSubcircuitos" 
+                          modal="true" closable="false" resizable="false"
+                          showEffect="clip" hideEffect="fold"> 
+                    <h:form id="frmSubcircuitos">
+                        <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                        <p:panel id="pnlBusquedaSubcircuitos">                                  
+                            <h:panelGrid cellspacing="10">                            
+                                <p:panelGrid columns="4">
+                                    <p:outputLabel value="Dirección: " />                                                               
+                                    <p:inputText value="#{direccionesCtrl.criterioBusqueda}" placeholder="Ej. LA PAZ 1"/>
+
+                                    <p:commandButton id="btnBuscarSubcircuito" icon="ui-icon-search" style="width:50px"  
+                                                     title="Buscar " action="#{ficheBean.obtenerDireccionesPorCalle()}" 
+                                                     process="@form, @this" update=":frmSubcircuitos:tblSubcircuitos, @form">                                   
+                                    </p:commandButton>
+                                    <p:commandButton id="btnLimpiar" icon="ui-icon-arrowrefresh-1-e" style="width:50px"  
+                                                     title="Limpiar " action="#{ficheBean.obtnerDirecciones()}" 
+                                                     process="@form, @this" update=":frmSubcircuitos:tblSubcircuitos, @form">                                   
+                                    </p:commandButton>
+                                </p:panelGrid>
+
+                            </h:panelGrid>
+                        </p:panel>
+                        <p:dataTable id="tblSubcircuitos" value="#{direccionesCtrl.lstSubcircuitos}" 
+                                     var="subcircuitos" 
+                                     paginator="true" rows="10" rowKey="#{subcircuitos.id_subcircuito}" selectionMode="single" 
+                                     selection="#{direccionesCtrl.subcircSel}">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Subcircuito"/>
+                                </f:facet>
+                                <h:outputText value="#{subcircuitos.descripcion}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Sodigo Subcircuito"/>
+                                </f:facet>
+                                <h:outputText value="#{subcircuitos.codigo_subcircuito}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Circuito"/>
+                                </f:facet>
+                                <h:outputText value="#{subcircuitos.id_circuito.descripcion}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Codigo Circuito"/>
+                                </f:facet>
+                                <h:outputText value="#{subcircuitos.id_circuito.codigo_circuito}"/>
+                            </p:column>
+
+                        </p:dataTable>
+
+                        <p:commandButton value="Insertar" action="#{direccionesCtrl.transferirCircuitos()}" 
+                                         update=":frmdirecciones:pnlDirecciones"/>
+                        <p:commandButton value="Cancelar" onclick="wdlgSubcircuitos.hide()" type="reset"/>
+                    </h:form>
+                </p:dialog>
+
+
+
+
+
+
+
+                <p:dialog modal="true" widgetVar="dlgStatus" header="Procesando" draggable="false" closable="false" 
+                          resizable="false"> 
+                    <p:graphicImage value="/resources/images/ajaxloadingbar.gif" />  
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
