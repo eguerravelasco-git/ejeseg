@@ -51,12 +51,14 @@ and open the template in the editor.
                             <p:outputLabel value="Barrio:"/>
                             <p:inputText value="#{ctrlFichaLocales.objlocales.barrio}" placeholder="Ej. Sultana de los Andes"/>
                             <p:outputLabel value="Circuito:"/>
-                            <p:selectOneMenu value="#{ctrlFichaLocales.objlocales.circuito}">
+                            <p:selectOneMenu value="#{ctrlFichaLocales.codigoCircuito}">
                                  <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
+                                 <f:selectItems value="#{ctrlFichaLocales.lstCircuito}" var="circuitos"
+                                                itemLabel="#{circuitos.descripcion}" itemValue="#{circuitos.id_circuito}"/>
                             </p:selectOneMenu>
                             <p:outputLabel value="Subcircuito:"/>
-                            <p:selectOneMenu value="#{ctrlFichaLocales.objlocales.subcircuito}">
-                                 <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
+                            <p:selectOneMenu value="#{ctrlFichaLocales.codigoSubcircuito}">
+                                 <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>                                 
                             </p:selectOneMenu>
                             <p:outputLabel value="Coordenada X:"/>
                             <p:inputText value="#{ctrlFichaLocales.objlocales.x}" required="true"/>

@@ -12,6 +12,7 @@ import org.primefaces.context.DefaultRequestContext;
 import recursos.Circuitos;
 import recursos.Subcircuito;
 import recursos.Util;
+import recursos.funciones.servicios.ServiciosCircuitos;
 import recursos.funciones.servicios.ServiciosSubcircuito;
 
 /**
@@ -25,23 +26,13 @@ public class ControladorSubcircuitoBeans {
     /**
      * Creates a new instance of ControladorSubcircuitoBeans
      */
-   private Subcircuito objSubcircuito;
+    private Subcircuito objSubcircuito;
     private Subcircuito subcircuitoSel;
     private ArrayList<Subcircuito> lstSubcircuito;
     private ArrayList<Circuitos> lstCircuito;
     private boolean mostrarActualizar;
     private int valorCSeleccionado;
-    private Circuitos codigoCircuitoSel;   
-
-    public void ccodigoCircSel() {
-        try {
-            codigoCircuitoSel = ServiciosSubcircuito.ObtenerCircuitoDadoId(valorCSeleccionado);
-        } catch (Exception e) {
-            Util.addErrorMessage(e.getMessage());
-            System.out.println("" + e.getMessage());
-        }
-
-    }
+    private Circuitos codigoCircuitoSel;
 
     public Circuitos getCodigoCircuitoSel() {
         return codigoCircuitoSel;
@@ -109,8 +100,7 @@ public class ControladorSubcircuitoBeans {
         this.lstCircuito = new ArrayList<Circuitos>();
         this.lstSubcircuito = new ArrayList<Subcircuito>();
         this.cargarCircuitos();
-        this.cargarSubcircuitos();
-        this.ccodigoCircSel();
+        this.cargarSubcircuitos();        
 
     }
 
@@ -127,7 +117,7 @@ public class ControladorSubcircuitoBeans {
 
     private void cargarCircuitos() {
         try {
-            this.lstCircuito = ServiciosSubcircuito.obtnerCircuito();
+            this.lstCircuito = ServiciosCircuitos.obtenerCircuito();
             System.out.println(lstCircuito.get(0).getId_circuito());
         } catch (Exception e) {
             Util.addErrorMessage("private void cargarCircuitos dice: " + e.getMessage());
@@ -137,8 +127,7 @@ public class ControladorSubcircuitoBeans {
 
     public void insertarSubcircuito() {
         try {
-            //if (FCircuito.insertarCircuito(objCircuito)) {
-            objSubcircuito.setId_circuito(ServiciosSubcircuito.ObtenerCircuitoDadoId(valorCSeleccionado));
+            objSubcircuito.setId_circuito(ServiciosCircuitos.ObtenerCircuitoDadoId(valorCSeleccionado));
             if (ServiciosSubcircuito.insertarSubcircuito(objSubcircuito)) {
                 this.reinit();
                 DefaultRequestContext.getCurrentInstance().execute("wdlgNuevoSubcircuito.hide()");

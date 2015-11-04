@@ -124,21 +124,38 @@ public class ServiciosSubcircuito {
         return lst;
     }
     
-    public static Circuitos ObtenerCircuitoDadoId(int id) throws Exception {
-        Circuitos lst;
+    public static Subcircuito obtenerSubcircuitoDadoCodigoCircuito(int id) throws Exception {
+        Subcircuito lst;
         try {
             ArrayList<Parametro> lstP = new ArrayList<Parametro>();
-            String sql = "select * from utiles.f_select_circuito_dado_codigo(?)";
+            String sql = "select * from utiles.f_select_subcircuito_dado_codigo_circuito(?)";
             lstP.add(new Parametro(1, id));
             ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
-            lst = new Circuitos();
-            lst = llenarCircuito(rs).get(0);
+            lst = new Subcircuito();
+            lst = llenarDatos(rs).get(0);
             rs = null;
         } catch (SQLException exConec) {
             throw new Exception(exConec.getMessage());
         }
         return lst;
     }
+    
+    public static ArrayList<Subcircuito> obtenerSubcircuitoDadoIdCircuito(int id) throws Exception {
+         ArrayList<Subcircuito> lst = new ArrayList<Subcircuito>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from utiles.f_select_subcircuito_dado_codigo_circuito(?)";
+            lstP.add(new Parametro(1, id));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);            
+            rs = null;
+        } catch (SQLException exConec) {
+            throw new Exception(exConec.getMessage());
+        }
+        return lst;
+    }
+    
+    
 
 
  
