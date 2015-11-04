@@ -24,10 +24,10 @@ and open the template in the editor.
                 <h:form id="frmcircuito">
                     <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                     <p:panel id="pnlCircuito">
-                        <p:dataTable id="tblCircuito" value="#{circuitoControlador.lstCircuito}" 
+                        <p:dataTable id="tblCircuito" value="#{controladorCircuitoBeans.lstCircuito}" 
                                      var="circuito" 
                                      paginator="true" rows="10" rowKey="#{circuito.id_circuito}" selectionMode="single" 
-                                     selection="#{circuitoControlador.circuitoSel}">
+                                     selection="#{controladorCircuitoBeans.circuitoSel}">
                             <p:column>
                                 <f:facet name="header">
                                     <h:outputText value="Codigo Circuito"/>
@@ -47,7 +47,7 @@ and open the template in the editor.
                                                  oncomplete="wdlgEditarCircuito.show()" 
                                                  process="@this" update=":dlgEditarCircuito, @form">                                   
                                     <f:setPropertyActionListener value="#{circuito}" 
-                                                                 target="#{circuitoControlador.circuitoSel}"/>
+                                                                 target="#{controladorCircuitoBeans.circuitoSel}"/>
                                 </p:commandButton>
 
 
@@ -55,7 +55,7 @@ and open the template in the editor.
                                                  oncomplete="wdlgEliminarCircuito.show()" 
                                                  update=":dlgEliminarCircuito">                                   
                                     <f:setPropertyActionListener value="#{circuito}" 
-                                                                 target="#{circuitoControlador.circuitoSel}"/>
+                                                                 target="#{controladorCircuitoBeans.circuitoSel}"/>
                                 </p:commandButton>
                             </p:column>
 
@@ -95,13 +95,13 @@ and open the template in the editor.
                         <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                         <p:panelGrid id="pngNuevoCircuito" columns="2">
                             <h:outputText value="Codigo Circuito:"/>                             
-                            <p:inputText value="#{circuitoControlador.objCircuito.codigo_circuito}" title="ej: Sandra" 
+                            <p:inputText value="#{controladorCircuitoBeans.objCircuito.codigo_circuito}" title="ej: Sandra" 
                                          required="true" requiredMessage="Ingrese el codigo"/>
                             <h:outputText value="Descripcion Circuito:"/>                             
-                            <p:inputText value="#{circuitoControlador.objCircuito.descripcion}" title="ej: Sandra" 
+                            <p:inputText value="#{controladorCircuitoBeans.objCircuito.descripcion}" title="ej: Sandra" 
                                          required="true" requiredMessage="Ingrese la descripción"/>
                         </p:panelGrid>
-                        <p:commandButton value="Aceptar" action="#{circuitoControlador.insertarCircuito()}" 
+                        <p:commandButton value="Aceptar" action="#{controladorCircuitoBeans.insertarCircuito()}" 
                                          update=":frmcircuito:pnlCircuito"/>
                         <p:commandButton value="Cancelar" onclick="wdlgNuevoCircuito.hide()" type="reset"/>
                     </h:form>
@@ -115,13 +115,13 @@ and open the template in the editor.
                         <p:messages id="messages" autoUpdate="true"/>  
                         <p:panelGrid id="pngEditarCircuito" columns="2">
                             <h:outputText value="Codigo:"/>
-                            <p:inputText value="#{circuitoControlador.circuitoSel.codigo_circuito}" title="ej: Sandra" 
+                            <p:inputText value="#{controladorCircuitoBeans.circuitoSel.codigo_circuito}" title="ej: Sandra" 
                                          required="true" requiredMessage="Ingrese el nombre"/>
                             <h:outputText value="Nombre:"/>
-                            <p:inputText value="#{circuitoControlador.circuitoSel.descripcion}" title="ej: Sandra" 
+                            <p:inputText value="#{controladorCircuitoBeans.circuitoSel.descripcion}" title="ej: Sandra" 
                                          required="true" requiredMessage="Ingrese el nombre"/>
                         </p:panelGrid>
-                        <p:commandButton value="Aceptar" action="#{circuitoControlador.actualizarCircuito()}" 
+                        <p:commandButton value="Aceptar" action="#{controladorCircuitoBeans.actualizarCircuito()}" 
                                          update=":frmcircuito:pnlCircuito"/>
                         <p:commandButton value="Cancelar" onclick="wdlgEditarCircuito.hide()" type="reset"/>
                     </h:form>
@@ -134,13 +134,13 @@ and open the template in the editor.
                         <h:outputText value="¿Desea Eliminar el Circuito?"/>
                         <p:panelGrid id="pngEliminarCircuito" columns="2">
                             <h:outputText value="Codigo Circuito:"/>
-                            <p:inputText value="#{circuitoControlador.circuitoSel.codigo_circuito}" title="ej: Sandra" 
+                            <p:inputText value="#{controladorCircuitoBeans.circuitoSel.codigo_circuito}" title="ej: Sandra" 
                                          required="true" requiredMessage="Ingrese el nombre" disabled="true"/>
                             <h:outputText value="Descripcion Circuito:"/>
-                            <p:inputText value="#{circuitoControlador.circuitoSel.descripcion}" title="ej: Sandra" 
+                            <p:inputText value="#{controladorCircuitoBeans.circuitoSel.descripcion}" title="ej: Sandra" 
                                          required="true" requiredMessage="Ingrese el nombre" disabled="true"/>
                         </p:panelGrid>                                                
-                        <p:commandButton value="Aceptar" action="#{circuitoControlador.eliminarCircuito()}" 
+                        <p:commandButton value="Aceptar" action="#{controladorCircuitoBeans.eliminarCircuito()}" 
                                          update=":frmcircuito:pnlCircuito"/>
                         <p:commandButton value="Cancelar" onclick="wdlgEliminarCircuito.hide()" type="reset"/>
                     </h:form>
