@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package oscunach.vif.controladores.rural;
+package oscunach.vif.controladores.devif;
 
 import java.util.ArrayList;
 import javax.annotation.PostConstruct;
@@ -11,16 +11,16 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
-import oscunach.vif.busquedas.FBVifRural;
+import oscunach.vif.busquedas.FBDevif;
 import recursos.MesesDias;
 
 /**
  *
- * @author oscunach
+ * @author Geovanny
  */
 @ManagedBean
 @RequestScoped
-public class CtrlRuralesMesDenuncia {
+public class CtrlDevifMesDenuncia {
 
     private ArrayList<String> lst;
     private CartesianChartModel graficaMeses;
@@ -59,12 +59,11 @@ public class CtrlRuralesMesDenuncia {
         this.anioSel = anioSel;
     }
 
-    public CtrlRuralesMesDenuncia() {
+    public CtrlDevifMesDenuncia() {
         this.reinit();
     }
-
+    
     private void reinit() {
-        this.lst = new ArrayList<String>();
         this.graficar();
     }
 
@@ -82,7 +81,7 @@ public class CtrlRuralesMesDenuncia {
             ChartSeries dias = new ChartSeries();
             dias.setLabel("Meses de Denuncia");
             for (int i = 0; i < lst.size(); i++) {
-                dias.set(lst.get(i), FBVifRural.obtenerDatosDadoAnioMesDenuncia(anio, lst.get(i)).size());
+                dias.set(lst.get(i), FBDevif.obtenerDatosDadoAnioMesDenuncia(anio, lst.get(i)).size());
             }
             model.addSeries(dias);
         } catch (Exception e) {
@@ -98,13 +97,13 @@ public class CtrlRuralesMesDenuncia {
             ChartSeries femenino = new ChartSeries();
             femenino.setLabel("Femenino");
             for (int i = 0; i < lst.size(); i++) {
-                femenino.set(lst.get(i), FBVifRural.obtenerDatosDadoAnioMesDenunciaGenero(anio, lst.get(i), "F").size());
+                femenino.set(lst.get(i), FBDevif.obtenerDatosDadoAnioMesDenunciaGenero(anio, lst.get(i), "FEMENINO").size());
             }
 
             ChartSeries masculino = new ChartSeries();
             masculino.setLabel("Masculino");
             for (int i = 0; i < lst.size(); i++) {
-                masculino.set(lst.get(i), FBVifRural.obtenerDatosDadoAnioMesDenunciaGenero(anio, lst.get(i), "M").size());
+                masculino.set(lst.get(i), FBDevif.obtenerDatosDadoAnioMesDenunciaGenero(anio, lst.get(i), "MASCULINO").size());
             }
 
             model.addSeries(femenino);
@@ -114,4 +113,5 @@ public class CtrlRuralesMesDenuncia {
         }
         return model;
     }
+
 }

@@ -360,7 +360,7 @@ public class FBVifUrbano {
         }
         return lst;
     }
-    
+
     public static ArrayList<VifUrbano> obtenerDatosDadoAnioDiaAgresion(int anio, String dia) throws Exception {
         ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
         try {
@@ -393,7 +393,7 @@ public class FBVifUrbano {
         }
         return lst;
     }
-    
+
     public static ArrayList<VifUrbano> obtenerDatosDadoAnioDiaDenuncia(int anio, String dia) throws Exception {
         ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
         try {
@@ -426,14 +426,13 @@ public class FBVifUrbano {
         }
         return lst;
     }
-    
-    
+
     public static ArrayList<VifUrbano> obtenerParentescoDadoAnio(int anio) throws Exception {
         ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
         try {
             ArrayList<Parametro> lstP = new ArrayList<Parametro>();
             String sql = "select * from vif.select_vif_parentesco_dado_anio(?)";
-            lstP.add(new Parametro(1, anio));            
+            lstP.add(new Parametro(1, anio));
             ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
             lst = llenarDatos(rs);
             rs = null;
@@ -442,7 +441,7 @@ public class FBVifUrbano {
         }
         return lst;
     }
-    
+
     public static ArrayList<VifUrbano> obtenerDatosDadoAnioParentesco(int anio, String parentesco) throws Exception {
         ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
         try {
@@ -458,8 +457,8 @@ public class FBVifUrbano {
         }
         return lst;
     }
-    
-     public static ArrayList<VifUrbano> obtenerDatosDadoAnioParentescoGenero(int anio, String parentesco,String genero) throws Exception {
+
+    public static ArrayList<VifUrbano> obtenerDatosDadoAnioParentescoGenero(int anio, String parentesco, String genero) throws Exception {
         ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
         try {
             ArrayList<Parametro> lstP = new ArrayList<Parametro>();
@@ -475,6 +474,38 @@ public class FBVifUrbano {
         }
         return lst;
     }
-    
+
+    public static ArrayList<VifUrbano> obtenerDatosDadoAnioOcupacion(int anio, String ocupacion) throws Exception {
+        ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_vif_urbano_dado_anio_ocupacion(?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, ocupacion));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+
+    public static ArrayList<VifUrbano> obtenerDatosDadoAnioOcupacionGenero(int anio, String ocupacion, String genero) throws Exception {
+        ArrayList<VifUrbano> lst = new ArrayList<VifUrbano>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_vif_urbano_dado_anio_ocupacion_genero(?,?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, ocupacion));
+            lstP.add(new Parametro(3, genero));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
 
 }

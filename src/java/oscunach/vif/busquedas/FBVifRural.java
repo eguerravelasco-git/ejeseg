@@ -416,4 +416,76 @@ public class FBVifRural {
         return lst;
     }
      
+      /*Busqueda por anio mes agresión */
+    
+    public static ArrayList<VifRural> obtenerDatosDadoAnioMesAgresion(int pin_anio, String mes_denuncia) throws Exception {
+        ArrayList<VifRural> lst = new ArrayList<VifRural>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_vif_rural_dado_anio_mes_agresion(?,?)";
+            lstP.add(new Parametro(1, pin_anio));
+            lstP.add(new Parametro(2, mes_denuncia));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+    /*Busqueda por anio mes denuncia y genero*/
+    
+     public static ArrayList<VifRural> obtenerDatosDadoAnioMesAgresionGenero(int pin_anio, String mes_denuncia,String pin_Genero) throws Exception {
+        ArrayList<VifRural> lst = new ArrayList<VifRural>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_vif_rural_dado_anio_mes_agresion_genero(?,?,?)";
+            lstP.add(new Parametro(1, pin_anio));
+            lstP.add(new Parametro(2, mes_denuncia));
+            lstP.add(new Parametro(3, pin_Genero));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+     
+     /*Busqueda por anio dia denuncia */
+    
+    public static ArrayList<VifRural> obtenerDatosDadoAnioDiaDenuncia(int pin_anio, String mes_denuncia) throws Exception {
+        ArrayList<VifRural> lst = new ArrayList<VifRural>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_vif_rural_dado_anio_dia_denuncia(?,?)";
+            lstP.add(new Parametro(1, pin_anio));
+            lstP.add(new Parametro(2, mes_denuncia));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+    /*Busqueda por anio mes denuncia y genero*/
+    
+     public static ArrayList<VifRural> obtenerDatosDadoAnioDiaDenunciaGenero(int pin_anio, String mes_denuncia,String pin_Genero) throws Exception {
+        ArrayList<VifRural> lst = new ArrayList<VifRural>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_vif_rural_dado_anio_dia_denuncia_genero(?,?,?)";
+            lstP.add(new Parametro(1, pin_anio));
+            lstP.add(new Parametro(2, mes_denuncia));
+            lstP.add(new Parametro(3, pin_Genero));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+     
 }

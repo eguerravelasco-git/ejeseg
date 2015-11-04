@@ -65,7 +65,7 @@ public class SesionUsuarioDataManager implements Serializable {
         this.intSesionTutor = 0;
         this.sesionUsuarioRoles = new ArrayList<UsuarioRol>();
         this.sesionPeriodos = new ArrayList<Periodos>();
-        this.temaSitio = "redmond";
+        this.temaSitio = "start";
         System.out.println("Creando la sesion");
     }
     //destructor

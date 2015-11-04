@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package oscunach.vif.controladores.rural;
+package oscunach.vif.controladores.devif;
 
 import java.util.ArrayList;
 import javax.annotation.PostConstruct;
@@ -11,8 +11,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
-import oscunach.vif.busquedas.FBVifRural;
-import recursos.MesesDias;
+import oscunach.vif.busquedas.FBDevif;
+import recursos.CircuitoSubcircuitoUrbano;
 
 /**
  *
@@ -20,11 +20,11 @@ import recursos.MesesDias;
  */
 @ManagedBean
 @RequestScoped
-public class CtrlRuralesMesDenuncia {
+public class CtrlDevifCircuitos {
 
     private ArrayList<String> lst;
-    private CartesianChartModel graficaMeses;
-    private CartesianChartModel graficaMesesGenero;
+    private CartesianChartModel graficaCircuitos;
+    private CartesianChartModel graficaCircuitosGenero;
     private int anioSel;
 
     public ArrayList<String> getLst() {
@@ -35,20 +35,20 @@ public class CtrlRuralesMesDenuncia {
         this.lst = lst;
     }
 
-    public CartesianChartModel getGraficaMeses() {
-        return graficaMeses;
+    public CartesianChartModel getGraficaCircuitos() {
+        return graficaCircuitos;
     }
 
-    public void setGraficaMeses(CartesianChartModel graficaMeses) {
-        this.graficaMeses = graficaMeses;
+    public void setGraficaCircuitos(CartesianChartModel graficaCircuitos) {
+        this.graficaCircuitos = graficaCircuitos;
     }
 
-    public CartesianChartModel getGraficaMesesGenero() {
-        return graficaMesesGenero;
+    public CartesianChartModel getGraficaCircuitosGenero() {
+        return graficaCircuitosGenero;
     }
 
-    public void setGraficaMesesGenero(CartesianChartModel graficaMesesGenero) {
-        this.graficaMesesGenero = graficaMesesGenero;
+    public void setGraficaCircuitosGenero(CartesianChartModel graficaCircuitosGenero) {
+        this.graficaCircuitosGenero = graficaCircuitosGenero;
     }
 
     public int getAnioSel() {
@@ -59,7 +59,7 @@ public class CtrlRuralesMesDenuncia {
         this.anioSel = anioSel;
     }
 
-    public CtrlRuralesMesDenuncia() {
+    public CtrlDevifCircuitos() {
         this.reinit();
     }
 
@@ -70,41 +70,40 @@ public class CtrlRuralesMesDenuncia {
 
     @PostConstruct
     public void graficar() {
-        graficaMeses = diasAtencion(anioSel);
-        graficaMesesGenero = diasAtencionGenero(anioSel);
-
+        this.graficaCircuitos = circuitos(anioSel);
+        this.graficaCircuitosGenero = circuitosGenero(anioSel);
     }
 
-    private CartesianChartModel diasAtencion(int anio) {
+    private CartesianChartModel circuitos(int anio) {
         CartesianChartModel model = new CartesianChartModel();
         try {
-            lst = MesesDias.obtenerMeses();
-            ChartSeries dias = new ChartSeries();
-            dias.setLabel("Meses de Denuncia");
+            ChartSeries circuitos = new ChartSeries();
+            circuitos.setLabel("Circuitos");
+            lst = CircuitoSubcircuitoUrbano.obtenerCircuitoUrbano();
             for (int i = 0; i < lst.size(); i++) {
-                dias.set(lst.get(i), FBVifRural.obtenerDatosDadoAnioMesDenuncia(anio, lst.get(i)).size());
+                circuitos.set(lst.get(i), FBDevif.obtenerDatosDadoAnioCircuito(anio, lst.get(i)).size());
             }
-            model.addSeries(dias);
+            model.addSeries(circuitos);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return model;
     }
 
-    private CartesianChartModel diasAtencionGenero(int anio) {
+    private CartesianChartModel circuitosGenero(int anio) {
         CartesianChartModel model = new CartesianChartModel();
         try {
-            lst = MesesDias.obtenerMeses();
+            lst = CircuitoSubcircuitoUrbano.obtenerCircuitoUrbano();
             ChartSeries femenino = new ChartSeries();
             femenino.setLabel("Femenino");
             for (int i = 0; i < lst.size(); i++) {
-                femenino.set(lst.get(i), FBVifRural.obtenerDatosDadoAnioMesDenunciaGenero(anio, lst.get(i), "F").size());
+                femenino.set(lst.get(i), FBDevif.obtenerDatosDadoAnioCircuitoGenero(anio, lst.get(i), "FEMENINO").size());
             }
 
             ChartSeries masculino = new ChartSeries();
             masculino.setLabel("Masculino");
             for (int i = 0; i < lst.size(); i++) {
-                masculino.set(lst.get(i), FBVifRural.obtenerDatosDadoAnioMesDenunciaGenero(anio, lst.get(i), "M").size());
+                masculino.set(lst.get(i), FBDevif.obtenerDatosDadoAnioCircuitoGenero(anio, lst.get(i), "MASCULINO").size());
             }
 
             model.addSeries(femenino);

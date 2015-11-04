@@ -64,6 +64,7 @@ public class CtrlUrbanoDiaDenuncia {
     }
 
     private void reinit() {
+        this.lst=new ArrayList<String>();
         this.graficar();
     }
 

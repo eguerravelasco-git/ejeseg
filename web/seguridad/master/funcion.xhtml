@@ -19,7 +19,7 @@
                 <h:form id="frmFuncion">
                     <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                     <p:panel id="pnlFuncion">
-                        <p:dataTable id="tblFuncion" value="#{funcionControlador.funciones}" var="vfuncion" paginator="true" rows="15"
+                        <p:dataTable id="tblFuncion" value="#{funcionControlador.funciones}" var="vfuncion" paginator="true" rows="8"
                                      rowKey="#{vfuncion.codigo}" selectionMode="single" selection="#{funcionControlador.seleccionarFuncion}">
 
                             <p:column filterBy="#{vfuncion.codigo_grupo_menus}" filterMatchMode="startsWith" sortBy="#{vfuncion.codigo_grupo_menus}">

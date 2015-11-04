@@ -18,7 +18,7 @@
                 <h:form id="frmAccion">
                     <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                     <p:panel id="pnlAccion">
-                        <p:dataTable id="tblAccion" value="#{accionControlador.acciones}" var="accion" paginator="true" rows="15"
+                        <p:dataTable id="tblAccion" value="#{accionControlador.acciones}" var="accion" paginator="true" rows="5"
                                      rowKey="#{accion.codigo}" selectionMode="single" selection="#{accionControlador.seleccionarAccion}">
                             <p:column filterBy="#{accion.codigo}" filterMatchMode="startsWith" sortBy="#{accion.codigo}">
                                 <f:facet name="header">

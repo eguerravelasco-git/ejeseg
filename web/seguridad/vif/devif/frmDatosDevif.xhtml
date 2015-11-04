@@ -10,7 +10,7 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-      <h:head>
+    <h:head>
         <title>
             <ui:define name="Datos">Indicadores Datos VIF 2010</ui:define>
         </title>
@@ -23,41 +23,36 @@ and open the template in the editor.
                 <h:form id="frmdatos" style="alignment-adjust: central">
                     <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
                     <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
-                  
-                    <p:panel id="pnlBusquedas" header="Búsquedas">                       
+                    <p:panel id="pnlBusquedas" header="Búsquedas">
                         <p:panelGrid columns="3" id="pngBusquedas">
                             <p:outputLabel value="Seleccione el año"/>
-                            
-                            <p:selectOneMenu value="#{ctrlDatosRural.anioSel}">
+                            <p:selectOneMenu value="#{ctrlDatosDevif.anioSel}">
                                 <f:selectItem itemLabel="Seleccione..." itemValue="#{null}"/>
-                                <f:selectItem itemLabel="2010" itemValue="2010"/>
-                                <f:selectItem itemLabel="2011" itemValue="2011"/>
-                                <f:selectItem itemLabel="2012" itemValue="2012"/>                                                                
+                                <f:selectItem itemLabel="2014" itemValue="2014"/>
+                                <f:selectItem itemLabel="2015" itemValue="2015"/>
+                                <f:selectItem itemLabel="2016" itemValue="2016"/>
+                                                                
                             </p:selectOneMenu>
-                            <p:commandButton action="#{ctrlDatosRural.cargarDatos()}" value="Buscar"
+                            <p:commandButton action="#{ctrlDatosDevif.obtenerDatosDadoAnio()}" value="Buscar"
                                              update="tblDatos, @form"/>
                         </p:panelGrid>
                     </p:panel>
 
                     <p:panel id="pnldatos" >
-                        <p:dataTable id="tblDatos" value="#{ctrlDatosRural.lst}" var="datos"  emptyMessage="Escoja un año"
+
+                        <p:dataTable id="tblDatos" value="#{ctrlDatosDevif.lst}" var="datos"  emptyMessage="No hay Registros"
                                      paginator="true" rows="10" rowKey="#{datos.id}" style="alignment-adjust: initial" >
+
                             <f:facet name="header">
-                                <p:outputLabel value="Casos de Vif de la Sala de Primera Acogida del HPGDR"/>
+                                <p:outputLabel value="Casos de Vif del Departamento de Violencia Intrafamiliar"/>
                             </f:facet>
+
 
                             <p:column >
                                 <f:facet name="header">
                                     <h:outputText value="Fecha de Denuncia"/>
                                 </f:facet>
-                                <h:outputText value="#{datos.fecha_denuncia}"/>
-                            </p:column>
-                            
-                            <p:column >
-                                <f:facet name="header">
-                                    <h:outputText value="Sexo Vìctuma"/>
-                                </f:facet>
-                                <h:outputText value="#{datos.sexo_victima}"/>
+                                <h:outputText value="#{datos.fecha_registro}"/>
                             </p:column>
 
                             

@@ -17,57 +17,57 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <ui:composition template="../../../templates/plantillaInternaCenter.xhtml">
-            <ui:define name="top">Denuncias recolectadas de la Comisaría de la Mujer</ui:define>
+            <ui:define name="top">Datos de la Sala de Primera Acogida</ui:define>
             <ui:define name="contenido">
                 <p:growl id="mensajes" autoUpdate="true" showDetail="true"/>
                 <h:form id="frmdatos" style="alignment-adjust: central">
                     <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
                     <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
-                    <p:panel id="pnlBusqueda">
+                    <p:panel id="pnlBusqueda" header="Buscar por año">
                         <p:panelGrid columns="3">
                             <p:outputLabel value="Seleccione un año: "/>
-                            <p:selectOneMenu value="#{ctrlUrbanoOcupaciones.anioSel}">
+                            <p:selectOneMenu value="#{ctrlRuralDiaAgresion.anioSel}">
                                 <f:selectItem itemValue="#{null}" itemLabel="Seleccione un año...."/>
                                 <f:selectItem itemValue="2010" itemLabel="2010"/>
                                 <f:selectItem itemValue="2011" itemLabel="2011"/>
-                                <f:selectItem itemValue="2012" itemLabel="2012"/>                                
+                                <f:selectItem itemValue="2012" itemLabel="2012"/>                               
                             </p:selectOneMenu>
                             <p:commandButton id="btnBuscar" icon="ui-icon-search" style="width:50px"  
-                                             title="Graficar " action="#{ctrlUrbanoOcupaciones.graficar()}" 
+                                             title="Graficar " action="#{ctrlRuralDiaAgresion.graficar()}" 
                                              update=":frmdatos:pnlGraficos, @form"/>                                   
                         </p:panelGrid>
                     </p:panel>
 
-                    <p:panel id="pnlGraficos" >
+                    <p:panel id="pnlGraficos" header="Estadísticas de los días de atención" >
 
-                        <p:accordionPanel style="max-height: 800px;max-width: 1200px">
-                            <p:tab title="Estadísticas de acuerdo a las Ocupaciones de las víctimas" >
+                        <p:accordionPanel style="max-height: 800px;max-width: 1300px">
+                            <p:tab title="Dias de Atención" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:lineChart   value="#{ctrlUrbanoOcupaciones.graficaOcupaciones}" legendPosition="n" 
-                                               title="Estadísticas de acuerdo a las Ocupaciones de las víctimas" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                               xaxisLabel="Ocupaciones" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
+                                <p:lineChart   value="#{ctrlRuralDiaAgresion.graficaDias}" legendPosition="n" 
+                                               title="Dias de Atención" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                               xaxisLabel="Rango de Edades" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
                             
-                            <p:tab title="Estadísticas de acuerdo a las Ocupaciones de las víctimas(Cuadro de Barras)" >
+                            <p:tab title="Dias de Atención(Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:barChart   value="#{ctrlUrbanoOcupaciones.graficaOcupaciones}" legendPosition="n" 
-                                              title="Detalle por circuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                              xaxisLabel="Ocupaciones" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
+                                <p:barChart   value="#{ctrlRuralDiaAgresion.graficaDias}" legendPosition="n" 
+                                              title="Estadísticas por Rango de edades(Gráfico de Barras)" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                              xaxisLabel="Rango de Edades" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             
-                            <p:tab title="Estadísticas de acuerdo a las Ocupaciones de las víctimas clasificadas por género" >
+                            <p:tab title="Dias de Atención por Género" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:lineChart   value="#{ctrlUrbanoOcupaciones.graficaOcupacionesGenero}" legendPosition="n" 
-                                               title="Estadísticas de acuerdo a las Ocupaciones de las víctimas clasificadas por género" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                               xaxisLabel="Ocupaciones" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
+                                <p:lineChart   value="#{ctrlRuralDiaAgresion.graficaDiasGenero}" legendPosition="n" 
+                                               title="Dias de Atención por Género" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                               xaxisLabel="Dias de Atención" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
                             
-                            <p:tab title="Estadísticas de acuerdo a las Ocupaciones de las víctimas clasificadas por género(Cuadro de Barras)" >
+                            <p:tab title="Dias de Atención por Género(Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:barChart   value="#{ctrlUrbanoOcupaciones.graficaOcupacionesGenero}" legendPosition="n" 
-                                              title="Estadísticas de acuerdo a las Ocupaciones de las víctimas clasificadas por género" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                              xaxisLabel="Ocupaciones" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
+                                <p:barChart   value="#{ctrlRuralDiaAgresion.graficaDiasGenero}" legendPosition="n" 
+                                              title="Dias de Atención por Género" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                              xaxisLabel="Dias de Atención" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true" />  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             <script type="text/javascript">

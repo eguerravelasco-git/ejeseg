@@ -16,15 +16,15 @@ import recursos.MesesDias;
 
 /**
  *
- * @author oscunach
+ * @author Geovanny
  */
 @ManagedBean
 @RequestScoped
-public class CtrlRuralesMesDenuncia {
+public class CtrlRuralDiaAgresion {
 
     private ArrayList<String> lst;
-    private CartesianChartModel graficaMeses;
-    private CartesianChartModel graficaMesesGenero;
+    private CartesianChartModel graficaDias;
+    private CartesianChartModel graficaDiasGenero;
     private int anioSel;
 
     public ArrayList<String> getLst() {
@@ -35,20 +35,20 @@ public class CtrlRuralesMesDenuncia {
         this.lst = lst;
     }
 
-    public CartesianChartModel getGraficaMeses() {
-        return graficaMeses;
+    public CartesianChartModel getGraficaDias() {
+        return graficaDias;
     }
 
-    public void setGraficaMeses(CartesianChartModel graficaMeses) {
-        this.graficaMeses = graficaMeses;
+    public void setGraficaDias(CartesianChartModel graficaDias) {
+        this.graficaDias = graficaDias;
     }
 
-    public CartesianChartModel getGraficaMesesGenero() {
-        return graficaMesesGenero;
+    public CartesianChartModel getGraficaDiasGenero() {
+        return graficaDiasGenero;
     }
 
-    public void setGraficaMesesGenero(CartesianChartModel graficaMesesGenero) {
-        this.graficaMesesGenero = graficaMesesGenero;
+    public void setGraficaDiasGenero(CartesianChartModel graficaDiasGenero) {
+        this.graficaDiasGenero = graficaDiasGenero;
     }
 
     public int getAnioSel() {
@@ -59,7 +59,7 @@ public class CtrlRuralesMesDenuncia {
         this.anioSel = anioSel;
     }
 
-    public CtrlRuralesMesDenuncia() {
+    public CtrlRuralDiaAgresion() {
         this.reinit();
     }
 
@@ -70,19 +70,19 @@ public class CtrlRuralesMesDenuncia {
 
     @PostConstruct
     public void graficar() {
-        graficaMeses = diasAtencion(anioSel);
-        graficaMesesGenero = diasAtencionGenero(anioSel);
+        graficaDias = diasDenuncia(anioSel);
+        graficaDiasGenero = diasDenunciaGenero(anioSel);
 
     }
 
-    private CartesianChartModel diasAtencion(int anio) {
+    private CartesianChartModel diasDenuncia(int anio) {
         CartesianChartModel model = new CartesianChartModel();
         try {
-            lst = MesesDias.obtenerMeses();
             ChartSeries dias = new ChartSeries();
-            dias.setLabel("Meses de Denuncia");
-            for (int i = 0; i < lst.size(); i++) {
-                dias.set(lst.get(i), FBVifRural.obtenerDatosDadoAnioMesDenuncia(anio, lst.get(i)).size());
+            dias.setLabel("Agresiones por días");
+            lst = MesesDias.enlistarDias();
+            for (String lst1 : lst) {
+                dias.set(lst1, FBVifRural.obtenerDatosDadoAnioMesAgresion(anio, lst1).size());
             }
             model.addSeries(dias);
         } catch (Exception e) {
@@ -91,20 +91,20 @@ public class CtrlRuralesMesDenuncia {
         return model;
     }
 
-    private CartesianChartModel diasAtencionGenero(int anio) {
+    private CartesianChartModel diasDenunciaGenero(int anio) {
         CartesianChartModel model = new CartesianChartModel();
         try {
-            lst = MesesDias.obtenerMeses();
+            lst = MesesDias.enlistarDias();
             ChartSeries femenino = new ChartSeries();
             femenino.setLabel("Femenino");
-            for (int i = 0; i < lst.size(); i++) {
-                femenino.set(lst.get(i), FBVifRural.obtenerDatosDadoAnioMesDenunciaGenero(anio, lst.get(i), "F").size());
+            for (String lst1 : lst) {
+                femenino.set(lst1, FBVifRural.obtenerDatosDadoAnioMesAgresionGenero(anio, lst1, "F").size());
             }
 
             ChartSeries masculino = new ChartSeries();
             masculino.setLabel("Masculino");
-            for (int i = 0; i < lst.size(); i++) {
-                masculino.set(lst.get(i), FBVifRural.obtenerDatosDadoAnioMesDenunciaGenero(anio, lst.get(i), "M").size());
+            for (String lst1 : lst) {
+                masculino.set(lst1, FBVifRural.obtenerDatosDadoAnioMesAgresionGenero(anio, lst1, "M").size());
             }
 
             model.addSeries(femenino);
@@ -114,4 +114,5 @@ public class CtrlRuralesMesDenuncia {
         }
         return model;
     }
+
 }

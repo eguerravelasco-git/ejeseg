@@ -26,14 +26,14 @@ and open the template in the editor.
                     <p:panel id="pnlBusqueda">
                         <p:panelGrid columns="3">
                             <p:outputLabel value="Seleccione un año: "/>
-                            <p:selectOneMenu value="#{ctrlUrbanoOcupaciones.anioSel}">
+                            <p:selectOneMenu value="#{ctrlDevifCircuitos.anioSel}">
                                 <f:selectItem itemValue="#{null}" itemLabel="Seleccione un año...."/>
-                                <f:selectItem itemValue="2010" itemLabel="2010"/>
-                                <f:selectItem itemValue="2011" itemLabel="2011"/>
-                                <f:selectItem itemValue="2012" itemLabel="2012"/>                                
+                                <f:selectItem itemValue="2014" itemLabel="2014"/>
+                                <f:selectItem itemValue="2015" itemLabel="2015"/>
+                                <f:selectItem itemValue="2016" itemLabel="2016"/>                                
                             </p:selectOneMenu>
                             <p:commandButton id="btnBuscar" icon="ui-icon-search" style="width:50px"  
-                                             title="Graficar " action="#{ctrlUrbanoOcupaciones.graficar()}" 
+                                             title="Graficar " action="#{ctrlDevifCircuitos.graficar()}" 
                                              update=":frmdatos:pnlGraficos, @form"/>                                   
                         </p:panelGrid>
                     </p:panel>
@@ -41,33 +41,33 @@ and open the template in the editor.
                     <p:panel id="pnlGraficos" >
 
                         <p:accordionPanel style="max-height: 800px;max-width: 1200px">
-                            <p:tab title="Estadísticas de acuerdo a las Ocupaciones de las víctimas" >
+                            <p:tab title="Detalle general por circuitos" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:lineChart   value="#{ctrlUrbanoOcupaciones.graficaOcupaciones}" legendPosition="n" 
-                                               title="Estadísticas de acuerdo a las Ocupaciones de las víctimas" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                               xaxisLabel="Ocupaciones" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
+                                <p:lineChart   value="#{ctrlDevifCircuitos.graficaCircuitos}" legendPosition="n" 
+                                               title="Detalle por circuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                               xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
                             
-                            <p:tab title="Estadísticas de acuerdo a las Ocupaciones de las víctimas(Cuadro de Barras)" >
+                            <p:tab title="Detalle general por circuitos (Cuadro de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:barChart   value="#{ctrlUrbanoOcupaciones.graficaOcupaciones}" legendPosition="n" 
+                                <p:barChart   value="#{ctrlDevifCircuitos.graficaCircuitos}" legendPosition="n" 
                                               title="Detalle por circuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                              xaxisLabel="Ocupaciones" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
+                                              xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             
-                            <p:tab title="Estadísticas de acuerdo a las Ocupaciones de las víctimas clasificadas por género" >
+                            <p:tab title="Detalle general por circuitos género" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:lineChart   value="#{ctrlUrbanoOcupaciones.graficaOcupacionesGenero}" legendPosition="n" 
-                                               title="Estadísticas de acuerdo a las Ocupaciones de las víctimas clasificadas por género" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                               xaxisLabel="Ocupaciones" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
+                                <p:lineChart   value="#{ctrlDevifCircuitos.graficaCircuitosGenero}" legendPosition="n" 
+                                               title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                               xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
                             
-                            <p:tab title="Estadísticas de acuerdo a las Ocupaciones de las víctimas clasificadas por género(Cuadro de Barras)" >
+                            <p:tab title="Detalle general por circuitos género(Cuadro de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:barChart   value="#{ctrlUrbanoOcupaciones.graficaOcupacionesGenero}" legendPosition="n" 
-                                              title="Estadísticas de acuerdo a las Ocupaciones de las víctimas clasificadas por género" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                              xaxisLabel="Ocupaciones" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
+                                <p:barChart   value="#{ctrlDevifCircuitos.graficaCircuitosGenero}" legendPosition="n" 
+                                              title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                              xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             <script type="text/javascript">
