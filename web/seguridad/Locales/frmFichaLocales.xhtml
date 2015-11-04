@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>
+            <ui:define name="Datos">Indicadores Datos VIF 2010</ui:define>
+        </title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../../templates/plantillaInternaCenter.xhtml">
+            <ui:define name="top">Datos Comisaría de la Mujer</ui:define>
+            <ui:define name="contenido">
+                <p:growl id="mensajes" autoUpdate="true" showDetail="true"/>
+                <h:form id="frmdatos" style="alignment-adjust: central">
+                    <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />                    
+                    <p:panel header="1.- Ubicación Geográfica">
+                        <p:panelGrid columns="10">
+                            <p:outputLabel value="Parroquia:"/>
+                            <p:selectOneMenu value="#{ctrlFichaLocales.objlocales.parroquia}">
+                                <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
+                                <f:selectItem itemLabel="Velasco" itemValue="1"/>
+                                <f:selectItem itemLabel="Maldonado" itemValue="2"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Zona:"/>
+                            <p:selectOneMenu value="#{ctrlFichaLocales.objlocales.zona}">
+                                <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
+                                <f:selectItem itemLabel="Zona 1" itemValue="1"/>
+                                <f:selectItem itemLabel="Zona 2" itemValue="2"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Sector:"/>
+                            <p:selectOneMenu value="#{ctrlFichaLocales.objlocales.sector}">
+                                <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
+                                <f:selectItem itemLabel="Sector 1" itemValue="1"/>
+                                <f:selectItem itemLabel="Sector 2" itemValue="2"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Manzana:" />
+                            <p:inputText value="#{ctrlFichaLocales.objlocales.manzana}" required="true" placeholder="Ej. 1" size="5"/>
+                            <p:outputLabel value="Formulario:"/>
+                            <p:inputText value="#{ctrlFichaLocales.objlocales.formulario}" required="true" placeholder="Ej. 1" size="5"/>
+                            <p:outputLabel value="Dirección:"/>
+                            <p:inputTextarea value="#{ctrlFichaLocales.objlocales.direccion}" required="true" placeholder="Ej. Avda. 11 de Noviembre y Juan Salinas"/>
+                            <p:outputLabel value="Barrio:"/>
+                            <p:inputText value="#{ctrlFichaLocales.objlocales.barrio}" placeholder="Ej. Sultana de los Andes"/>
+                            <p:outputLabel value="Circuito:"/>
+                            <p:selectOneMenu value="#{ctrlFichaLocales.objlocales.circuito}">
+                                 <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Subcircuito:"/>
+                            <p:selectOneMenu value="#{ctrlFichaLocales.objlocales.subcircuito}">
+                                 <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Coordenada X:"/>
+                            <p:inputText value="#{ctrlFichaLocales.objlocales.x}" required="true"/>
+                            <p:outputLabel value="Coordenada Y:"/>
+                            <p:inputText value="#{ctrlFichaLocales.objlocales.y}" required="true"/>
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:panel header="2.- Datos del Establecimiento">
+                        <p:panelGrid columns="8">
+                            <p:outputLabel value="Razón Social del establecimiento:"/>
+                            <p:inputText value="#{ctrlFichaLocales.objlocales.razon_social}" placeholder="Ej. Billar Las Vegas"/>
+                            <p:outputLabel value="Actividad Económica:"/>
+                            <p:inputText value="#{ctrlFichaLocales.objlocales.actividad_economica}" placeholder="Ej. Juegos de Billar y Venta de Cervezas"/>
+                            <p:outputLabel value="Tipo de Establecimiento:"/>
+                            <p:inputText value="#{ctrlFichaLocales.objlocales.tipo_establecimiento}" placeholder="Ej. Diversion Nocturna"/>
+                            <p:outputLabel value="Categoría"/>
+                            <p:selectOneMenu value="#{ctrlFichaLocales.objlocales.categoria}">
+                                 <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
+                                <f:selectItem itemLabel="Categoría 1" itemValue="1"/>
+                                <f:selectItem itemLabel="Categoría 2" itemValue="2"/>
+                                <f:selectItem itemLabel="Categoría 3" itemValue="3"/>
+                                <f:selectItem itemLabel="Categoría 4" itemValue="4"/>
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+                        
+                    </p:panel>
+                    <p:panel header="3.- Cumplimiento de permisos">
+                        
+                    </p:panel>
+                    <p:panel header="4.- Horario de Funcionamiento">
+                        
+                    </p:panel>
+                    <p:panel header="5.- Visualización del Entorno Externo">
+                        
+                    </p:panel>
+                </h:form>
+            </ui:define>
+            <ui:define name="dialogos">
+                <p:dialog modal="true" widgetVar="dlgStatus" header="Procesando" draggable="false" closable="false" 
+                          resizable="false"> 
+                    <p:graphicImage value="/resources/images/ajaxloadingbar.gif" />  
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
