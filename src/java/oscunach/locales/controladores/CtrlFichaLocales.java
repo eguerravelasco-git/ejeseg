@@ -6,6 +6,7 @@
 package oscunach.locales.controladores;
 
 import java.util.ArrayList;
+import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import oscunach.locales.entidades.Locales;
@@ -28,6 +29,24 @@ public class CtrlFichaLocales {
     private int codigoSubcircuito;
     private ArrayList<Subcircuito> lstSubcircuito;
     private ArrayList<Circuitos> lstCircuito;
+    private Date horarioDiurno;
+    private Date horarioNocturno;
+
+    public Date getHorarioDiurno() {
+        return horarioDiurno;
+    }
+
+    public void setHorarioDiurno(Date horarioDiurno) {
+        this.horarioDiurno = horarioDiurno;
+    }
+
+    public Date getHorarioNocturno() {
+        return horarioNocturno;
+    }
+
+    public void setHorarioNocturno(Date horarioNocturno) {
+        this.horarioNocturno = horarioNocturno;
+    }
 
     public int getCodigoSubcircuito() {
         return codigoSubcircuito;
@@ -77,6 +96,7 @@ public class CtrlFichaLocales {
         this.objlocales = new Locales();
         this.lstCircuito = new ArrayList<Circuitos>();
         this.cargarCircuitos();
+        this.cargarSubcircuitos();
 
     }
 
@@ -108,7 +128,7 @@ public class CtrlFichaLocales {
         }
     }
 
-    private void cargarSubcircuitosDadoCodigoCircuito() {
+    public void cargarSubcircuitosDadoCodigoCircuito() {
         try {
             this.lstSubcircuito = ServiciosSubcircuito.obtenerSubcircuitoDadoIdCircuito(codigoCircuito);
             System.out.println(lstCircuito.get(0).getId_circuito());
