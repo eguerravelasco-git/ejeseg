@@ -17,131 +17,231 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <ui:composition template="../../templates/plantillaInternaCenter.xhtml">
-            <ui:define name="top">Datos Comisaría de la Mujer</ui:define>
+            <ui:define name="top">Ficha de ingreso de establecimientos comerciales</ui:define>
             <ui:define name="contenido">
                 <p:growl id="mensajes" autoUpdate="true" showDetail="true"/>
                 <h:form id="frmdatos" style="alignment-adjust: central">
-                    <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />                    
-                    <p:panel header="1.- Ubicación Geográfica">
-                        <p:panelGrid columns="10">
-                            <p:outputLabel value="Parroquia:"/>
-                            <p:selectOneMenu value="#{ctrlFichaLocales.objlocales.parroquia}">
-                                <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
-                                <f:selectItem itemLabel="Velasco" itemValue="1"/>
-                                <f:selectItem itemLabel="Maldonado" itemValue="2"/>
-                            </p:selectOneMenu>
-                            <p:outputLabel value="Zona:"/>
-                            <p:selectOneMenu value="#{ctrlFichaLocales.objlocales.zona}">
-                                <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
-                                <f:selectItem itemLabel="Zona 1" itemValue="1"/>
-                                <f:selectItem itemLabel="Zona 2" itemValue="2"/>
-                            </p:selectOneMenu>
-                            <p:outputLabel value="Sector:"/>
-                            <p:selectOneMenu value="#{ctrlFichaLocales.objlocales.sector}">
-                                <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
-                                <f:selectItem itemLabel="Sector 1" itemValue="1"/>
-                                <f:selectItem itemLabel="Sector 2" itemValue="2"/>
-                            </p:selectOneMenu>
-                            <p:outputLabel value="Manzana:" />
-                            <p:inputText value="#{ctrlFichaLocales.objlocales.manzana}" required="true" placeholder="Ej. 1" size="5"/>
-                            <p:outputLabel value="Formulario:"/>
-                            <p:inputText value="#{ctrlFichaLocales.objlocales.formulario}" required="true" placeholder="Ej. 1" size="5"/>
-                            <p:outputLabel value="Dirección:"/>
-                            <p:inputTextarea value="#{ctrlFichaLocales.objlocales.direccion}" required="true" placeholder="Ej. Avda. 11 de Noviembre y Juan Salinas"/>
-                            <p:outputLabel value="Barrio:"/>
-                            <p:inputText value="#{ctrlFichaLocales.objlocales.barrio}" placeholder="Ej. Sultana de los Andes"/>
-                            <p:outputLabel value="Circuito:"/>
-                            <p:selectOneMenu value="#{ctrlFichaLocales.codigoCircuito}">
-                                <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
-                                <f:selectItems value="#{ctrlFichaLocales.lstCircuito}" var="circuitos"
-                                               itemLabel="#{circuitos.descripcion}" itemValue="#{circuitos.id_circuito}"/>
-                                <p:ajax event="change" update=":frmdatos"
-                                        listener="#{ctrlFichaLocales.lstSubcircuito}" />
-                            </p:selectOneMenu>
-                            <p:outputLabel value="Subcircuito:"/>
-                            <p:selectOneMenu value="#{ctrlFichaLocales.codigoSubcircuito}">
-                                <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>   
-                                <f:selectItems value="#{ctrlFichaLocales.lstSubcircuito}" var="circuitos"
-                                               itemLabel="#{circuitos.descripcion}" itemValue="#{circuitos.id_subcircuito}"/>
-                            </p:selectOneMenu>
-                            <p:outputLabel value="Coordenada X:"/>
-                            <p:inputText value="#{ctrlFichaLocales.objlocales.x}" required="true"/>
-                            <p:outputLabel value="Coordenada Y:"/>
-                            <p:inputText value="#{ctrlFichaLocales.objlocales.y}" required="true"/>
-                        </p:panelGrid>
-                    </p:panel>
-                    <p:panel header="2.- Datos del Establecimiento">
-                        <p:panelGrid columns="8">
-                            <p:outputLabel value="Razón Social del establecimiento:"/>
-                            <p:inputText value="#{ctrlFichaLocales.objlocales.razon_social}" placeholder="Ej. Billar Las Vegas"/>
-                            <p:outputLabel value="Actividad Económica:"/>
-                            <p:inputText value="#{ctrlFichaLocales.objlocales.actividad_economica}" placeholder="Ej. Juegos de Billar y Venta de Cervezas"/>
-                            <p:outputLabel value="Tipo de Establecimiento:"/>
-                            <p:inputText value="#{ctrlFichaLocales.objlocales.tipo_establecimiento}" placeholder="Ej. Diversion Nocturna"/>
-                            <p:outputLabel value="Categoría"/>
-                            <p:selectOneMenu value="#{ctrlFichaLocales.objlocales.categoria}">
-                                <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
-                                <f:selectItem itemLabel="Categoría 1" itemValue="1"/>
-                                <f:selectItem itemLabel="Categoría 2" itemValue="2"/>
-                                <f:selectItem itemLabel="Categoría 3" itemValue="3"/>
-                                <f:selectItem itemLabel="Categoría 4" itemValue="4"/>
-                            </p:selectOneMenu>
-                            <p:outputLabel value="Nombre del propietario:"/>
-                            <p:inputText value="#{ctrlFichaLocales.objlocales.nombre_del}" required="true" placeholder="Ej. Angel Cudco"/>
-                            <p:outputLabel value="Cédula de ciudadanía:"/>
-                            <p:inputText value="#{ctrlFichaLocales.objlocales.cc}" required="true" placeholder="Ej. 0603977224"/>
-                        </p:panelGrid>
+                    <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" /> 
+                    <p:panel>
+                        <p:panel header="1.- Ubicación Geográfica">
+                            <p:panelGrid columns="10">
+                                <p:outputLabel value="Parroquia:"/>
+                                <p:selectOneMenu value="#{ctrlFichaLocales.objlocales.parroquia}">
+                                    <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Velasco" itemValue="1"/>
+                                    <f:selectItem itemLabel="Maldonado" itemValue="2"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Zona:"/>
+                                <p:selectOneMenu value="#{ctrlFichaLocales.objlocales.zona}">
+                                    <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Zona 1" itemValue="1"/>
+                                    <f:selectItem itemLabel="Zona 2" itemValue="2"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Sector:"/>
+                                <p:selectOneMenu value="#{ctrlFichaLocales.objlocales.sector}">
+                                    <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Sector 1" itemValue="1"/>
+                                    <f:selectItem itemLabel="Sector 2" itemValue="2"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Manzana:" />
+                                <p:inputText value="#{ctrlFichaLocales.objlocales.manzana}" required="true" placeholder="Ej. 1" size="5"/>
+                                <p:outputLabel value="Formulario:"/>
+                                <p:inputText value="#{ctrlFichaLocales.objlocales.formulario}" required="true" placeholder="Ej. 1" size="5"/>
+                                <p:outputLabel value="Dirección:"/>
+                                <p:inputTextarea value="#{ctrlFichaLocales.objlocales.direccion}" required="true" placeholder="Ej. Avda. 11 de Noviembre y Juan Salinas"/>
+                                <p:outputLabel value="Barrio:"/>
+                                <p:inputText value="#{ctrlFichaLocales.objlocales.barrio}" placeholder="Ej. Sultana de los Andes"/>
+                                <p:outputLabel value="Circuito:"/>
+                                <p:selectOneMenu value="#{ctrlFichaLocales.codigoCircuito}">
+                                    <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
+                                    <f:selectItems value="#{ctrlFichaLocales.lstCircuito}" var="circuitos"
+                                                   itemLabel="#{circuitos.descripcion}" itemValue="#{circuitos.id_circuito}"/>
+                                    <p:ajax event="change" update=":frmdatos"
+                                            listener="#{ctrlFichaLocales.lstSubcircuito}" />
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Subcircuito:"/>
+                                <p:selectOneMenu value="#{ctrlFichaLocales.codigoSubcircuito}">
+                                    <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>   
+                                    <f:selectItems value="#{ctrlFichaLocales.lstSubcircuito}" var="circuitos"
+                                                   itemLabel="#{circuitos.descripcion}" itemValue="#{circuitos.id_subcircuito}"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Coordenada X:"/>
+                                <p:inputText value="#{ctrlFichaLocales.objlocales.x}" required="true"/>
+                                <p:outputLabel value="Coordenada Y:"/>
+                                <p:inputText value="#{ctrlFichaLocales.objlocales.y}" required="true"/>
+                            </p:panelGrid>
+                        </p:panel>
+                        <p:panel header="2.- Datos del Establecimiento">
+                            <p:panelGrid columns="8">
+                                <p:outputLabel value="Razón Social del establecimiento:"/>
+                                <p:inputText value="#{ctrlFichaLocales.objlocales.razon_social}" placeholder="Ej. Billar Las Vegas"/>
+                                <p:outputLabel value="Actividad Económica:"/>
+                                <p:inputText value="#{ctrlFichaLocales.objlocales.actividad_economica}" placeholder="Ej. Juegos de Billar y Venta de Cervezas"/>
+                                <p:outputLabel value="Tipo de Establecimiento:"/>
+                                <p:inputText value="#{ctrlFichaLocales.objlocales.tipo_establecimiento}" placeholder="Ej. Diversion Nocturna"/>
+                                <p:outputLabel value="Categoría"/>
+                                <p:selectOneMenu value="#{ctrlFichaLocales.objlocales.categoria}">
+                                    <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Categoría 1" itemValue="1"/>
+                                    <f:selectItem itemLabel="Categoría 2" itemValue="2"/>
+                                    <f:selectItem itemLabel="Categoría 3" itemValue="3"/>
+                                    <f:selectItem itemLabel="Categoría 4" itemValue="4"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Nombre del propietario:"/>
+                                <p:inputText value="#{ctrlFichaLocales.objlocales.nombre_del}" required="true" placeholder="Ej. Angel Cudco"/>
+                                <p:outputLabel value="Cédula de ciudadanía:"/>
+                                <p:inputText value="#{ctrlFichaLocales.objlocales.cc}" required="true" placeholder="Ej. 0603977224"/>
+                            </p:panelGrid>
 
-                    </p:panel>
-                    <p:panel header="3.- Cumplimiento de permisos">
-                        <p:panelGrid columns="8">
-                            <p:outputLabel value="Municipal:"/>
-                            <p:selectOneRadio id="permisoMunicipal" value="#{ctrlFichaLocales.objlocales.licencia_municipal}">
-                                <f:selectItem itemLabel="SI" itemValue="Si" />
-                                <f:selectItem itemLabel="NO" itemValue="NO" />                                
-                            </p:selectOneRadio>
-                            <p:outputLabel value="Bomberos:"/>
-                            <p:selectOneRadio id="permisoBomberos" value="#{ctrlFichaLocales.objlocales.licencia_bomberos}">
-                                <f:selectItem itemLabel="SI" itemValue="Si" />
-                                <f:selectItem itemLabel="NO" itemValue="NO" />                                
-                            </p:selectOneRadio>
-                            <p:outputLabel value="Ministerio de Salud:"/>
-                            <p:selectOneRadio id="permisoMSP" value="#{ctrlFichaLocales.objlocales.licencia_msp}">
-                                <f:selectItem itemLabel="SI" itemValue="Si" />
-                                <f:selectItem itemLabel="NO" itemValue="NO" />                                
-                            </p:selectOneRadio>
-                            <p:outputLabel value="Ministerio del Interior:"/>
-                            <p:selectOneRadio id="permisoMi" value="#{ctrlFichaLocales.objlocales.licencia_mi}">
-                                <f:selectItem itemLabel="SI" itemValue="Si" />
-                                <f:selectItem itemLabel="NO" itemValue="NO" />                                
-                            </p:selectOneRadio>
-                            <p:outputLabel value="Ministerio de Turismo:"/>
-                            <p:selectOneRadio id="permisoMt" value="#{ctrlFichaLocales.objlocales.licencia_mt}">
-                                <f:selectItem itemLabel="SI" itemValue="Si" />
-                                <f:selectItem itemLabel="NO" itemValue="NO" />                                
-                            </p:selectOneRadio>
-                            <p:outputLabel value="RUC/RISE:"/>
-                            <p:selectOneRadio id="ruc" value="#{ctrlFichaLocales.objlocales.ruc_rise}">
-                                <f:selectItem itemLabel="RUC" itemValue="RUC" />
-                                <f:selectItem itemLabel="RISE" itemValue="RISE" />                                
-                                <f:selectItem itemLabel="Ninguno" itemValue="Ninguno" />     
-                            </p:selectOneRadio>                            
-                        </p:panelGrid>
-                    </p:panel>
-                    <p:panel header="4.- Horario de Funcionamiento">
-                        <p:panelGrid columns="6">
-                            <p:outputLabel value="Horario Diurno:"/>
-                            <p:calendar id="horarioDiurno" value="#{ctrlFichaLocales.horarioDiurno}" pattern="HH:mm:ss" timeOnly="true" placeholder="Ej. 07:00:00" />
-                            <p:outputLabel value="Horario Nocturno:"/>
-                            <p:calendar id="horarioNocturno" value="#{ctrlFichaLocales.horarioNocturno}" pattern="HH:mm:ss" timeOnly="true" placeholder="Ej. 23:30:00" />
-                            <p:outputLabel value="Observaciones Jornada Laboral:"/>
-                            <p:inputTextarea value="#{ctrlFichaLocales.objlocales.observaciones_jornada_laboral}" required="true" placeholder="Ej. Jornada de trabajo única"
-                                             rows="3" cols="60"/>
-                        </p:panelGrid>
+                        </p:panel>
+                        <p:panel header="3.- Cumplimiento de permisos">
+                            <p:panelGrid columns="8">
+                                <p:outputLabel value="Municipal:"/>
+                                <p:selectOneRadio id="permisoMunicipal" value="#{ctrlFichaLocales.objlocales.licencia_municipal}">
+                                    <f:selectItem itemLabel="SI" itemValue="Si" />
+                                    <f:selectItem itemLabel="NO" itemValue="NO" />                                
+                                </p:selectOneRadio>
+                                <p:outputLabel value="Bomberos:"/>
+                                <p:selectOneRadio id="permisoBomberos" value="#{ctrlFichaLocales.objlocales.licencia_bomberos}">
+                                    <f:selectItem itemLabel="SI" itemValue="Si" />
+                                    <f:selectItem itemLabel="NO" itemValue="NO" />                                
+                                </p:selectOneRadio>
+                                <p:outputLabel value="Ministerio de Salud:"/>
+                                <p:selectOneRadio id="permisoMSP" value="#{ctrlFichaLocales.objlocales.licencia_msp}">
+                                    <f:selectItem itemLabel="SI" itemValue="Si" />
+                                    <f:selectItem itemLabel="NO" itemValue="NO" />                                
+                                </p:selectOneRadio>
+                                <p:outputLabel value="Ministerio del Interior:"/>
+                                <p:selectOneRadio id="permisoMi" value="#{ctrlFichaLocales.objlocales.licencia_mi}">
+                                    <f:selectItem itemLabel="SI" itemValue="Si" />
+                                    <f:selectItem itemLabel="NO" itemValue="NO" />                                
+                                </p:selectOneRadio>
+                                <p:outputLabel value="Ministerio de Turismo:"/>
+                                <p:selectOneRadio id="permisoMt" value="#{ctrlFichaLocales.objlocales.licencia_mt}">
+                                    <f:selectItem itemLabel="SI" itemValue="Si" />
+                                    <f:selectItem itemLabel="NO" itemValue="NO" />                                
+                                </p:selectOneRadio>
+                                <p:outputLabel value="RUC/RISE:"/>
+                                <p:selectOneRadio id="ruc" value="#{ctrlFichaLocales.objlocales.ruc_rise}">
+                                    <f:selectItem itemLabel="RUC" itemValue="RUC" />
+                                    <f:selectItem itemLabel="RISE" itemValue="RISE" />                                
+                                    <f:selectItem itemLabel="Ninguno" itemValue="Ninguno" />     
+                                </p:selectOneRadio>                            
+                            </p:panelGrid>
+                        </p:panel>
+                        <p:panel header="4.- Horario de Funcionamiento">
+                            <p:panelGrid columns="6">
+                                <p:outputLabel value="Horario Diurno:"/>
+                                <p:calendar id="horarioDiurno" value="#{ctrlFichaLocales.horarioDiurno}" pattern="HH:mm:ss" timeOnly="true" placeholder="Ej. 07:00:00" />
+                                <p:outputLabel value="Horario Nocturno:"/>
+                                <p:calendar id="horarioNocturno" value="#{ctrlFichaLocales.horarioNocturno}" pattern="HH:mm:ss" timeOnly="true" placeholder="Ej. 23:30:00" />
+                                <p:outputLabel value="Observaciones Jornada Laboral:"/>
+                                <p:inputTextarea value="#{ctrlFichaLocales.objlocales.observaciones_jornada_laboral}" required="true" placeholder="Ej. Jornada de trabajo única"
+                                                 rows="3" cols="60"/>
+                            </p:panelGrid>
+                        </p:panel>
+                        <p:panel header="5.- Visualización del Entorno Externo">
+                            <p:panelGrid columns="6">
+                                <p:outputLabel value="Terrenos Valdíos:"/>
+                                <p:selectOneRadio id="terrenosValdios" value="#{ctrlFichaLocales.objlocales.terrenos_valdios}">
+                                    <f:selectItem itemLabel="SI" itemValue="Si" />
+                                    <f:selectItem itemLabel="NO" itemValue="NO" />                                
+                                </p:selectOneRadio>
+                                <p:outputLabel value="Espacios abiertos (parques, canchas, etc):"/>
+                                <p:selectOneRadio id="espaciosabiertos" value="#{ctrlFichaLocales.objlocales.espacios_abiertos}">
+                                    <f:selectItem itemLabel="SI" itemValue="Si" />
+                                    <f:selectItem itemLabel="NO" itemValue="NO" />                                
+                                </p:selectOneRadio>
+                                <p:outputLabel value="Especificar:"/>
+                                <p:inputTextarea value="#{ctrlFichaLocales.objlocales.especificaciones_entorno_externo}" required="true" placeholder="Ej. Jornada de trabajo única"
+                                                 rows="3" cols="60"/>
+                            </p:panelGrid>                                               
+                        </p:panel>
+                        <p:panel header="6.- Visualización del entorno interno del establecimiento">
+                            <p:panelGrid columns="10">
+                                <p:outputLabel value="Visualización:"/>
+                                <p:selectOneRadio id="visualizacion" value="#{ctrlFichaLocales.objlocales.visualizacion}">
+                                    <f:selectItem itemLabel="SI" itemValue="Si" />
+                                    <f:selectItem itemLabel="NO" itemValue="NO" />                                
+                                </p:selectOneRadio>
+                                <p:outputLabel value="Iluminación:"/>
+                                <p:selectOneRadio id="iluminacion" value="#{ctrlFichaLocales.objlocales.iluminacion}">
+                                    <f:selectItem itemLabel="SI" itemValue="Si" />
+                                    <f:selectItem itemLabel="NO" itemValue="NO" />                                
+                                </p:selectOneRadio>
+                                <p:outputLabel value="Entradas y Salidas de emergencia:"/>
+                                <p:selectOneRadio id="esEmergencia" value="#{ctrlFichaLocales.objlocales.entradas_salidas_emergencia}">
+                                    <f:selectItem itemLabel="SI" itemValue="Si" />
+                                    <f:selectItem itemLabel="NO" itemValue="NO" />                                
+                                </p:selectOneRadio>
+                                <p:outputLabel value="Recodos, muretes, posibles escondites:"/>
+                                <p:selectOneRadio id="recodos" value="#{ctrlFichaLocales.objlocales.recodos_muretes}">
+                                    <f:selectItem itemLabel="SI" itemValue="Si" />
+                                    <f:selectItem itemLabel="NO" itemValue="NO" />                                
+                                </p:selectOneRadio>
+                                <p:outputLabel value="Limpieza del Local:"/>
+                                <p:selectOneRadio id="limpieza" value="#{ctrlFichaLocales.objlocales.limpieza_local}">
+                                    <f:selectItem itemLabel="SI" itemValue="Si" />
+                                    <f:selectItem itemLabel="NO" itemValue="NO" />                                
+                                </p:selectOneRadio>
+                            </p:panelGrid>
+                        </p:panel>
+                        <p:panel header="7.- Sistemas de emergencia previstos por la ley">
+                            <p:panelGrid columns="6">
+                                <p:outputLabel value="Esta señalizado"/>
+                                <p:selectOneRadio id="senializacion" value="#{ctrlFichaLocales.objlocales.senializacion}">
+                                    <f:selectItem itemLabel="SI" itemValue="Si" />
+                                    <f:selectItem itemLabel="NO" itemValue="NO" />                                
+                                </p:selectOneRadio>
+                                <p:outputLabel value="Extintor de incendios"/>
+                                <p:selectOneRadio id="extintor" value="#{ctrlFichaLocales.objlocales.extintor_incendios}">
+                                    <f:selectItem itemLabel="SI" itemValue="Si" />
+                                    <f:selectItem itemLabel="NO" itemValue="NO" />                                
+                                </p:selectOneRadio>
+                                <p:outputLabel value="Observaciones:"/>
+                                <p:inputTextarea value="#{ctrlFichaLocales.objlocales.obsrv_sistemas_emergencia}" required="true" placeholder="Ej. No cuenta con extintor"
+                                                 rows="3" cols="60"/>
+                            </p:panelGrid>
+                        </p:panel>
+                        <p:panel header="8.- Sistema de Seguridad">
+                            <p:panelGrid columns="8">
+                                <p:outputLabel value="Dispone de un sistema de seguridad:"/>
+                                <p:selectOneRadio id="sistemaSeg" value="#{ctrlFichaLocales.objlocales.sistema_seguridad}">
+                                    <f:selectItem itemLabel="SI" itemValue="Si" />
+                                    <f:selectItem itemLabel="NO" itemValue="NO" />                                
+                                </p:selectOneRadio>
+                                <p:outputLabel value="Tipo sistema de seguridad:"/>
+                                <p:selectOneRadio id="tiposistemaSeg" value="#{ctrlFichaLocales.objlocales.tipo}">
+                                    <f:selectItem itemLabel="Estatal" itemValue="Estatal" />
+                                    <f:selectItem itemLabel="Privado" itemValue="Privado" />                                
+                                </p:selectOneRadio>
+                            </p:panelGrid>
+                        </p:panel>
+                        <p:panel header="9.- Centros educativos">
+                            <p:panelGrid columns="6">
+                                <p:outputLabel value="Nombre institución educativa:"/>
+                                <p:inputTextarea value="#{ctrlFichaLocales.objlocales.inst_educativa}" required="true" placeholder="Ej. ESPOCH"
+                                                 rows="3" cols="60"/>
+                                <p:outputLabel value="Distancia entre el establecimiento y la Unidad Educativa (m)"/>
+                                <p:inputText value="#{ctrlFichaLocales.objlocales.distancia_ie}" required="true" placeholder="10" size="10"/>
+                                <p:outputLabel value="Dirección:"/>
+                                <p:inputTextarea value="#{ctrlFichaLocales.objlocales.direccion_ie}" required="true" placeholder="Ej. Avda. 11 de Noviembre y Milton Reyes"
+                                                 rows="3" cols="60"/>
 
+                            </p:panelGrid>
+                        </p:panel>
+                        <p:panel header="10. Observaciones generales">
+                            <p:panelGrid columns="2">
+                                <p:outputLabel value="Observaciones:"/>
+                                <p:inputTextarea value="#{ctrlFichaLocales.objlocales.observaciones_generales}" required="true" 
+                                                 placeholder="Ej. En el local se constató la presencia de menores de edad"
+                                                 rows="3" cols="160"/>
+                            </p:panelGrid>
+                        </p:panel>
                     </p:panel>
-                    <p:panel header="5.- Visualización del Entorno Externo">
-
+                    <p:panel id="pnlOpciones">
+                        <p:commandButton value="Guardar"/>
+                        <p:commandButton value="Limpiar"/>
                     </p:panel>
                 </h:form>
             </ui:define>
