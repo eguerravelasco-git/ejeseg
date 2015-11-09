@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>
+            <ui:define name="Datos">Datos de la Fiscalia</ui:define>
+        </title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../../templates/plantillaInternaCenter.xhtml">
+            <ui:define name="top">Datos de la Fiscalia</ui:define>
+            <ui:define name="contenido">
+                <p:growl id="mensajes" autoUpdate="true" showDetail="true"/>
+                <h:form id="frmdatos" style="alignment-adjust: central">
+                    <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
+                    <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
+                    <p:panel id="pnlBusqueda" header="Buscar por año">
+                        <p:panelGrid columns="3">
+                            <p:outputLabel value="Seleccione un año: "/>
+                            <p:selectOneMenu value="#{ctrlFiscaliaAnioDiaAgresion.aniosel}">
+                                <f:selectItem itemValue="#{null}" itemLabel="Seleccione un año...."/>
+                                <f:selectItem itemValue="2014" itemLabel="2014"/>
+                                <f:selectItem itemValue="2015" itemLabel="2015"/>
+                                <f:selectItem itemValue="2016" itemLabel="2016"/>
+                            </p:selectOneMenu>
+                            <p:commandButton id="btnBuscar" icon="ui-icon-search" style="width:50px"  
+                                             title="Graficar " action="#{ctrlFiscaliaAnioDiaAgresion.graficar()}" 
+                                             update=":frmdatos:pnlGraficos, @form"/>                                   
+                        </p:panelGrid>
+                    </p:panel>
+
+                    <p:panel id="pnlGraficos" header="Estadísticas de los días de Agresión" >
+
+                        <p:accordionPanel style="max-height: 800px;max-width: 1300px">
+                            <p:tab title="Dias de Agresión" >
+                                <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                                <p:lineChart   value="#{ctrlFiscaliaAnioDiaAgresion.graficarDiaAgrecion}" legendPosition="n" 
+                                               title="Dias de Agresión" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                               xaxisLabel="Rango de Edades" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>   
+                            </p:tab>                                                                                           
+                            
+                            <p:tab title="Dias de Agresión(Gráfico de Barras)" >
+                                <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                                <p:barChart   value="#{ctrlFiscaliaAnioDiaAgresion.graficarDiaAgrecion}" legendPosition="n" 
+                                              title="Dias de Agresión(Gráfico de Barras)" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                              xaxisLabel="Rango de Edades" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>  
+                                <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                            </p:tab>
+                            
+                            <p:tab title="Dias de Agresión por Género" >
+                                <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                                <p:lineChart   value="#{ctrlFiscaliaAnioDiaAgresion.graficarDiaAgrecionGenero}" legendPosition="n" 
+                                               title="Dias de Agresión por Género" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                               xaxisLabel="Dias de Agresión" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>   
+                            </p:tab>                                                                                           
+                            
+                            <p:tab title="Dias de Agresión por Género(Gráfico de Barras)" >
+                                <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                                <p:barChart   value="#{ctrlFiscaliaAnioDiaAgresion.graficarDiaAgrecionGenero}" legendPosition="n" 
+                                              title="Dias de Agresión por Género" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                              xaxisLabel="Dias de Agresión" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true" />  
+                                <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                            </p:tab>
+                            <script type="text/javascript">
+                                function my_ext() {
+                                    this.cfg.seriesDefaults = {
+                                        renderer: $.jqplot.BarRenderer,
+                                        pointLabels: {show: true}
+                                    };
+                                    this.cfg.stackSeries: true;
+                                }
+                            </script>
+
+                        </p:accordionPanel>
+
+                    </p:panel>
+
+                </h:form>
+            </ui:define>
+
+            <ui:define name="dialogos">
+                <p:dialog modal="true" widgetVar="dlgStatus" header="Procesando" draggable="false" closable="false" 
+                          resizable="false"> 
+                    <p:graphicImage value="/resources/images/ajaxloadingbar.gif" />  
+                </p:dialog>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
