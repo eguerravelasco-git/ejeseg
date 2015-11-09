@@ -47,8 +47,6 @@ and open the template in the editor.
                                 <p:inputText value="#{ctrlFichaLocales.objlocales.manzana}" required="true" placeholder="Ej. 1" size="5"/>
                                 <p:outputLabel value="Formulario:"/>
                                 <p:inputText value="#{ctrlFichaLocales.objlocales.formulario}" required="true" placeholder="Ej. 1" size="5"/>
-                                <p:outputLabel value="Dirección:"/>
-                                <p:inputTextarea value="#{ctrlFichaLocales.objlocales.direccion}" required="true" placeholder="Ej. Avda. 11 de Noviembre y Juan Salinas"/>
                                 <p:outputLabel value="Barrio:"/>
                                 <p:inputText value="#{ctrlFichaLocales.objlocales.barrio}" placeholder="Ej. Sultana de los Andes"/>
                                 <p:outputLabel value="Circuito:"/>
@@ -69,6 +67,9 @@ and open the template in the editor.
                                 <p:inputText value="#{ctrlFichaLocales.objlocales.x}" required="true"/>
                                 <p:outputLabel value="Coordenada Y:"/>
                                 <p:inputText value="#{ctrlFichaLocales.objlocales.y}" required="true"/>
+                                <p:outputLabel value="Dirección:"/>
+                                <p:inputTextarea value="#{ctrlFichaLocales.objlocales.direccion}" required="true" 
+                                                 placeholder="Ej. Avda. 11 de Noviembre y Juan Salinas"/>
                             </p:panelGrid>
                         </p:panel>
                         <p:panel header="2.- Datos del Establecimiento">
@@ -91,11 +92,19 @@ and open the template in the editor.
                                 <p:inputText value="#{ctrlFichaLocales.objlocales.nombre_del}" required="true" placeholder="Ej. Angel Cudco"/>
                                 <p:outputLabel value="Cédula de ciudadanía:"/>
                                 <p:inputText value="#{ctrlFichaLocales.objlocales.cc}" required="true" placeholder="Ej. 0603977224"/>
+                                <p:outputLabel value="Estado del establecimiento"/>
+                                <p:selectOneMenu value="#{ctrlFichaLocales.objlocales.estado}">
+                                    <f:selectItem itemLabel="Seleccione.." itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Abierto" itemValue="Abierto"/>
+                                    <f:selectItem itemLabel="Cerrado" itemValue="Cerrado"/>
+                                    <f:selectItem itemLabel="Clausurado" itemValue="Clausurado"/>
+                                    <f:selectItem itemLabel="Otro" itemValue="Otro"/>
+                                </p:selectOneMenu>
                             </p:panelGrid>
 
                         </p:panel>
                         <p:panel header="3.- Cumplimiento de permisos">
-                            <p:panelGrid columns="8">
+                            <p:panelGrid columns="6">
                                 <p:outputLabel value="Municipal:"/>
                                 <p:selectOneRadio id="permisoMunicipal" value="#{ctrlFichaLocales.objlocales.licencia_municipal}">
                                     <f:selectItem itemLabel="SI" itemValue="Si" />
@@ -158,7 +167,7 @@ and open the template in the editor.
                             </p:panelGrid>                                               
                         </p:panel>
                         <p:panel header="6.- Visualización del entorno interno del establecimiento">
-                            <p:panelGrid columns="10">
+                            <p:panelGrid columns="6">
                                 <p:outputLabel value="Visualización:"/>
                                 <p:selectOneRadio id="visualizacion" value="#{ctrlFichaLocales.objlocales.visualizacion}">
                                     <f:selectItem itemLabel="SI" itemValue="Si" />
@@ -204,21 +213,43 @@ and open the template in the editor.
                             </p:panelGrid>
                         </p:panel>
                         <p:panel header="8.- Sistema de Seguridad">
-                            <p:panelGrid columns="8">
-                                <p:outputLabel value="Dispone de un sistema de seguridad:"/>
-                                <p:selectOneRadio id="sistemaSeg" value="#{ctrlFichaLocales.objlocales.sistema_seguridad}">
-                                    <f:selectItem itemLabel="SI" itemValue="Si" />
-                                    <f:selectItem itemLabel="NO" itemValue="NO" />                                
-                                </p:selectOneRadio>
-                                <p:outputLabel value="Tipo sistema de seguridad:"/>
-                                <p:selectOneRadio id="tiposistemaSeg" value="#{ctrlFichaLocales.objlocales.tipo}">
-                                    <f:selectItem itemLabel="Estatal" itemValue="Estatal" />
-                                    <f:selectItem itemLabel="Privado" itemValue="Privado" />                                
-                                </p:selectOneRadio>
+                            <p:panelGrid columns="2">
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="Dispone de un sistema de seguridad:"/>
+                                    <p:selectOneRadio id="sistemaSeg" value="#{ctrlFichaLocales.objlocales.sistema_seguridad}">
+                                        <f:selectItem itemLabel="SI" itemValue="Si" />
+                                        <f:selectItem itemLabel="NO" itemValue="NO" />                                
+                                    </p:selectOneRadio>
+                                    <p:outputLabel value="Tipo sistema de seguridad:"/>
+                                    <p:selectOneRadio id="tiposistemaSeg" value="#{ctrlFichaLocales.objlocales.tipo}">
+                                        <f:selectItem itemLabel="Estatal" itemValue="Estatal" />
+                                        <f:selectItem itemLabel="Privado" itemValue="Privado" />                                
+                                    </p:selectOneRadio>
+                                    <p:outputLabel value="Establecimiento/Local:"/>
+                                    <p:selectOneRadio id="estblmtoLocal" value="#{ctrlFichaLocales.objlocales.establecimiento_local}">
+                                        <f:selectItem itemLabel="SI" itemValue="1" />
+                                        <f:selectItem itemLabel="NO" itemValue="0" />                                
+                                    </p:selectOneRadio>   
+                                    <p:outputLabel value="Barrio/Comunitarias:"/>
+                                    <p:selectOneRadio id="barrioComunitarias" value="#{ctrlFichaLocales.objlocales.barrio_comunitarias}">
+                                        <f:selectItem itemLabel="SI" itemValue="1" />
+                                        <f:selectItem itemLabel="NO" itemValue="0" />                                
+                                    </p:selectOneRadio>  
+                                    <p:outputLabel value="Cámaras Ecu911 en el barrio:"/>
+                                    <p:selectOneRadio id="ecu911" value="#{ctrlFichaLocales.objlocales.camaras_ec911}">
+                                        <f:selectItem itemLabel="SI" itemValue="SI" />
+                                        <f:selectItem itemLabel="NO" itemValue="NO" />                                
+                                    </p:selectOneRadio>                                   
+                                </p:panelGrid>
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="Observaciones sobre el sistema de seguridad:"/>
+                                    <p:inputTextarea value="#{ctrlFichaLocales.objlocales.obsrvc_sistema_seguridad}" placeholder="Ej. El sistema de seguridad no funciona en su totalidad"
+                                                     rows="3" cols="60" required="true"/>
+                                </p:panelGrid>
                             </p:panelGrid>
                         </p:panel>
                         <p:panel header="9.- Centros educativos">
-                            <p:panelGrid columns="6">
+                            <p:panelGrid columns="4">
                                 <p:outputLabel value="Nombre institución educativa:"/>
                                 <p:inputTextarea value="#{ctrlFichaLocales.objlocales.inst_educativa}" required="true" placeholder="Ej. ESPOCH"
                                                  rows="3" cols="60"/>
@@ -226,7 +257,10 @@ and open the template in the editor.
                                 <p:inputText value="#{ctrlFichaLocales.objlocales.distancia_ie}" required="true" placeholder="10" size="10"/>
                                 <p:outputLabel value="Dirección:"/>
                                 <p:inputTextarea value="#{ctrlFichaLocales.objlocales.direccion_ie}" required="true" placeholder="Ej. Avda. 11 de Noviembre y Milton Reyes"
-                                                 rows="3" cols="60"/>
+                                                 rows="3" cols="75"/>
+                                <p:outputLabel value="Observaciones:"/>
+                                <p:inputTextarea value="#{ctrlFichaLocales.objlocales.obsrvc_ie}" required="true" placeholder="Ej. Avda. 11 de Noviembre y Milton Reyes"
+                                                 rows="3" cols="75"/>
 
                             </p:panelGrid>
                         </p:panel>
@@ -239,9 +273,20 @@ and open the template in the editor.
                             </p:panelGrid>
                         </p:panel>
                     </p:panel>
+                    <p:panel header="Datos digitador">
+                        <p:panelGrid columns="6">
+                            <p:outputLabel value="Carga de trabajo:"/>
+                            <p:inputText value="#{ctrlFichaLocales.objlocales.carga_trabajo}"/>
+                            <p:outputLabel value="Grupo:"/>
+                            <p:inputText value="#{ctrlFichaLocales.objlocales.grupo}" required="true"/>
+                            <p:outputLabel value="Encuestador:"/>
+                            <p:inputText value="#{ctrlFichaLocales.objlocales.digitador}" placeholder="Ej. Geovanny Cudco" required="true"
+                                         size="30"/>                            
+                        </p:panelGrid>                                                        
+                    </p:panel>
                     <p:panel id="pnlOpciones">
                         <p:commandButton value="Guardar"/>
-                        <p:commandButton value="Limpiar"/>
+                        <p:commandButton value="Limpiar" process="@this" />
                     </p:panel>
                 </h:form>
             </ui:define>

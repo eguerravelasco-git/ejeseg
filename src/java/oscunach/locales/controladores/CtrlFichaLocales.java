@@ -96,7 +96,7 @@ public class CtrlFichaLocales {
         this.objlocales = new Locales();
         this.lstCircuito = new ArrayList<Circuitos>();
         this.cargarCircuitos();
-        this.cargarSubcircuitos();
+        //this.cargarSubcircuitos();
 
     }
 
@@ -104,6 +104,8 @@ public class CtrlFichaLocales {
         try {
             objlocales.setProvincia("CHIMBORAZO");
             objlocales.setCanton("RIOBAMBA");
+            objlocales.setCodigo_circuito("actualizar");
+            objlocales.setCodigo_subcircuito("actualizar");
         } catch (Exception e) {
         }
     }
