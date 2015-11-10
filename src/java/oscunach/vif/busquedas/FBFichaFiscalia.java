@@ -17,6 +17,44 @@ import static oscunach.vif.servicios.ServiciosFichaVif.llenarFicha;
  * @author ICITS SALA5
  */
 public class FBFichaFiscalia {
+    
+    
+    public static ArrayList<FichaVif> obtenerDatosDadoAnio(int pin_anio) throws Exception {
+        ArrayList<FichaVif> lst = new ArrayList<FichaVif>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_ficha_dado_anio(?)";
+            lstP.add(new Parametro(1, pin_anio));            
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarFicha(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+    
+    
+    public static ArrayList<FichaVif> obtenerTiposViolenciaDadoAnio(int pin_anio) throws Exception {
+        ArrayList<FichaVif> lst = new ArrayList<FichaVif>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_ficha_tipo_violencia(?)";
+            lstP.add(new Parametro(1, pin_anio));            
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarFicha(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+    
+    
+    
+    
+    
+
 
     public static ArrayList<FichaVif> obtenerFichaDadoAnioCircuito(int pin_anio, String pin_circuito) throws Exception {
         ArrayList<FichaVif> lst = new ArrayList<FichaVif>();
@@ -338,7 +376,7 @@ public class FBFichaFiscalia {
         ArrayList<FichaVif> lst = new ArrayList<FichaVif>();
         try {
             ArrayList<Parametro> lstP = new ArrayList<Parametro>();
-            String sql = "select * from vif.select_ficha_dado_anio_subcircuito_genero(?,?,?)";
+            String sql = "select * from vif.select_ficha_dado_anio_subcircuito(?,?,?)";
             lstP.add(new Parametro(1, pin_anio));
             lstP.add(new Parametro(2, pin_subcircuito));
             lstP.add(new Parametro(3, pin_sexo_victima));
