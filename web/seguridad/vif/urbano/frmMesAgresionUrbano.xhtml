@@ -38,35 +38,35 @@ and open the template in the editor.
                         </p:panelGrid>
                     </p:panel>
 
-                    <p:panel id="pnlGraficos" header="Estadísticas de los días de atención" >
+                    <p:panel id="pnlGraficos" header="Estadísticas clasficadas por Meses Agreción" >
 
-                        <p:accordionPanel style="max-height: 800px;max-width: 1300px">
-                            <p:tab title="Denuncias clasficadas por Meses" >
+                        <p:accordionPanel style="max-height: 800px;max-width: 1200px">
+                            <p:tab title="Denuncias clasficadas por Meses Agreción" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:lineChart   value="#{ctrlUrbanoMesAgresion.graficaMeses}" legendPosition="n" 
-                                               title="Denuncias clasficadas por Meses" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                               title="Denuncias clasficadas por Meses Agreción" style="height:350px;width:1100px;text-decoration-style: dashed"
                                                xaxisLabel="Meses" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
                             
-                            <p:tab title="Denuncias clasficadas por Meses(Gráfico de Barras)" >
+                            <p:tab title="Denuncias clasficadas por Meses Agreción(Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlUrbanoMesAgresion.graficaMeses}" legendPosition="n" 
-                                              title="Denuncias clasficadas por Meses(Gráfico de Barras)" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                              title="Denuncias clasficadas por Meses(Gráfico de Barras)" style="height:350px;width:1100px;text-decoration-style: dashed"
                                               xaxisLabel="Meses" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             
-                            <p:tab title="Denuncias clasficadas por Meses y Género de la Víctima" >
+                            <p:tab title="Denuncias clasficadas por Meses Agreción y Género de la Víctima" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:lineChart   value="#{ctrlUrbanoMesAgresion.graficaMesesGenero}" legendPosition="n" 
-                                               title="Denuncias clasficadas por Meses y Género de la Víctima" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                               title="Denuncias clasficadas por Meses y Género de la Víctima" style="height:350px;width:1100px;text-decoration-style: dashed"
                                                xaxisLabel="Meses" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
                             
-                            <p:tab title="Denuncias clasficadas por Meses y Género de la Víctima(Gráfico de Barras)" >
+                            <p:tab title="Denuncias clasficadas por Meses Agreción y Género de la Víctima(Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlUrbanoMesAgresion.graficaMesesGenero}" legendPosition="n" 
-                                              title="Denuncias clasficadas por Meses y Género de la Víctima" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                              title="Denuncias clasficadas por Meses y Género de la Víctima" style="height:350px;width:1100px;text-decoration-style: dashed"
                                               xaxisLabel="Meses" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true" />  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>

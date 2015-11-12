@@ -39,18 +39,18 @@ and open the template in the editor.
 
                     <p:panel id="pnlGraficos" header="Estadísticas de los días de Agresión" >
 
-                        <p:accordionPanel style="max-height: 800px;max-width: 1300px">
+                        <p:accordionPanel style="max-height: 800px;max-width: 1200px">
                             <p:tab title="Dias de Agresión" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:lineChart   value="#{ctrlFiscaliaAnioDiaAgresion.graficarDiaAgrecion}" legendPosition="n" 
-                                               title="Dias de Agresión" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                               title="Dias de Agresión" style="height:350px;width:1100px;text-decoration-style: dashed"
                                                xaxisLabel="Rango de Edades" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
                             
                             <p:tab title="Dias de Agresión(Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlFiscaliaAnioDiaAgresion.graficarDiaAgrecion}" legendPosition="n" 
-                                              title="Dias de Agresión(Gráfico de Barras)" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                              title="Dias de Agresión(Gráfico de Barras)" style="height:350px;width:1100px;text-decoration-style: dashed"
                                               xaxisLabel="Rango de Edades" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
@@ -58,14 +58,14 @@ and open the template in the editor.
                             <p:tab title="Dias de Agresión por Género" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:lineChart   value="#{ctrlFiscaliaAnioDiaAgresion.graficarDiaAgrecionGenero}" legendPosition="n" 
-                                               title="Dias de Agresión por Género" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                               title="Dias de Agresión por Género" style="height:350px;width:1100px;text-decoration-style: dashed"
                                                xaxisLabel="Dias de Agresión" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
                             
                             <p:tab title="Dias de Agresión por Género(Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlFiscaliaAnioDiaAgresion.graficarDiaAgrecionGenero}" legendPosition="n" 
-                                              title="Dias de Agresión por Género" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                              title="Dias de Agresión por Género" style="height:350px;width:1100px;text-decoration-style: dashed"
                                               xaxisLabel="Dias de Agresión" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true" />  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>

@@ -12,12 +12,12 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>
-            <ui:define name="Datos">Datos de la Sala de Primera Acogida</ui:define>
+            <ui:define name="Datos">Datos del DEPARTAMENTO DE VIOLENCIA INTRAFAMILIAR</ui:define>
         </title>
     </h:head>
     <h:body>
         <ui:composition template="../../../templates/plantillaInternaCenter.xhtml">
-            <ui:define name="top">Denuncias recolectadas de la Comisaría de la Mujer</ui:define>
+            <ui:define name="top">Denuncias recolectadas en el Departamento de Violencia Intrafamiliar</ui:define>
             <ui:define name="contenido">
                 <p:growl id="mensajes" autoUpdate="true" showDetail="true"/>
                 <h:form id="frmdatos" style="alignment-adjust: central">
@@ -59,15 +59,15 @@ and open the template in the editor.
                             <p:tab title="Detalle general por circuitos género" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:lineChart   value="#{ctrlDevifCircuitos.graficaCircuitosGenero}" legendPosition="n" 
-                                               title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                               xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
+                                               title="Detalle por circuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                               xaxisLabel="Circuitos" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
                             
                             <p:tab title="Detalle general por circuitos género(Cuadro de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlDevifCircuitos.graficaCircuitosGenero}" legendPosition="n" 
-                                              title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                              xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
+                                              title="Detalle por circuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                              xaxisLabel="circuitos" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             <script type="text/javascript">
