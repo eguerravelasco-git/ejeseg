@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>
+            <ui:define name="Datos">Cumplimiento de Permisos</ui:define>
+        </title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../../../templates/plantillaInternaCenter.xhtml">
+            <ui:define name="top">Cumplimiento de Permisos</ui:define>
+            <ui:define name="contenido">
+                <p:growl id="mensajes" autoUpdate="true" showDetail="true"/>
+                <h:form id="frmdatos" style="alignment-adjust: central">
+                    <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
+                    <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />                    
+
+                    <p:panel id="pnlGraficos" >
+
+                        <p:accordionPanel style="max-height: 800px;max-width: 1200px">
+                            <p:tab title="Licencia del Municipio" >
+                                <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                                <p:panel header="Gráfico de Líneas">
+                                    <p:lineChart   value="#{ctrlCumplPermisosSubcircuitos.permisoMunicipal}" legendPosition="n" 
+                                                   title="Licencia Municipal" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                                   xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
+                                </p:panel>
+                                <p:panel header="Gráfico de Barras">
+                                    <p:barChart   value="#{ctrlCumplPermisosSubcircuitos.permisoMunicipal}" legendPosition="n" 
+                                                  title="Licencia Municipal" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                                  xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
+                                </p:panel>
+                            </p:tab>                                                                                           
+
+                            <p:tab title="Licencia de los bomberos" >
+                                <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                                <p:panel header="Gráfico de Líneas">
+                                    <p:lineChart   value="#{ctrlCumplPermisosSubcircuitos.permisoBomberos}" legendPosition="n" 
+                                                   title="Licencia Bomberos" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                                   xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
+                                    <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                                </p:panel>
+                                <p:panel header="Gráfico de Barras">
+                                    <p:barChart   value="#{ctrlCumplPermisosSubcircuitos.permisoBomberos}" legendPosition="n" 
+                                                  title="Licencia Bomberos" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                                  xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
+                                    <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                                </p:panel>
+                            </p:tab>
+
+                            <p:tab title="Licencia Ministerio de Salud" >
+                                <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                                <p:panel header="Gráfico de Líneas">
+                                    <p:lineChart   value="#{ctrlCumplPermisosSubcircuitos.permisoMsp}" legendPosition="n" 
+                                                   title="Licencia Ministerio de Salud" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                                   xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
+                                    <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                                </p:panel>
+                                <p:panel header="Gráfico de Barras">
+                                    <p:barChart   value="#{ctrlCumplPermisosSubcircuitos.permisoMsp}" legendPosition="n" 
+                                                  title="Licencia Ministerio de Salud" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                                  xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
+                                    <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                                </p:panel>
+                            </p:tab>
+
+                            <p:tab title="Licencia Ministerio del Interior" >
+                                <p:panel header="Gráfico de Líneas">
+                                    <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                                    <p:lineChart   value="#{ctrlCumplPermisosSubcircuitos.permisoMi}" legendPosition="n" 
+                                                   title="Licencia Ministerio del Interior" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                                   xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
+                                    <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                                </p:panel>
+                                <p:panel header="Gráfico de Barras">
+                                    <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                                    <p:barChart   value="#{ctrlCumplPermisosSubcircuitos.permisoMi}" legendPosition="n" 
+                                                  title="Licencia Ministerio del Interior" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                                  xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
+                                    <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                                </p:panel>
+                            </p:tab>
+
+                            <p:tab title="Licencia Ministerio de Turismo" >
+                                <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                                <p:lineChart   value="#{ctrlCumplPermisosSubcircuitos.permisoMt}" legendPosition="n" 
+                                               title="Licencia Ministerio de Turismo" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                               xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
+                                <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                            </p:tab>
+
+                            <p:tab title="Ruc - Rise" >
+                                <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                                <p:lineChart   value="#{ctrlCumplPermisosSubcircuitos.rucRise}" legendPosition="n" 
+                                               title="Cumpliemiento de RUC o Rise" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                               xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
+                                <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                            </p:tab>
+
+                            <script type="text/javascript">
+                                function my_ext() {
+                                    this.cfg.seriesDefaults = {
+                                        renderer: $.jqplot.BarRenderer,
+                                        pointLabels: {show: true}
+                                    };
+                                    this.cfg.stackSeries: true;
+                                }
+                            </script>
+
+                        </p:accordionPanel>
+
+                    </p:panel>
+
+                </h:form>
+            </ui:define>
+
+            <ui:define name="dialogos">
+                <p:dialog modal="true" widgetVar="dlgStatus" header="Procesando" draggable="false" closable="false" 
+                          resizable="false"> 
+                    <p:graphicImage value="/resources/images/ajaxloadingbar.gif" />  
+                </p:dialog>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
