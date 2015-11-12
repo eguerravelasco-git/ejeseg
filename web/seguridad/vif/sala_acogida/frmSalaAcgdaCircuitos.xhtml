@@ -44,29 +44,29 @@ and open the template in the editor.
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:lineChart   value="#{ctrlCircuitosSalaAcgda.graficaCircuitos}" legendPosition="n" 
                                                title="Detalle por circuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                               xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias"/>   
+                                               xaxisLabel="Circuitos" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true" />   
                             </p:tab>                                                                                           
                             
-                            <p:tab title="Detalle general por circuitos (Cuadro de Barras)" >
+                            <p:tab title="Detalle general por circuitos (Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlCircuitosSalaAcgda.graficaCircuitos}" legendPosition="n" 
-                                              title="Detalle por circuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                              xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias"/>  
+                                              title="Detalle por circuitos (Gráfico de Barras)" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                              xaxisLabel="Circuitos" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true" />  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             
                             <p:tab title="Detalle general por circuitos género" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:lineChart   value="#{ctrlCircuitosSalaAcgda.graficaCircuitosGenero}" legendPosition="n" 
-                                               title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                               xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias"/>   
+                                               title="Detalle por circuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                               xaxisLabel="Circuitos" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
                             
                             <p:tab title="Detalle general por circuitos género(Cuadro de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlCircuitosSalaAcgda.graficaCircuitosGenero}" legendPosition="n" 
-                                              title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                              xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias"/>  
+                                              title="Detalle por Circuitos(Gráfico de Barras)" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                              xaxisLabel="Circuitos" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             <script type="text/javascript">

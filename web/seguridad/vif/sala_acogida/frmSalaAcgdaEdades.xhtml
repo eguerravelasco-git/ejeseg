@@ -40,18 +40,18 @@ and open the template in the editor.
 
                     <p:panel id="pnlGraficos" header="Estadísticas por Rango de edades" >
 
-                        <p:accordionPanel style="max-height: 800px;max-width: 1300px">
+                        <p:accordionPanel style="max-height: 800px;max-width: 1200px">
                             <p:tab title="Estadísticas por Rango de edades" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:lineChart   value="#{ctrlSalaAcgdaEdades.graficaEdades}" legendPosition="n" 
-                                               title="Estadísticas por Rango de edades" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                               title="Estadísticas por Rango de edades" style="height:350px;width:1100px;text-decoration-style: dashed"
                                                xaxisLabel="Rango de Edades" xaxisAngle="0" yaxisLabel="# Denuncias"/>   
                             </p:tab>                                                                                           
                             
                             <p:tab title="Estadísticas por Rango de edades(Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlSalaAcgdaEdades.graficaEdades}" legendPosition="n" 
-                                              title="Estadísticas por Rango de edades(Gráfico de Barras)" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                              title="Estadísticas por Rango de edades(Gráfico de Barras)" style="height:350px;width:1100px;text-decoration-style: dashed"
                                               xaxisLabel="Rango de Edades" xaxisAngle="0" yaxisLabel="# Denuncias"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
@@ -59,14 +59,14 @@ and open the template in the editor.
                             <p:tab title="Estadísticas por Rango de edades y Género" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:lineChart   value="#{ctrlSalaAcgdaEdades.graficaEdadesGenero}" legendPosition="n" 
-                                               title="Estadísticas por Rango de edades y Género" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                               title="Estadísticas por Rango de edades y Género" style="height:350px;width:1100px;text-decoration-style: dashed"
                                                xaxisLabel="Rango de Edades" xaxisAngle="0" yaxisLabel="# Denuncias"/>   
                             </p:tab>                                                                                           
                             
                             <p:tab title="Estadísticas por Rango de edades y Género(Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlSalaAcgdaEdades.graficaEdadesGenero}" legendPosition="n" 
-                                              title="Estadísticas por Rango de edades y Género" style="height:450px;width:1200px;text-decoration-style: dashed"
+                                              title="Estadísticas por Rango de edades y Género(Gráfico de Barras)" style="height:350px;width:1100px;text-decoration-style: dashed"
                                               xaxisLabel="Rango de Edades" xaxisAngle="0" yaxisLabel="# Denuncias"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
