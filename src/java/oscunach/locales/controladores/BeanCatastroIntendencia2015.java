@@ -35,8 +35,7 @@ public class BeanCatastroIntendencia2015 {
     public void setCodigoSel(int codigoSel) {
         this.codigoSel = codigoSel;
     }
-    
-    
+
     public String getPropietarioSel() {
         return propietarioSel;
     }
@@ -44,7 +43,7 @@ public class BeanCatastroIntendencia2015 {
     public void setPropietarioSel(String propietarioSel) {
         this.propietarioSel = propietarioSel;
     }
-    
+
     public int getCodigo() {
         return codigo;
     }
@@ -71,7 +70,7 @@ public class BeanCatastroIntendencia2015 {
 
     public BeanCatastroIntendencia2015() {
         this.reinit();
-        this.cargarDatos();
+        //this.cargarDatos();
     }
 
     private void reinit() {
@@ -93,7 +92,7 @@ public class BeanCatastroIntendencia2015 {
             if (ServiciosCatastroIntendencia2015.insertar(catastro)) {
                 FacesMessage mensaje = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingresado Correctamente", null);
                 FacesContext.getCurrentInstance().addMessage(null, mensaje);
-                
+
             } else {
             }
         } catch (Exception e) {
@@ -107,7 +106,6 @@ public class BeanCatastroIntendencia2015 {
             if (ServiciosCatastroIntendencia2015.actualizar(catastro)) {
                 FacesMessage mensaje = new FacesMessage(FacesMessage.SEVERITY_INFO, "Actualizado Correctamente", null);
                 FacesContext.getCurrentInstance().addMessage(null, mensaje);
-              
 
             }
         } catch (Exception e) {
@@ -124,18 +122,20 @@ public class BeanCatastroIntendencia2015 {
         } catch (Exception e) {
         }
     }
-     public void obtenerDatosDadoPropietario() {
+
+    public void obtenerDatosDadoPropietario() {
         try {
-           lstCatastro = ServiciosCatastroIntendencia2015.ObtenerCatastroIntendencia2015DatoPropietario(propietarioSel);
+            lstCatastro = ServiciosCatastroIntendencia2015.ObtenerCatastroIntendencia2015DatoPropietario(propietarioSel);
             System.out.println(lstCatastro.get(0).getPropietario());
         } catch (Exception e) {
             Util.addErrorMessage("public void ObtenerCatastroIntendencia2015DatoPropietario() dice: " + e.getMessage());
             System.out.println("public void ObtenerCatastroIntendencia2015DatoPropietario() dice: " + e.getMessage());
         }
     }
-       public void obtenerDatosDadosCodigo() {
+
+    public void obtenerDatosDadosCodigo() {
         try {
-           lstCatastro = ServiciosCatastroIntendencia2015.ObtenerCatastroIntendencia2015DadoCodigo(codigoSel);
+            lstCatastro = ServiciosCatastroIntendencia2015.ObtenerCatastroIntendencia2015DadoCodigo(codigoSel);
             System.out.println(lstCatastro.get(0).getPropietario());
         } catch (Exception e) {
             Util.addErrorMessage("public void ObtenerCatastroIntendencia2015DadoCodigo() dice: " + e.getMessage());
