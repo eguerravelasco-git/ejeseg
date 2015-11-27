@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class UnidadesFamilia {
 
-    private int numero_causa;
+    private double numero_causa;
     private Date fecha_denuncia;
     private String sexo_agresor;
     private String sexo_victima;
@@ -42,8 +42,10 @@ public class UnidadesFamilia {
 
     public UnidadesFamilia() {
     }
+    
+    
 
-    public UnidadesFamilia(int numero_causa, Date fecha_denuncia, String sexo_agresor, String sexo_victima, String barrio_agresor, String barrio_agredida, String edad_agresor, String edad_victima, String instruccion_agresor, String instrucc_victima, String parentesco, double numero_hijos, String lugar_agrecion, double x, double y, String subcircuit, String circuito, String tipo_violencia, String fecha_agresion, String medidas_amparo, String sentencia, String apelacion, String boletas_anteriores, String boletas_remision, String observacio, int pk) {
+    public UnidadesFamilia(double numero_causa, Date fecha_denuncia, String sexo_agresor, String sexo_victima, String barrio_agresor, String barrio_agredida, String edad_agresor, String edad_victima, String instruccion_agresor, String instrucc_victima, String parentesco, double numero_hijos, String lugar_agrecion, double x, double y, String subcircuit, String circuito, String tipo_violencia, String fecha_agresion, String medidas_amparo, String sentencia, String apelacion, String boletas_anteriores, String boletas_remision, String observacio, int pk) {
         this.numero_causa = numero_causa;
         this.fecha_denuncia = fecha_denuncia;
         this.sexo_agresor = sexo_agresor;
@@ -72,11 +74,11 @@ public class UnidadesFamilia {
         this.pk = pk;
     }
 
-    public int getNumero_causa() {
+    public double getNumero_causa() {
         return numero_causa;
     }
 
-    public void setNumero_causa(int numero_causa) {
+    public void setNumero_causa(double numero_causa) {
         this.numero_causa = numero_causa;
     }
 
@@ -279,7 +281,6 @@ public class UnidadesFamilia {
     public void setPk(int pk) {
         this.pk = pk;
     }
-    
-    
 
+    
 }
