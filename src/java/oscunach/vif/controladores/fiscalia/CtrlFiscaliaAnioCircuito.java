@@ -99,6 +99,7 @@ public class CtrlFiscaliaAnioCircuito {
             femenino.setLabel("Femenino");
             for (int i = 0; i < lst.size(); i++) {
                 femenino.set(lst.get(i), FBFichaFiscalia.obtenerFichaDadoAnioCircuitoGenero(anio, lst.get(i), "Femenino").size());
+                 System.out.println(lst.get(i)+ FBFichaFiscalia.obtenerFichaDadoAnioCircuitoGenero(anio, lst.get(i), "Femenino").size());
             }
 
             ChartSeries masculino = new ChartSeries();

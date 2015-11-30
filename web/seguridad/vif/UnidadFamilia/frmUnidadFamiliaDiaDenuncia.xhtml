@@ -26,7 +26,7 @@ and open the template in the editor.
                     <p:panel id="pnlBusqueda">
                         <p:panelGrid columns="3">
                             <p:outputLabel value="Seleccione un año: "/>
-                            <p:selectOneMenu value="#{ctrlUnidadesFamiliaCircuitos.anioSel}">
+                            <p:selectOneMenu value="#{ctrlUnidadeFamiliaDiaDenunica.anioSel}">
                                 <f:selectItem itemValue="#{null}" itemLabel="Seleccione un año...."/>
                                 <f:selectItem itemValue="2014" itemLabel="Año 2014"/>
                                 <f:selectItem itemValue="2015" itemLabel="Año 2015"/>
@@ -34,7 +34,7 @@ and open the template in the editor.
                             </p:selectOneMenu>
                             
                             <p:commandButton id="btnBuscar" icon="ui-icon-power" style="width:50px"  
-                                             title="Graficar" action="#{ctrlUnidadesFamiliaCircuitos.graficar()}" 
+                                             title="Graficar" action="#{ ctrlUnidadeFamiliaDiaDenunica.graficar()}" 
                                              update=":frmdatos:pnlGraficos, @form" />                                   
                         </p:panelGrid>
                     </p:panel>
@@ -42,30 +42,30 @@ and open the template in the editor.
                     <p:panel id="pnlGraficos" >
                         <p:accordionPanel style="max-height: 800px;max-width: 1200px">
                             
-                            <p:tab title="Detalle general por circuitos" >
+                            <p:tab title="Detalle general por Dia de Denuncia" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:lineChart   value="#{ctrlUnidadesFamiliaCircuitos.graficoCircuitos}" legendPosition="n" 
+                                <p:lineChart   value="#{ ctrlUnidadeFamiliaDiaDenunica.graficarDiaDenuncia}" legendPosition="n" 
                                                title="Detalle por circuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
                                                xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
                             
                             <p:tab title="Detalle general por circuitos (Cuadro de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:barChart   value="#{ctrlUnidadesFamiliaCircuitos.graficoCircuitos}" legendPosition="n" 
+                                <p:barChart   value="#{ctrlUnidadeFamiliaDiaDenunica.graficarDiaDenuncia}" legendPosition="n" 
                                               title="Detalle por circuitos (Cuadro de Barras)" style="height:450px;width:1100px;text-decoration-style: dashed"
                                               xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             <p:tab title="Estadísticas de acuerdo al circuito  y género de la Víctima" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:lineChart   value="#{ctrlUnidadesFamiliaCircuitos.graficoCircuitosGenero}" legendPosition="n" 
+                                <p:lineChart   value="#{ctrlUnidadeFamiliaDiaDenunica.graficarDiaDenunciaGenero}" legendPosition="n" 
                                                title="Estadísticas de acuerdo al circuito  y género de la Víctima" style="height:450px;width:1100px;text-decoration-style: dashed"
                                                xaxisLabel="circuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
                             
                             <p:tab title="Estadísticas de acuerdo al circuito y género de la Víctima(Cuadro de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:barChart   value="#{ctrlUnidadesFamiliaCircuitos.graficoCircuitosGenero}" legendPosition="n" 
+                                <p:barChart   value="#{ctrlUnidadeFamiliaDiaDenunica.graficarDiaDenunciaGenero}" legendPosition="n" 
                                               title="Estadísticas de acuerdo a circuito y género de la Víctima" style="height:450px;width:1100px;text-decoration-style: dashed"
                                               xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />

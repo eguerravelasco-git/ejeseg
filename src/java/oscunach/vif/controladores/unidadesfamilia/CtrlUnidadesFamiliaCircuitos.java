@@ -34,6 +34,7 @@ public class CtrlUnidadesFamiliaCircuitos {
     @PostConstruct
     public void graficar(){
         this.graficoCircuitos=circuitos(anioSel);
+        this.graficoCircuitosGenero=circuitoGenero(anioSel);
     }
     
 /*
@@ -51,9 +52,36 @@ public class CtrlUnidadesFamiliaCircuitos {
             }
             model.addSeries(circuitos);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         return model;
     }
+    
+    private CartesianChartModel circuitoGenero(int anio){
+        CartesianChartModel model = new CartesianChartModel();
+        try {
+            ChartSeries masculino = new ChartSeries();
+            masculino.setLabel("MASCULINO");
+            for (int i=0;i<CircuitoSubcircuitoUrbano.obtenerCircuitoUrbano().size();i++){
+                masculino.set(CircuitoSubcircuitoUrbano.obtenerCircuitoUrbano().get(i), 
+                        FBUnidadFamilia.obtenerDadoCircuitoGenero(anio, CircuitoSubcircuitoUrbano.obtenerCircuitoUrbano().get(i), "MASCULINO").size());
+            }
+            
+            ChartSeries femenino = new ChartSeries();
+            femenino.setLabel("FEMENINO");
+            for (int i=0;i<CircuitoSubcircuitoUrbano.obtenerCircuitoUrbano().size();i++){
+                femenino.set(CircuitoSubcircuitoUrbano.obtenerCircuitoUrbano().get(i), 
+                        FBUnidadFamilia.obtenerDadoCircuitoGenero(anio, CircuitoSubcircuitoUrbano.obtenerCircuitoUrbano().get(i), "FEMENINO").size());
+            }
+            model.addSeries(femenino);
+            model.addSeries(masculino);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return model;
+                
+    }
+            
     
     public int getAnioSel() {
         return anioSel;

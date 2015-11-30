@@ -100,7 +100,7 @@ public class FBUnidadFamilia {
         ArrayList<UnidadesFamilia> lst = new ArrayList<UnidadesFamilia>();
         try {
             ArrayList<Parametro> lstP = new ArrayList<Parametro>();
-            String sql = "select * from vif.select_unidades_familia_dado_anio_genero(?,?)";
+            String sql = "select * from vif.select_unidades_familia_dado_anio_genero(?,?,?)";
             lstP.add(new Parametro(1, pin_anio));
             lstP.add(new Parametro(2, in_sexo_victima));
             ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
@@ -133,7 +133,7 @@ public class FBUnidadFamilia {
         ArrayList<UnidadesFamilia> lst = new ArrayList<UnidadesFamilia>();
         try {
             ArrayList<Parametro> lstP = new ArrayList<Parametro>();
-            String sql = "select * from vif.select_ficha_dado_anio_circuito_genero(?,?,?)";
+            String sql = "select * from vif.select_unidades_familia_dado_anio_circuitos_genero(?,?,?)";
             lstP.add(new Parametro(1, pin_anio));
             lstP.add(new Parametro(2, pin_circuito));
             lstP.add(new Parametro(3, pin_sexo_victima));
@@ -150,7 +150,7 @@ public class FBUnidadFamilia {
         ArrayList<UnidadesFamilia> lst = new ArrayList<UnidadesFamilia>();
         try {
             ArrayList<Parametro> lstP = new ArrayList<Parametro>();
-            String sql = "select * vif.select_unidades_familia_dado_anio_dia_denuncia(?,?)";
+            String sql = "select * from vif.select_unidades_familia_dado_anio_dia_denuncia(?,?)";
             lstP.add(new Parametro(1, pin_anio));
             lstP.add(new Parametro(2, pin_diadenuncia));
             ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
@@ -169,7 +169,7 @@ public class FBUnidadFamilia {
             String sql = "select * from vif.select_unidades_familia_dado_anio_dia_denuncia_genero(?,?,?)";
             lstP.add(new Parametro(1, pin_anio));
             lstP.add(new Parametro(2, pin_diadenuncia));
-            lstP.add(new Parametro(3, pin_sexovictima));
+            lstP.add(new Parametro(3, pin_sexovictima));      
             ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
             lst = llenarDatos(rs);
             rs = null;
