@@ -20,15 +20,15 @@ import oscunach.vif.entidades.SalaAcgda;
  */
 @ManagedBean
 @RequestScoped
-public class CtrlTipoViolencia {
+public class CrtlSalaAcigidaOcupacion {
 
     /**
-     * Creates a new instance of CtrlTipoViolencia
+     * Creates a new instance of CrtlSalaAcigidaOcupacion
      */
     private ArrayList<SalaAcgda> lst;
+    private CartesianChartModel graficaOcupacion;
+    private CartesianChartModel graficaOcupacionGenero;
     private int anioSel;
-    private CartesianChartModel graficaTipoViolencia;
-    private CartesianChartModel graficaTipoViolenciaGenero;
     private ArrayList<SalaAcgda> lst1;
     private int totalDenuncias;
     private int femeninoTotal;
@@ -65,21 +65,21 @@ public class CtrlTipoViolencia {
     public void setMasculinoTotal(int masculinoTotal) {
         this.masculinoTotal = masculinoTotal;
     }
-    
-    public CartesianChartModel getGraficaTipoViolencia() {
-        return graficaTipoViolencia;
+
+    public CartesianChartModel getGraficaOcupacion() {
+        return graficaOcupacion;
     }
 
-    public void setGraficaTipoViolencia(CartesianChartModel graficaTipoViolencia) {
-        this.graficaTipoViolencia = graficaTipoViolencia;
+    public void setGraficaOcupacion(CartesianChartModel graficaOcupacion) {
+        this.graficaOcupacion = graficaOcupacion;
     }
 
-    public CartesianChartModel getGraficaTipoViolenciaGenero() {
-        return graficaTipoViolenciaGenero;
+    public CartesianChartModel getGraficaOcupacionGenero() {
+        return graficaOcupacionGenero;
     }
 
-    public void setGraficaTipoViolenciaGenero(CartesianChartModel graficaTipoViolenciaGenero) {
-        this.graficaTipoViolenciaGenero = graficaTipoViolenciaGenero;
+    public void setGraficaOcupacionGenero(CartesianChartModel graficaOcupacionGenero) {
+        this.graficaOcupacionGenero = graficaOcupacionGenero;
     }
 
     public ArrayList<SalaAcgda> getLst() {
@@ -98,7 +98,7 @@ public class CtrlTipoViolencia {
         this.anioSel = anioSel;
     }
 
-    public CtrlTipoViolencia() {
+    public CrtlSalaAcigidaOcupacion() {
         this.lst = new ArrayList<SalaAcgda>();
         this.lst1 = new ArrayList<SalaAcgda>();
         this.graficar();
@@ -106,47 +106,48 @@ public class CtrlTipoViolencia {
 
     @PostConstruct
     public void graficar() {
-        graficaTipoViolencia = violencia(anioSel);
-        graficaTipoViolenciaGenero = violenciaGenero(anioSel);
-
+        graficaOcupacion = ocupacion(anioSel);
+        graficaOcupacionGenero = OcupacionGenero(anioSel);
     }
 
-    private CartesianChartModel violencia(int anio) {
+    private CartesianChartModel ocupacion(int anio) {
         CartesianChartModel model = new CartesianChartModel();
         try {
-            ChartSeries violencia = new ChartSeries();
-            violencia.setLabel("Circuitos");
-            lst = FBSalaAcgda.obtenerTiposDeViolencia(anio);
+            ChartSeries ocupacion = new ChartSeries();
+            ocupacion.setLabel("OCUPACION");
+            lst = FBSalaAcgda.obteneranioocupacion(anio);
             this.lst1 = FBSalaAcgda.obtenerDatosDadoAnio(anio);
             this.totalDenuncias = lst1.size();
             for (int i = 0; i < lst.size(); i++) {
-                violencia.set(lst.get(i).getTipo_agresion(), FBSalaAcgda.obtenerDatosDadoAnioTipoViolencia(anio, lst.get(i).getTipo_agresion()).size());
+                ocupacion.set(lst.get(i).getOcupacion_victima(), FBSalaAcgda.obtenerDatosDadoAnioOcupacionvictima(anio, lst.get(i).getOcupacion_victima()).size());
+
             }
-            model.addSeries(violencia);
+            model.addSeries(ocupacion);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return model;
     }
 
-    private CartesianChartModel violenciaGenero(int anio) {
+    private CartesianChartModel OcupacionGenero(int anio) {
         CartesianChartModel model = new CartesianChartModel();
         try {
-            lst = FBSalaAcgda.obtenerTiposDeViolencia(anio);
+            lst = FBSalaAcgda.obteneranioocupacion(anio);
             this.lst1 = FBSalaAcgda.obtenerDatosDadoAnio(anio);
             this.totalDenuncias = lst1.size();
             ChartSeries femenino = new ChartSeries();
             femenino.setLabel("Femenino");
+
             for (int i = 0; i < lst.size(); i++) {
-                femenino.set(lst.get(i).getTipo_agresion(), FBSalaAcgda.obtenerDatosDadoAnioTipoViolenciaGenero(anio, lst.get(i).getTipo_agresion(), "F").size());
-                femeninoTotal= femeninoTotal+FBSalaAcgda.obtenerDatosDadoAnioTipoViolenciaGenero(anio, lst.get(i).getTipo_agresion(), "F").size();
+                femenino.set(lst.get(i).getOcupacion_victima(), FBSalaAcgda.obtenerDatosDadoAnioOcupacionGenero(anio, lst.get(i).getOcupacion_victima(), "F").size());
+                femeninoTotal= femeninoTotal+FBSalaAcgda.obtenerDatosDadoAnioOcupacionGenero(anio, lst.get(i).getOcupacion_victima(), "F").size();
             }
 
             ChartSeries masculino = new ChartSeries();
             masculino.setLabel("Masculino");
             for (int i = 0; i < lst.size(); i++) {
-                masculino.set(lst.get(i).getTipo_agresion(), FBSalaAcgda.obtenerDatosDadoAnioTipoViolenciaGenero(anio, lst.get(i).getTipo_agresion(), "M").size());
-                masculinoTotal=masculinoTotal+FBSalaAcgda.obtenerDatosDadoAnioTipoViolenciaGenero(anio, lst.get(i).getTipo_agresion(), "M").size();
+                masculino.set(lst.get(i).getOcupacion_victima(), FBSalaAcgda.obtenerDatosDadoAnioOcupacionGenero(anio, lst.get(i).getOcupacion_victima(), "M").size());
+                masculinoTotal = masculinoTotal + FBSalaAcgda.obtenerDatosDadoAnioOcupacionGenero(anio, lst.get(i).getOcupacion_victima(), "M").size();
             }
 
             model.addSeries(femenino);

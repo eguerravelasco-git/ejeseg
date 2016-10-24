@@ -37,11 +37,16 @@ and open the template in the editor.
                                              update="tblDatos, @form"/>
                         </p:panelGrid>
                     </p:panel>
+                    <p:fieldset legend="Total Denuncias" style="margin-bottom:20px">
+                        <h:panelGrid columns="1" cellpadding="5">                          
+                            <h:outputText value="#{ctrlDatosSalaAcgda.totalDenuncias}" />
+                        </h:panelGrid>
+                    </p:fieldset>
 
                     <p:panel id="pnldatos" >
 
                         <p:dataTable id="tblDatos" value="#{ctrlDatosSalaAcgda.lstDatos}" var="datos"  emptyMessage="No hay Registros"
-                                     paginator="true" rows="15" rowKey="#{datos.codigo}" style="alignment-adjust: initial" >
+                                     paginator="true" rows="40" rowKey="#{datos.codigo}" style="alignment-adjust: initial" >
 
                             <f:facet name="header">
                                 <p:outputLabel value="Casos de Vif de la Sala de Primera Acogida del HPGDR"/>

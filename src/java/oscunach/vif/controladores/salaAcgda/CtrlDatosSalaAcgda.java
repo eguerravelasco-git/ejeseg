@@ -26,7 +26,16 @@ public class CtrlDatosSalaAcgda implements Serializable {
      */
     private ArrayList<SalaAcgda> lstDatos;
     private int anioSel;
+    private int totalDenuncias;
 
+    public int getTotalDenuncias() {
+        return totalDenuncias;
+    }
+
+    public void setTotalDenuncias(int totalDenuncias) {
+        this.totalDenuncias = totalDenuncias;
+    }
+    
     public ArrayList<SalaAcgda> getLstDatos() {
         return lstDatos;
     }
@@ -55,6 +64,7 @@ public class CtrlDatosSalaAcgda implements Serializable {
     public void obtenerDatos() {
         try {
             this.lstDatos = FBSalaAcgda.obtenerDatos();
+            this.totalDenuncias=lstDatos.size();
             System.out.println(lstDatos.get(0).getApellidos_victima());
         } catch (Exception e) {
             Util.addErrorMessage("public void obtenerDatos() dice: " + e.getMessage());
@@ -66,6 +76,7 @@ public class CtrlDatosSalaAcgda implements Serializable {
     public void obtenerDatosDadoAnio() {
         try {
             this.lstDatos = FBSalaAcgda.obtenerDatosDadoAnio(anioSel);
+            this.totalDenuncias=lstDatos.size();
             System.out.println(lstDatos.get(0).getApellidos_victima());
         } catch (Exception e) {
             Util.addErrorMessage("public void obtenerDatosDadoAnio() dice: " + e.getMessage());

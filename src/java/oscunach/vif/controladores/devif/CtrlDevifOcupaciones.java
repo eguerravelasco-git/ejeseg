@@ -26,6 +26,42 @@ public class CtrlDevifOcupaciones {
     private CartesianChartModel graficaOcupaciones;
     private CartesianChartModel graficaOcupacionesGenero;
     private int anioSel;
+    private ArrayList<Devif> lst1;
+    private int totalDenuncias;
+    private int femeninoTotal;
+    private int masculinoTotal;
+
+    public ArrayList<Devif> getLst1() {
+        return lst1;
+    }
+
+    public void setLst1(ArrayList<Devif> lst1) {
+        this.lst1 = lst1;
+    }
+
+    public int getTotalDenuncias() {
+        return totalDenuncias;
+    }
+
+    public void setTotalDenuncias(int totalDenuncias) {
+        this.totalDenuncias = totalDenuncias;
+    }
+
+    public int getFemeninoTotal() {
+        return femeninoTotal;
+    }
+
+    public void setFemeninoTotal(int femeninoTotal) {
+        this.femeninoTotal = femeninoTotal;
+    }
+
+    public int getMasculinoTotal() {
+        return masculinoTotal;
+    }
+
+    public void setMasculinoTotal(int masculinoTotal) {
+        this.masculinoTotal = masculinoTotal;
+    }
 
     public ArrayList<Devif> getLst() {
         return lst;
@@ -62,9 +98,10 @@ public class CtrlDevifOcupaciones {
     public CtrlDevifOcupaciones() {
         this.reinit();
     }
-    
+
     private void reinit() {
         this.lst = new ArrayList<Devif>();
+        this.lst1 = new ArrayList<Devif>();
         this.graficar();
     }
 
@@ -80,6 +117,8 @@ public class CtrlDevifOcupaciones {
             lst = FBDevif.obtenerOcupacionesDadoAnio(anio);
             ChartSeries ocupaciones = new ChartSeries();
             ocupaciones.setLabel("Ocupaciones");
+            this.lst1 = FBDevif.obtenerDatosDadoAnio(anioSel);
+            this.totalDenuncias = lst1.size();
             for (int i = 0; i < lst.size(); i++) {
                 ocupaciones.set(lst.get(i).getProfesion_ocupacion_victima(), FBDevif.obtenerDatosDadoAnioOcupacion(anio, lst.get(i).getProfesion_ocupacion_victima()).size());
             }
@@ -96,13 +135,18 @@ public class CtrlDevifOcupaciones {
             lst = FBDevif.obtenerOcupacionesDadoAnio(anio);
             ChartSeries masculino = new ChartSeries();
             masculino.setLabel("Masculino");
+            this.lst1 = FBDevif.obtenerDatosDadoAnio(anioSel);
+            this.totalDenuncias = lst1.size();
             for (int i = 0; i < lst.size(); i++) {
-                masculino.set(lst.get(i).getProfesion_ocupacion_victima(), FBDevif.obtenerDatosDadoAnioOcupacionGenero(anio, lst.get(i).getProfesion_ocupacion_victima(), "MASCULINO").size());
+                masculino.set(lst.get(i).getProfesion_ocupacion_victima(), FBDevif.obtenerDatosDadoAnioOcupacionGenero(anio, lst.get(i).getProfesion_ocupacion_victima(), "M").size());
+                masculinoTotal = masculinoTotal + FBDevif.obtenerDatosDadoAnioOcupacionGenero(anio, lst.get(i).getProfesion_ocupacion_victima(), "M").size();
+
             }
             ChartSeries femenino = new ChartSeries();
             femenino.setLabel("Masculino");
             for (int i = 0; i < lst.size(); i++) {
-                femenino.set(lst.get(i).getProfesion_ocupacion_victima(), FBDevif.obtenerDatosDadoAnioOcupacionGenero(anio, lst.get(i).getProfesion_ocupacion_victima(), "FEMENINO").size());
+                femenino.set(lst.get(i).getProfesion_ocupacion_victima(), FBDevif.obtenerDatosDadoAnioOcupacionGenero(anio, lst.get(i).getProfesion_ocupacion_victima(), "F").size());
+                femeninoTotal = femeninoTotal + FBDevif.obtenerDatosDadoAnioOcupacionGenero(anio, lst.get(i).getProfesion_ocupacion_victima(), "F").size();
             }
             model.addSeries(femenino);
             model.addSeries(masculino);

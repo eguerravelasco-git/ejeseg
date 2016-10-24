@@ -39,6 +39,11 @@ and open the template in the editor.
                                              update=":frmdatos:pnlGraficos, @form"/>                                   
                         </p:panelGrid>
                     </p:panel>
+                    <p:fieldset legend="Total Denuncias" style="margin-bottom:20px">
+                        <h:panelGrid columns="1" cellpadding="5">                          
+                            <h:outputText value="#{ctrlSalaAcgdaEdades.totalDenuncias}" />
+                        </h:panelGrid>
+                    </p:fieldset>
 
                     <p:panel id="pnlGraficos" header="Estadísticas por Rango de edades" >
 
@@ -62,7 +67,13 @@ and open the template in the editor.
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:lineChart   value="#{ctrlSalaAcgdaEdades.graficaEdadesGenero}" legendPosition="n" 
                                                title="Estadísticas por Rango de edades y Género" style="height:450px;width:1200px;text-decoration-style: dashed"
-                                               xaxisLabel="Rango de Edades" xaxisAngle="0" yaxisLabel="# Denuncias"/>   
+                                               xaxisLabel="Rango de Edades" xaxisAngle="0" yaxisLabel="# Denuncias"/>  
+                                <h:panelGrid columns="2" cellpadding="5"> 
+                                    <h:outputText value="MASCULINO: " />
+                                    <h:outputText value="#{ctrlSalaAcgdaEdades.masculinoTotal}" title="MASCULINO" />
+                                    <h:outputText value="FEMENINO: " />
+                                    <h:outputText value="#{ctrlSalaAcgdaEdades.femeninoTotal}" title="FEMENINO" />
+                                </h:panelGrid>
                             </p:tab>                                                                                           
                             
                             <p:tab title="Estadísticas por Rango de edades y Género(Gráfico de Barras)" >
@@ -71,6 +82,12 @@ and open the template in the editor.
                                               title="Estadísticas por Rango de edades y Género" style="height:450px;width:1200px;text-decoration-style: dashed"
                                               xaxisLabel="Rango de Edades" xaxisAngle="0" yaxisLabel="# Denuncias"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                                <h:panelGrid columns="2" cellpadding="5"> 
+                                    <h:outputText value="MASCULINO: " />
+                                    <h:outputText value="#{ctrlSalaAcgdaEdades.masculinoTotal}" title="MASCULINO" />
+                                    <h:outputText value="FEMENINO: " />
+                                    <h:outputText value="#{ctrlSalaAcgdaEdades.femeninoTotal}" title="FEMENINO" />
+                                </h:panelGrid>
                             </p:tab>
                             <script type="text/javascript">
                                 function my_ext() {

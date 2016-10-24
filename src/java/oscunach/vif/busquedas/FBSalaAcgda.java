@@ -179,6 +179,7 @@ public class FBSalaAcgda {
         try {
             ArrayList<Parametro> lstP = new ArrayList<Parametro>();
             String sql = "select * from vif.select_spa_dado_anio_tipos_violencia(?)";
+                                     
             lstP.add(new Parametro(1, anio));
             ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
             lst = llenarDatos(rs);
@@ -435,4 +436,97 @@ public class FBSalaAcgda {
         return lst;
     }
 
+  
+   public static ArrayList<SalaAcgda> obtenerDatosDadoAnioOcupacionGenero(int anio, String ocupacion, String genero) throws Exception {
+        ArrayList<SalaAcgda> lst = new ArrayList<SalaAcgda>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_spa_dado_anio_ocupacionvictima_genero(?,?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, ocupacion));
+            lstP.add(new Parametro(3, genero));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+    public static ArrayList<SalaAcgda> obteneranioocupacion(int anio) throws Exception {
+        ArrayList<SalaAcgda> lst = new ArrayList<SalaAcgda>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_spa_dado_anio(?)";
+            lstP.add(new Parametro(1, anio));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+
+ public static ArrayList<SalaAcgda> obtenerDatosDadoAnioOcupacionvictima(int anio, String ocupacion) throws Exception {
+        ArrayList<SalaAcgda> lst = new ArrayList<SalaAcgda>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_spa_dado_anio_ocupacionvictima(?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, ocupacion));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+  public static ArrayList<SalaAcgda> obteneranioParentesco(int anio) throws Exception {
+        ArrayList<SalaAcgda> lst = new ArrayList<SalaAcgda>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_spa_dado_anio(?)";
+            lstP.add(new Parametro(1, anio));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+
+ public static ArrayList<SalaAcgda> obtenerDatosDadoAnioParentescoGenero(int anio, String parentesco, String genero) throws Exception {
+        ArrayList<SalaAcgda> lst = new ArrayList<SalaAcgda>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_spa_dado_anio_parentesco_genero(?,?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, parentesco));
+            lstP.add(new Parametro(3, genero));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
+ public static ArrayList<SalaAcgda> obtenerDatosDadoAnioParentesco(int anio, String parentesco) throws Exception {
+        ArrayList<SalaAcgda> lst = new ArrayList<SalaAcgda>();
+        try {
+            ArrayList<Parametro> lstP = new ArrayList<Parametro>();
+            String sql = "select * from vif.select_spa_dado_anio_parentesco(?,?)";
+            lstP.add(new Parametro(1, anio));
+            lstP.add(new Parametro(2, parentesco));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
+            lst = llenarDatos(rs);
+            rs = null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return lst;
+    }
 }

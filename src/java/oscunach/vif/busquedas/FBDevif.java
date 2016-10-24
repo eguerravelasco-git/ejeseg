@@ -102,7 +102,7 @@ public class FBDevif {
         ArrayList<Devif> lst = new ArrayList<Devif>();
         try {
             ArrayList<Parametro> lstP = new ArrayList<Parametro>();
-            String sql = "select * from if.select_vif_devif_anio(?)";
+            String sql = "select * from vif.select_vif_devif_anio(?)";
             lstP.add(new Parametro(1, anio));
             ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
             lst = llenarDatos(rs);

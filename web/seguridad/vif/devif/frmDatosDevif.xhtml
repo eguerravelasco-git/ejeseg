@@ -23,6 +23,7 @@ and open the template in the editor.
                 <h:form id="frmdatos" style="alignment-adjust: central">
                     <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
                     <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
+
                     <p:panel id="pnlBusquedas" header="Búsquedas">
                         <p:panelGrid columns="3" id="pngBusquedas">
                             <p:outputLabel value="Seleccione el año"/>
@@ -31,31 +32,95 @@ and open the template in the editor.
                                 <f:selectItem itemLabel="2014" itemValue="2014"/>
                                 <f:selectItem itemLabel="2015" itemValue="2015"/>
                                 <f:selectItem itemLabel="2016" itemValue="2016"/>
-                                                                
+
                             </p:selectOneMenu>
                             <p:commandButton action="#{ctrlDatosDevif.obtenerDatosDadoAnio()}" value="Buscar"
-                                             update="tblDatos, @form"/>
+                                             update="tblDatos,@form"/>
                         </p:panelGrid>
                     </p:panel>
+
+                    <p:fieldset legend="Total Denuncias" style="margin-bottom:20px">
+                        <h:panelGrid columns="1" cellpadding="5">                          
+                            <h:outputText value="#{ctrlDatosDevif.totalDenuncias}" />
+                        </h:panelGrid>
+                    </p:fieldset>
 
                     <p:panel id="pnldatos" >
 
                         <p:dataTable id="tblDatos" value="#{ctrlDatosDevif.lst}" var="datos"  emptyMessage="No hay Registros"
-                                     paginator="true" rows="10" rowKey="#{datos.id}" style="alignment-adjust: initial" >
+                                     paginator="true" rows="30" rowKey="#{datos.id}" 
+                                     style="alignment-adjust: central" >
 
                             <f:facet name="header">
                                 <p:outputLabel value="Casos de Vif del Departamento de Violencia Intrafamiliar"/>
                             </f:facet>
 
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha de Denuncia" />
+                                </f:facet>
+                                <h:outputText value="#{datos.fecha_registro}" />
+                            </p:column>
 
                             <p:column >
                                 <f:facet name="header">
-                                    <h:outputText value="Fecha de Denuncia"/>
+                                    <h:outputText value="Sexo de la Victima"/>
                                 </f:facet>
-                                <h:outputText value="#{datos.fecha_registro}"/>
+                                <h:outputText value="#{datos.sexo_victima}"/>
                             </p:column>
 
+
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Circuito"/>
+                                </f:facet>
+                                <h:outputText value="#{datos.circuito}"/>
+                            </p:column>
                             
+                            
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Subcircuito"/>
+                                </f:facet>
+                                <h:outputText value="#{datos.subcircuito}"/>
+                            </p:column>
+                            
+                                
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Tipo de Violencia"/>
+                                </f:facet>
+                                <h:outputText value="#{datos.tipo_violencia}"/>
+                            </p:column>
+
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Parentesco"/>
+                                </f:facet>
+                                <h:outputText value="#{datos.parentezco_victima}"/>
+                            </p:column>
+                            
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Estado Civilo"/>
+                                </f:facet>
+                                <h:outputText value="#{datos.estado_civil_victima}"/>
+                            </p:column>
+                            
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Edad"/>
+                                </f:facet>
+                                <h:outputText value="#{datos.edad_victima}"/>
+                            </p:column>
+                            
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Ocupacion"/>
+                                </f:facet>
+                                <h:outputText value="#{datos.profesion_ocupacion_victima}"/>
+                            </p:column>
+                        
 
                             <f:facet name="footer">  
                                 <h:commandLink>
@@ -82,6 +147,8 @@ and open the template in the editor.
                         </p:dataTable>    
 
                     </p:panel>
+
+
                 </h:form>
             </ui:define>
             <ui:define name="dialogos">

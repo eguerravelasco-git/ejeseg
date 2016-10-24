@@ -28,16 +28,21 @@ and open the template in the editor.
                             <p:outputLabel value="Seleccione un año: "/>
                             <p:selectOneMenu value="#{ctrlCircuitosSalaAcgda.anioSel}">
                                 <f:selectItem itemValue="#{null}" itemLabel="Seleccione un año...."/>
-                                <f:selectItem itemValue="2013" itemLabel="2013"/>
-                                <f:selectItem itemValue="2014" itemLabel="2014"/>
-                                <f:selectItem itemValue="2015" itemLabel="2015"/>
-                                 <f:selectItem itemValue="2016" itemLabel="2016"/>
+                                <f:selectItem itemValue="#{2013}" itemLabel="2013"/>
+                                <f:selectItem itemValue="#{2014}" itemLabel="2014"/>
+                                <f:selectItem itemValue="#{2015}" itemLabel="2015"/>
+                                <f:selectItem itemValue="#{2016}" itemLabel="2016"/>
                             </p:selectOneMenu>
                             <p:commandButton id="btnBuscar" icon="ui-icon-search" style="width:50px"  
                                              title="Graficar " action="#{ctrlCircuitosSalaAcgda.graficar()}" 
                                              update=":frmdatos:pnlGraficos, @form"/>                                   
                         </p:panelGrid>
                     </p:panel>
+                    <p:fieldset legend="Total Denuncias" style="margin-bottom:20px">
+                        <h:panelGrid columns="1" cellpadding="5">                          
+                            <h:outputText value="#{ctrlCircuitosSalaAcgda.totalDenuncias}" />
+                        </h:panelGrid>
+                    </p:fieldset>
 
                     <p:panel id="pnlGraficos" >
 
@@ -48,7 +53,7 @@ and open the template in the editor.
                                                title="Detalle por circuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
                                                xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias"/>   
                             </p:tab>                                                                                           
-                            
+
                             <p:tab title="Detalle general por circuitos (Cuadro de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlCircuitosSalaAcgda.graficaCircuitos}" legendPosition="n" 
@@ -56,20 +61,32 @@ and open the template in the editor.
                                               xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
-                            
+
                             <p:tab title="Detalle general por circuitos género" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:lineChart   value="#{ctrlCircuitosSalaAcgda.graficaCircuitosGenero}" legendPosition="n" 
                                                title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                               xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias"/>   
+                                               xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias"/> 
+                                <h:panelGrid columns="2" cellpadding="5"> 
+                                    <h:outputText value="MASCULINO: " />
+                                    <h:outputText value="#{ctrlCircuitosSalaAcgda.masculinoTotal}" title="MASCULINO" />
+                                    <h:outputText value="FEMENINO: " />
+                                    <h:outputText value="#{ctrlCircuitosSalaAcgda.femeninoTotal}" title="FEMENINO" />
+                                </h:panelGrid>
                             </p:tab>                                                                                           
-                            
+
                             <p:tab title="Detalle general por circuitos género(Cuadro de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlCircuitosSalaAcgda.graficaCircuitosGenero}" legendPosition="n" 
                                               title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                              xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias"/>  
+                                              xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                                <h:panelGrid columns="2" cellpadding="5"> 
+                                    <h:outputText value="MASCULINO: " />
+                                    <h:outputText value="#{ctrlCircuitosSalaAcgda.masculinoTotal}" title="MASCULINO" />
+                                    <h:outputText value="FEMENINO: " />
+                                    <h:outputText value="#{ctrlCircuitosSalaAcgda.femeninoTotal}" title="FEMENINO" />
+                                </h:panelGrid>
                             </p:tab>
                             <script type="text/javascript">
                                 function my_ext() {

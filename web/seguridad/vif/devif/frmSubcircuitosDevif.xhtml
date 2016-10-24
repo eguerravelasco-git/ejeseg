@@ -38,6 +38,12 @@ and open the template in the editor.
                         </p:panelGrid>
                     </p:panel>
 
+                    <p:fieldset legend="Total Denuncias" style="margin-bottom:20px">
+                        <h:panelGrid columns="1" cellpadding="5">                          
+                            <h:outputText value="#{ctrlDevifSubcircuitos.totalDenuncias}" />
+                        </h:panelGrid>
+                    </p:fieldset>
+
                     <p:panel id="pnlGraficos" header="Estadísticas por Subcircuitos" style="margin-bottom: 25px">
 
                         <p:accordionPanel style="max-height: 800px;max-width: 1200px">
@@ -46,8 +52,9 @@ and open the template in the editor.
                                 <p:lineChart   value="#{ctrlDevifSubcircuitos.graficaSubcircuitos}" legendPosition="n" 
                                                title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
                                                xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
+                                
                             </p:tab>                                                                                           
-                            
+
                             <p:tab title="Detalle general por subcircuitos (Cuadro de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlDevifSubcircuitos.graficaSubcircuitos}" legendPosition="n" 
@@ -55,20 +62,36 @@ and open the template in the editor.
                                               xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
-                            
+
                             <p:tab title="Detalle general por subcircuitos género" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:lineChart   value="#{ctrlDevifSubcircuitos.graficaSubcircuitosGenero}" legendPosition="n" 
                                                title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
                                                xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
+                                <p:fieldset style="margin-bottom:20px">
+                                    <h:panelGrid columns="2" cellpadding="5"> 
+                                        <h:outputText value="MASCULINO: " />
+                                        <h:outputText value="#{ctrlDevifSubcircuitos.masculinoTotal}" title="MASCULINO" />
+                                        <h:outputText value="FEMENINO: " />
+                                        <h:outputText value="#{ctrlDevifSubcircuitos.femeninoTotal}" title="FEMENINO" />
+                                    </h:panelGrid>
+                                </p:fieldset>
                             </p:tab>                                                                                           
-                            
+
                             <p:tab title="Detalle general por subcircuitos género(Cuadro de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlDevifSubcircuitos.graficaSubcircuitosGenero}" legendPosition="n" 
                                               title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
                                               xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                                <p:fieldset style="margin-bottom:20px">
+                                    <h:panelGrid columns="2" cellpadding="5"> 
+                                        <h:outputText value="MASCULINO: " />
+                                        <h:outputText value="#{ctrlDevifSubcircuitos.masculinoTotal}" title="MASCULINO" />
+                                        <h:outputText value="FEMENINO: " />
+                                        <h:outputText value="#{ctrlDevifSubcircuitos.femeninoTotal}" title="FEMENINO" />
+                                    </h:panelGrid>
+                                </p:fieldset>
                             </p:tab>
                             <script type="text/javascript">
                                 function my_ext() {

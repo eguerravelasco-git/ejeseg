@@ -65,7 +65,7 @@ public class FBUnidadFamilia {
     }
 
     //obtener datos de unidades de familia
-    public static ArrayList<UnidadesFamilia> obtenerFichas() throws Exception {
+    public static ArrayList<UnidadesFamilia> obtenerDatos() throws Exception {
         ArrayList<UnidadesFamilia> lst = new ArrayList<UnidadesFamilia>();
 
         try {

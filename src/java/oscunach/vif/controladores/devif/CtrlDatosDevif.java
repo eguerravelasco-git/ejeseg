@@ -22,7 +22,16 @@ public class CtrlDatosDevif {
 
     private ArrayList<Devif> lst;
     private int anioSel;
+    private int totalDenuncias;
 
+    public int getTotalDenuncias() {
+        return totalDenuncias;
+    }
+
+    public void setTotalDenuncias(int totalDenuncias) {
+        this.totalDenuncias = totalDenuncias;
+    }
+    
     public ArrayList<Devif> getLst() {
         return lst;
     }
@@ -51,6 +60,7 @@ public class CtrlDatosDevif {
     public void obtenerDatos() {
         try {
             this.lst= FBDevif.obtenerDatos();
+            this.totalDenuncias=lst.size();
             System.out.println(lst.get(0).getApellidos_nombres_victima());
         } catch (Exception e) {
             Util.addErrorMessage("public void obtenerDatos() dice: " + e.getMessage());
@@ -61,6 +71,7 @@ public class CtrlDatosDevif {
     public void obtenerDatosDadoAnio() {
         try {
             this.lst = FBDevif.obtenerDatosDadoAnio(anioSel);
+             this.totalDenuncias=lst.size();
             System.out.println(lst.get(0).getApellidos_nombres_victima());
         } catch (Exception e) {
             Util.addErrorMessage("public void obtenerDatosDadoAnio() dice: " + e.getMessage());

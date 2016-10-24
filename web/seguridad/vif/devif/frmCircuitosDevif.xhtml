@@ -37,6 +37,11 @@ and open the template in the editor.
                                              update=":frmdatos:pnlGraficos, @form"/>                                   
                         </p:panelGrid>
                     </p:panel>
+                    <p:fieldset legend="Total Denuncias" style="margin-bottom:20px">
+                        <h:panelGrid columns="1" cellpadding="5">                          
+                            <h:outputText value="#{ctrlDevifCircuitos.totalDenuncias}" />
+                        </h:panelGrid>
+                    </p:fieldset>
 
                     <p:panel id="pnlGraficos" >
 
@@ -47,7 +52,7 @@ and open the template in the editor.
                                                title="Detalle por circuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
                                                xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
-                            
+
                             <p:tab title="Detalle general por circuitos (Cuadro de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlDevifCircuitos.graficaCircuitos}" legendPosition="n" 
@@ -55,20 +60,32 @@ and open the template in the editor.
                                               xaxisLabel="Circuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
-                            
+
                             <p:tab title="Detalle general por circuitos género" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:lineChart   value="#{ctrlDevifCircuitos.graficaCircuitosGenero}" legendPosition="n" 
                                                title="Detalle por circuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
                                                xaxisLabel="Circuitos" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
+                                <h:panelGrid columns="2" cellpadding="5"> 
+                                    <h:outputText value="MASCULINO: " />
+                                    <h:outputText value="#{ctrlDevifCircuitos.masculinoTotal}" title="MASCULINO" />
+                                    <h:outputText value="FEMENINO: " />
+                                    <h:outputText value="#{ctrlDevifCircuitos.femeninoTotal}" title="FEMENINO" />
+                                </h:panelGrid>
                             </p:tab>                                                                                           
-                            
+
                             <p:tab title="Detalle general por circuitos género(Cuadro de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlDevifCircuitos.graficaCircuitosGenero}" legendPosition="n" 
                                               title="Detalle por circuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
                                               xaxisLabel="circuitos" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                                <h:panelGrid columns="2" cellpadding="5"> 
+                                    <h:outputText value="MASCULINO: " />
+                                    <h:outputText value="#{ctrlDevifCircuitos.masculinoTotal}" title="MASCULINO" />
+                                    <h:outputText value="FEMENINO: " />
+                                    <h:outputText value="#{ctrlDevifCircuitos.femeninoTotal}" title="FEMENINO" />
+                                </h:panelGrid>
                             </p:tab>
                             <script type="text/javascript">
                                 function my_ext() {

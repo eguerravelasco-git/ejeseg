@@ -37,6 +37,11 @@ and open the template in the editor.
                                              update=":frmdatos:pnlGraficos, @form"/>                                   
                         </p:panelGrid>
                     </p:panel>
+                    <p:fieldset legend="Total Denuncias" style="margin-bottom:20px">
+                        <h:panelGrid columns="1" cellpadding="5">                          
+                            <h:outputText value="#{ctrlDevifOcupaciones.totalDenuncias}" />
+                        </h:panelGrid>
+                    </p:fieldset>
 
                     <p:panel id="pnlGraficos" >
 
@@ -61,6 +66,12 @@ and open the template in the editor.
                                 <p:lineChart   value="#{ctrlDevifOcupaciones.graficaOcupacionesGenero}" legendPosition="n" 
                                                title="Estadísticas de acuerdo a las Ocupaciones de las víctimas clasificadas por género" style="height:450px;width:1100px;text-decoration-style: dashed"
                                                xaxisLabel="Ocupaciones" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
+                                <h:panelGrid columns="2" cellpadding="5"> 
+                                    <h:outputText value="MASCULINO: " />
+                                    <h:outputText value="#{ctrlDevifOcupaciones.masculinoTotal}" title="MASCULINO" />
+                                    <h:outputText value="FEMENINO: " />
+                                    <h:outputText value="#{ctrlDevifOcupaciones.femeninoTotal}" title="FEMENINO" />
+                                </h:panelGrid>
                             </p:tab>                                                                                           
                             
                             <p:tab title="Estadísticas de acuerdo a las Ocupaciones de las víctimas clasificadas por género(Cuadro de Barras)" >
@@ -69,6 +80,12 @@ and open the template in the editor.
                                               title="Estadísticas de acuerdo a las Ocupaciones de las víctimas clasificadas por género" style="height:450px;width:1100px;text-decoration-style: dashed"
                                               xaxisLabel="Ocupaciones" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                                <h:panelGrid columns="2" cellpadding="5"> 
+                                    <h:outputText value="MASCULINO: " />
+                                    <h:outputText value="#{ctrlDevifOcupaciones.masculinoTotal}" title="MASCULINO" />
+                                    <h:outputText value="FEMENINO: " />
+                                    <h:outputText value="#{ctrlDevifOcupaciones.femeninoTotal}" title="FEMENINO" />
+                                </h:panelGrid>
                             </p:tab>
                             <script type="text/javascript">
                                 function my_ext() {

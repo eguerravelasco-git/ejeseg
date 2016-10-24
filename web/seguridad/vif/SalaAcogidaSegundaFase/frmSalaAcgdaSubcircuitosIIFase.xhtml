@@ -39,6 +39,11 @@ and open the template in the editor.
                                              update=":frmdatos:pnlGraficos, @form"/>                                   
                         </p:panelGrid>
                     </p:panel>
+                    <p:fieldset legend="Total Denuncias" style="margin-bottom:20px">
+                        <h:panelGrid columns="1" cellpadding="5">                          
+                            <h:outputText value="#{ctrlSubcircuitosSalaAcgda.totalDenuncias}" />
+                        </h:panelGrid>
+                    </p:fieldset>
 
                     <p:panel id="pnlGraficos" header="Estadísticas por Subcircuitos" style="margin-bottom: 25px">
 
@@ -63,6 +68,12 @@ and open the template in the editor.
                                 <p:lineChart   value="#{ctrlSubcircuitosSalaAcgda.graficSubcircuitoGenero}" legendPosition="n" 
                                                title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
                                                xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias"/>   
+                                <h:panelGrid columns="2" cellpadding="5"> 
+                                    <h:outputText value="MASCULINO: " />
+                                    <h:outputText value="#{ctrlSubcircuitosSalaAcgda.masculinoTotal}" title="MASCULINO" />
+                                    <h:outputText value="FEMENINO: " />
+                                    <h:outputText value="#{ctrlSubcircuitosSalaAcgda.femeninoTotal}" title="FEMENINO" />
+                                </h:panelGrid>
                             </p:tab>                                                                                           
                             
                             <p:tab title="Detalle general por circuitos género(Cuadro de Barras)" >
@@ -71,6 +82,12 @@ and open the template in the editor.
                                               title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
                                               xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                                <h:panelGrid columns="2" cellpadding="5"> 
+                                    <h:outputText value="MASCULINO: " />
+                                    <h:outputText value="#{ctrlSubcircuitosSalaAcgda.masculinoTotal}" title="MASCULINO" />
+                                    <h:outputText value="FEMENINO: " />
+                                    <h:outputText value="#{ctrlSubcircuitosSalaAcgda.femeninoTotal}" title="FEMENINO" />
+                                </h:panelGrid>
                             </p:tab>
                             <script type="text/javascript">
                                 function my_ext() {

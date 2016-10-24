@@ -37,6 +37,11 @@ and open the template in the editor.
                                              update=":frmdatos:pnlGraficos, @form"/>                                   
                         </p:panelGrid>
                     </p:panel>
+                    <p:fieldset legend="Total Denuncias" style="margin-bottom:20px">
+                        <h:panelGrid columns="1" cellpadding="5">                          
+                            <h:outputText value="#{ctrlDevifParentesco.totalDenuncias}" />
+                        </h:panelGrid>
+                    </p:fieldset>
 
                     <p:panel id="pnlGraficos" >
 
@@ -60,7 +65,13 @@ and open the template in the editor.
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:lineChart   value="#{ctrlDevifParentesco.graficaParentescoGenero}" legendPosition="n" 
                                                title="Estadísticas de acuerdo al Parentesco Victima - Agresor y género de la Víctima" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                               xaxisLabel="Parentesco Victima - Agresor" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
+                                               xaxisLabel="Parentesco Victima - Agresor" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/> 
+                                <h:panelGrid columns="2" cellpadding="5"> 
+                                    <h:outputText value="MASCULINO: " />
+                                    <h:outputText value="#{ctrlDevifParentesco.masculinoTotal}" title="MASCULINO" />
+                                    <h:outputText value="FEMENINO: " />
+                                    <h:outputText value="#{ctrlDevifParentesco.femeninoTotal}" title="FEMENINO" />
+                                </h:panelGrid>
                             </p:tab>                                                                                           
                             
                             <p:tab title="Estadísticas de acuerdo al Parentesco Victima - Agresor y género de la Víctima(Cuadro de Barras)" >
@@ -69,6 +80,12 @@ and open the template in the editor.
                                               title="Estadísticas de acuerdo al Parentesco Victima - Agresor y género de la Víctima" style="height:450px;width:1100px;text-decoration-style: dashed"
                                               xaxisLabel="Parentesco Victima - Agresor" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                                <h:panelGrid columns="2" cellpadding="5"> 
+                                    <h:outputText value="MASCULINO: " />
+                                    <h:outputText value="#{ctrlDevifParentesco.masculinoTotal}" title="MASCULINO" />
+                                    <h:outputText value="FEMENINO: " />
+                                    <h:outputText value="#{ctrlDevifParentesco.femeninoTotal}" title="FEMENINO" />
+                                </h:panelGrid>
                             </p:tab>
                             <script type="text/javascript">
                                 function my_ext() {

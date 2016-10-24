@@ -5,12 +5,114 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>
+            <ui:define name="Datos">Denuncias recolectadas de la Comisaría de la Mujer</ui:define>
+        </title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../../../templates/plantillaInternaCenter.xhtml">
+            <ui:define name="top">Denuncias recolectadas de la Comisaría de la Mujer</ui:define>
+            <ui:define name="contenido">
+                <p:growl id="mensajes" autoUpdate="true" showDetail="true"/>
+                <h:form id="frmdatos" style="alignment-adjust: central">
+                    <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
+                    <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
+                    <p:panel id="pnlBusqueda">
+                        <p:panelGrid columns="3">
+                            <p:outputLabel value="Seleccione un año: "/>
+                            <p:selectOneMenu value="#{crtlSalaAcogidaParentesco.anioSel}">
+                                <f:selectItem itemValue="#{null}" itemLabel="Seleccione un año...."/>
+                               
+                                <f:selectItem itemValue="2013" itemLabel="2013"/>
+                                <f:selectItem itemValue="2014" itemLabel="2014"/>
+                                <f:selectItem itemValue="2015" itemLabel="2015"/>
+                                    <f:selectItem itemValue="2016" itemLabel="2016"/>
+                            </p:selectOneMenu>
+                            <p:commandButton id="btnBuscar" icon="ui-icon-search" style="width:50px"  
+                                             title="Graficar " action="#{crtlSalaAcogidaParentesco.graficar()}" 
+                                             update=":frmdatos:pnlGraficos, @form"/>                                   
+                        </p:panelGrid>
+                    </p:panel>
+                    <p:fieldset legend="Total Denuncias" style="margin-bottom:20px">
+                        <h:panelGrid columns="1" cellpadding="5">                          
+                            <h:outputText value="#{crtlSalaAcogidaParentesco.totalDenuncias}" />
+                        </h:panelGrid>
+                    </p:fieldset>
+
+                    <p:panel id="pnlGraficos" header="Estadísticas por Parentesco" style="margin-bottom: 25px">
+
+                        <p:accordionPanel style="max-height: 800px;max-width: 1200px">
+                            <p:tab title="Detalle general por subcircuitos" >
+                                <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                                <p:lineChart   value="#{crtlSalaAcogidaParentesco.graficaParentesco}" legendPosition="n" 
+                                               title="Detalle por Parentesco con la Victima" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                               xaxisLabel="Parentesco" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
+                            </p:tab>                                                                                           
+                            
+                            <p:tab title="Detalle general por circuitos (Cuadro de Barras)" >
+                                <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                                <p:barChart   value="#{crtlSalaAcogidaParentesco.graficaParentesco}" legendPosition="n" 
+                                              title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                              xaxisLabel="Parentesco" xaxisAngle="90" yaxisLabel="# Denuncias"/>  
+                                <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                            </p:tab>
+                            
+                            <p:tab title="Detalle general por circuitos género" >
+                                <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                                <p:lineChart   value="#{crtlSalaAcogidaParentesco.graficaParentescoGenero}" legendPosition="n" 
+                                               title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                               xaxisLabel="Parentesco" xaxisAngle="90" yaxisLabel="# Denuncias"/>   
+                                <h:panelGrid columns="2" cellpadding="5"> 
+                                    <h:outputText value="MASCULINO: " />
+                                    <h:outputText value="#{crtlSalaAcogidaParentesco.masculinoTotal}" title="MASCULINO" />
+                                    <h:outputText value="FEMENINO: " />
+                                    <h:outputText value="#{crtlSalaAcogidaParentesco.femeninoTotal}" title="FEMENINO" />
+                                </h:panelGrid>
+                            </p:tab>                                                                                           
+                            
+                            <p:tab title="Detalle general por circuitos género(Cuadro de Barras)" >
+                                <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
+                                <p:barChart   value="#{crtlSalaAcogidaParentesco.graficaParentescoGenero}" legendPosition="n" 
+                                              title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                              xaxisLabel="Parentesco" xaxisAngle="90" yaxisLabel="# Denuncias"/>  
+                                <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                                <h:panelGrid columns="2" cellpadding="5"> 
+                                    <h:outputText value="MASCULINO: " />
+                                    <h:outputText value="#{crtlSalaAcogidaParentesco.masculinoTotal}" title="MASCULINO" />
+                                    <h:outputText value="FEMENINO: " />
+                                    <h:outputText value="#{crtlSalaAcogidaParentesco.femeninoTotal}" title="FEMENINO" />
+                                </h:panelGrid>
+                            </p:tab>
+                            <script type="text/javascript">
+                                function my_ext() {
+                                    this.cfg.seriesDefaults = {
+                                        renderer: $.jqplot.BarRenderer,
+                                        pointLabels: {show: true}
+                                    };
+                                    this.cfg.stackSeries: true;
+                                }
+                            </script>
+
+                        </p:accordionPanel>
+
+                    </p:panel>
+
+                </h:form>
+            </ui:define>
+
+            <ui:define name="dialogos">
+                <p:dialog modal="true" widgetVar="dlgStatus" header="Procesando" draggable="false" closable="false" 
+                          resizable="false"> 
+                    <p:graphicImage value="/resources/images/ajaxloadingbar.gif" />  
+                </p:dialog>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
 </html>

@@ -12,6 +12,7 @@ import javax.faces.bean.RequestScoped;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import oscunach.vif.busquedas.FBDevif;
+import oscunach.vif.entidades.Devif;
 import recursos.MesesDias;
 
 /**
@@ -26,7 +27,43 @@ public class CtrlDevifMesDenuncia {
     private CartesianChartModel graficaMeses;
     private CartesianChartModel graficaMesesGenero;
     private int anioSel;
+    private ArrayList<Devif> lst1;
+    private int totalDenuncias;
+    private int femeninoTotal;
+    private int masculinoTotal;
 
+    public ArrayList<Devif> getLst1() {
+        return lst1;
+    }
+
+    public void setLst1(ArrayList<Devif> lst1) {
+        this.lst1 = lst1;
+    }
+
+    public int getTotalDenuncias() {
+        return totalDenuncias;
+    }
+
+    public void setTotalDenuncias(int totalDenuncias) {
+        this.totalDenuncias = totalDenuncias;
+    }
+
+    public int getFemeninoTotal() {
+        return femeninoTotal;
+    }
+
+    public void setFemeninoTotal(int femeninoTotal) {
+        this.femeninoTotal = femeninoTotal;
+    }
+
+    public int getMasculinoTotal() {
+        return masculinoTotal;
+    }
+
+    public void setMasculinoTotal(int masculinoTotal) {
+        this.masculinoTotal = masculinoTotal;
+    }
+    
     public ArrayList<String> getLst() {
         return lst;
     }
@@ -64,6 +101,7 @@ public class CtrlDevifMesDenuncia {
     }
     
     private void reinit() {
+        this.lst1 = new ArrayList<Devif>();
         this.graficar();
     }
 
@@ -80,6 +118,8 @@ public class CtrlDevifMesDenuncia {
             lst = MesesDias.obtenerMeses();
             ChartSeries dias = new ChartSeries();
             dias.setLabel("Meses de Denuncia");
+            this.lst1 = FBDevif.obtenerDatosDadoAnio(anioSel);
+            this.totalDenuncias = lst1.size();
             for (int i = 0; i < lst.size(); i++) {
                 dias.set(lst.get(i), FBDevif.obtenerDatosDadoAnioMesDenuncia(anio, lst.get(i)).size());
             }
@@ -96,14 +136,18 @@ public class CtrlDevifMesDenuncia {
             lst = MesesDias.obtenerMeses();
             ChartSeries femenino = new ChartSeries();
             femenino.setLabel("Femenino");
+            this.lst1 = FBDevif.obtenerDatosDadoAnio(anioSel);
+            this.totalDenuncias = lst1.size();
             for (int i = 0; i < lst.size(); i++) {
-                femenino.set(lst.get(i), FBDevif.obtenerDatosDadoAnioMesDenunciaGenero(anio, lst.get(i), "FEMENINO").size());
+                femenino.set(lst.get(i), FBDevif.obtenerDatosDadoAnioMesDenunciaGenero(anio, lst.get(i), "F").size());
+                femeninoTotal = femeninoTotal + FBDevif.obtenerDatosDadoAnioMesDenunciaGenero(anio, lst.get(i), "F").size();
             }
 
             ChartSeries masculino = new ChartSeries();
             masculino.setLabel("Masculino");
             for (int i = 0; i < lst.size(); i++) {
-                masculino.set(lst.get(i), FBDevif.obtenerDatosDadoAnioMesDenunciaGenero(anio, lst.get(i), "MASCULINO").size());
+                masculino.set(lst.get(i), FBDevif.obtenerDatosDadoAnioMesDenunciaGenero(anio, lst.get(i), "M").size());
+                masculinoTotal = masculinoTotal + FBDevif.obtenerDatosDadoAnioMesDenunciaGenero(anio, lst.get(i), "M").size();
             }
 
             model.addSeries(femenino);

@@ -99,14 +99,14 @@ public class CtrlUrbanoCircuito {
             lst = CircuitoSubcircuitoUrbano.obtenerCircuitoUrbano();
             ChartSeries femenino = new ChartSeries();
             femenino.setLabel("Femenino");
-            for (int i = 0; i < lst.size(); i++) {
-                femenino.set(lst.get(i), FBVifUrbano.obtenerDatosDadoAnioCircuitoGenero(anio, lst.get(i), "F").size());
+            for (String lst1 : lst) {
+                femenino.set(lst1, FBVifUrbano.obtenerDatosDadoAnioCircuitoGenero(anio, lst1, "F").size());
             }
 
             ChartSeries masculino = new ChartSeries();
             masculino.setLabel("Masculino");
-            for (int i = 0; i < lst.size(); i++) {
-                masculino.set(lst.get(i), FBVifUrbano.obtenerDatosDadoAnioCircuitoGenero(anio, lst.get(i), "M").size());
+            for (String lst1 : lst) {
+                masculino.set(lst1, FBVifUrbano.obtenerDatosDadoAnioCircuitoGenero(anio, lst1, "M").size());
             }
 
             model.addSeries(femenino);
