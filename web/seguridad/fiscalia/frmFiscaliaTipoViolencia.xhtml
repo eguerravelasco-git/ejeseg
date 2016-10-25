@@ -28,7 +28,6 @@ and open the template in the editor.
                             <p:outputLabel value="Seleccione un año: "/>
                             <p:selectOneMenu value="#{ctrlFiscaliaTipoViolencia.aniosel}">
                                 <f:selectItem itemValue="#{null}" itemLabel="Seleccione un año...."/> 
-                                <f:selectItem itemValue="2013" itemLabel="2013"/>
                                 <f:selectItem itemValue="2014" itemLabel="2014"/>
                                 <f:selectItem itemValue="2015" itemLabel="2015"/>                                
                                 <f:selectItem itemValue="2016" itemLabel="2016"/>     
@@ -53,7 +52,7 @@ and open the template in the editor.
                                                title="Estadísticas por Tipo de Violencia" style="height:450px;width:1200px;text-decoration-style: dashed"
                                                xaxisLabel="Tipo de Violencia" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
-                            
+
                             <p:tab title="Estadísticas por Tipo de Violencia (Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlFiscaliaTipoViolencia.graficarViolencia}" legendPosition="n" 
@@ -61,7 +60,7 @@ and open the template in the editor.
                                               xaxisLabel="Circuito" xaxisAngle="0" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
-                            
+
                             <p:tab title="Estadísticas por Tipo de Violencia por género" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:lineChart   value="#{ctrlFiscaliaTipoViolencia.graficarViolenciaGenero}" legendPosition="n" 
@@ -74,7 +73,7 @@ and open the template in the editor.
                                     <h:outputText value="#{ctrlFiscaliaTipoViolencia.femeninoTotal}" title="FEMENINO" />
                                 </h:panelGrid>
                             </p:tab>                                                                                           
-                            
+
                             <p:tab title="Estadísticas por Tipo de Violencia por género(Gráfico de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{ctrlFiscaliaTipoViolencia.graficarViolenciaGenero}" legendPosition="n" 
