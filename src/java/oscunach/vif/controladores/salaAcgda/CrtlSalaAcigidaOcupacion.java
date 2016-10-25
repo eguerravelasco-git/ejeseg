@@ -13,6 +13,7 @@ import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import oscunach.vif.busquedas.FBSalaAcgda;
 import oscunach.vif.entidades.SalaAcgda;
+import recursos.Ocupaciones;
 
 /**
  *
@@ -25,7 +26,8 @@ public class CrtlSalaAcigidaOcupacion {
     /**
      * Creates a new instance of CrtlSalaAcigidaOcupacion
      */
-    private ArrayList<SalaAcgda> lst;
+    //private ArrayList<SalaAcgda> lst;
+    private ArrayList<String> lst;
     private CartesianChartModel graficaOcupacion;
     private CartesianChartModel graficaOcupacionGenero;
     private int anioSel;
@@ -33,6 +35,14 @@ public class CrtlSalaAcigidaOcupacion {
     private int totalDenuncias;
     private int femeninoTotal;
     private int masculinoTotal;
+
+    public ArrayList<String> getLst() {
+        return lst;
+    }
+
+    public void setLst(ArrayList<String> lst) {
+        this.lst = lst;
+    }
 
     public ArrayList<SalaAcgda> getLst1() {
         return lst1;
@@ -82,14 +92,6 @@ public class CrtlSalaAcigidaOcupacion {
         this.graficaOcupacionGenero = graficaOcupacionGenero;
     }
 
-    public ArrayList<SalaAcgda> getLst() {
-        return lst;
-    }
-
-    public void setLst(ArrayList<SalaAcgda> lst) {
-        this.lst = lst;
-    }
-
     public int getAnioSel() {
         return anioSel;
     }
@@ -99,7 +101,7 @@ public class CrtlSalaAcigidaOcupacion {
     }
 
     public CrtlSalaAcigidaOcupacion() {
-        this.lst = new ArrayList<SalaAcgda>();
+        this.lst = new ArrayList<String>();
         this.lst1 = new ArrayList<SalaAcgda>();
         this.graficar();
     }
@@ -115,11 +117,12 @@ public class CrtlSalaAcigidaOcupacion {
         try {
             ChartSeries ocupacion = new ChartSeries();
             ocupacion.setLabel("OCUPACION");
-            lst = FBSalaAcgda.obteneranioocupacion(anio);
+            //lst = FBSalaAcgda.obteneranioocupacion(anio);
+            lst = Ocupaciones.enlistarOcupaciones();
             this.lst1 = FBSalaAcgda.obtenerDatosDadoAnio(anio);
             this.totalDenuncias = lst1.size();
             for (int i = 0; i < lst.size(); i++) {
-                ocupacion.set(lst.get(i).getOcupacion_victima(), FBSalaAcgda.obtenerDatosDadoAnioOcupacionvictima(anio, lst.get(i).getOcupacion_victima()).size());
+                ocupacion.set(lst.get(i), FBSalaAcgda.obtenerDatosDadoAnioOcupacionvictima(anio, lst.get(i)).size());
 
             }
             model.addSeries(ocupacion);
@@ -132,22 +135,23 @@ public class CrtlSalaAcigidaOcupacion {
     private CartesianChartModel OcupacionGenero(int anio) {
         CartesianChartModel model = new CartesianChartModel();
         try {
-            lst = FBSalaAcgda.obteneranioocupacion(anio);
+            //lst = FBSalaAcgda.obteneranioocupacion(anio);
+            lst = Ocupaciones.enlistarOcupaciones();
             this.lst1 = FBSalaAcgda.obtenerDatosDadoAnio(anio);
             this.totalDenuncias = lst1.size();
             ChartSeries femenino = new ChartSeries();
             femenino.setLabel("Femenino");
 
             for (int i = 0; i < lst.size(); i++) {
-                femenino.set(lst.get(i).getOcupacion_victima(), FBSalaAcgda.obtenerDatosDadoAnioOcupacionGenero(anio, lst.get(i).getOcupacion_victima(), "F").size());
-                femeninoTotal= femeninoTotal+FBSalaAcgda.obtenerDatosDadoAnioOcupacionGenero(anio, lst.get(i).getOcupacion_victima(), "F").size();
+                femenino.set(lst.get(i), FBSalaAcgda.obtenerDatosDadoAnioOcupacionGenero(anio, lst.get(i), "F").size());
+                femeninoTotal = femeninoTotal + FBSalaAcgda.obtenerDatosDadoAnioOcupacionGenero(anio, lst.get(i), "F").size();
             }
 
             ChartSeries masculino = new ChartSeries();
             masculino.setLabel("Masculino");
             for (int i = 0; i < lst.size(); i++) {
-                masculino.set(lst.get(i).getOcupacion_victima(), FBSalaAcgda.obtenerDatosDadoAnioOcupacionGenero(anio, lst.get(i).getOcupacion_victima(), "M").size());
-                masculinoTotal = masculinoTotal + FBSalaAcgda.obtenerDatosDadoAnioOcupacionGenero(anio, lst.get(i).getOcupacion_victima(), "M").size();
+                masculino.set(lst.get(i), FBSalaAcgda.obtenerDatosDadoAnioOcupacionGenero(anio, lst.get(i), "M").size());
+                masculinoTotal = masculinoTotal + FBSalaAcgda.obtenerDatosDadoAnioOcupacionGenero(anio, lst.get(i), "M").size();
             }
 
             model.addSeries(femenino);
