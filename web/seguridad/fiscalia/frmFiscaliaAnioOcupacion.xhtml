@@ -46,26 +46,26 @@ and open the template in the editor.
                     <p:panel id="pnlGraficos" >
 
                         <p:accordionPanel style="max-height: 800px;max-width: 1200px">
-                            <p:tab title="Estadísticas de acuerdo al Estado Civil" >
+                            <p:tab title="Estadísticas de acuerdo a la Ocupación" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:lineChart   value="#{crtlFiscaliaAnioOcupacion.graficarocupacion}" legendPosition="n" 
-                                               title="Estadísticas de acuerdo al Estado Civil" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                               xaxisLabel="Estado Civil" xaxisAngle="270" yaxisLabel="# Denuncias" animate="true"/>   
+                                               title="Estadísticas de acuerdo al a la Ocupación" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                               xaxisLabel="Ocupación" xaxisAngle="270" yaxisLabel="# Denuncias" animate="true"/>   
                             </p:tab>                                                                                           
                             
-                            <p:tab title="Estadísticas de acuerdo al Estado Civil(Cuadro de Barras)" >
+                            <p:tab title="Estadísticas de acuerdo a la Ocupación(Cuadro de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{crtlFiscaliaAnioOcupacion.graficarocupacion}" legendPosition="n" 
-                                              title="Detalle por circuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                              xaxisLabel="Estado Civil" xaxisAngle="270" yaxisLabel="# Denuncias" animate="true"/>  
+                                              title="Estadísticas de acuerdo a la Ocupación" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                              xaxisLabel="Ocupación" xaxisAngle="270" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             
-                            <p:tab title="Estadísticas de acuerdo al Estado Civil y género de la Víctima" >
+                            <p:tab title="Estadísticas de acuerdo a la Ocupación y género de la Víctima" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:lineChart   value="#{crtlFiscaliaAnioOcupacion.graficarOcupacioGewero}" legendPosition="n" 
-                                               title="Estadísticas de acuerdo al Estado Civil y género de la Víctima" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                               xaxisLabel="Estado Civil" xaxisAngle="270" yaxisLabel="# Denuncias" animate="true"/> 
+                                               title="Estadísticas de acuerdo a la Ocupación y género de la Víctima" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                               xaxisLabel="Ocupación" xaxisAngle="270" yaxisLabel="# Denuncias" animate="true"/> 
                                 <h:panelGrid columns="2" cellpadding="5"> 
                                     <h:outputText value="MASCULINO: " />
                                     <h:outputText value="#{crtlFiscaliaAnioOcupacion.masculinoTotal}" title="MASCULINO" />
@@ -74,11 +74,11 @@ and open the template in the editor.
                                 </h:panelGrid>
                             </p:tab>                                                                                           
                             
-                            <p:tab title="Estadísticas de acuerdo al Estado Civil y género de la Víctima(Cuadro de Barras)" >
+                            <p:tab title="Estadísticas de acuerdo a la Ocupación y género de la Víctima(Cuadro de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
                                 <p:barChart   value="#{crtlFiscaliaAnioOcupacion.graficarOcupacioGewero}" legendPosition="n" 
-                                              title="Estadísticas de acuerdo al Estado Civil y género de la Víctima" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                              xaxisLabel="Estado Civil" xaxisAngle="270" yaxisLabel="# Denuncias" animate="true"/>  
+                                              title="Estadísticas de acuerdo a la Ocupación y género de la Víctima" style="height:450px;width:1100px;text-decoration-style: dashed"
+                                              xaxisLabel="Ocupación" xaxisAngle="270" yaxisLabel="# Denuncias" animate="true"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                                 <h:panelGrid columns="2" cellpadding="5"> 
                                     <h:outputText value="MASCULINO: " />
