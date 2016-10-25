@@ -23,7 +23,10 @@ public class CtrlFiscaliaDatos {
 
     private ArrayList<FichaVif> lst = new ArrayList<FichaVif>();
     private int anioSel;
+    private int totalDenuncias;
 
+    
+    
     public CtrlFiscaliaDatos() {
         //anioSel=2014;
         //this.reinit();
@@ -38,6 +41,7 @@ public class CtrlFiscaliaDatos {
     public void obtenerDatosDadoAnio() {
         try {
             this.lst = FBFichaFiscalia.obtenerDatosDadoAnio(anioSel);
+            this.totalDenuncias=lst.size();
             System.out.println(lst.get(0).getApellidos_victima());
         } catch (Exception e) {
             Util.addErrorMessage("public void obtenerDatosDadoAnio() dice: " + e.getMessage());
@@ -63,5 +67,15 @@ public class CtrlFiscaliaDatos {
     public void setAnioSel(int anioSel) {
         this.anioSel = anioSel;
     }
+
+    public int getTotalDenuncias() {
+        return totalDenuncias;
+    }
+
+    public void setTotalDenuncias(int totalDenuncias) {
+        this.totalDenuncias = totalDenuncias;
+    }
+    
+    
 
 }

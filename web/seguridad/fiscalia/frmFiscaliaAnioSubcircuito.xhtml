@@ -12,65 +12,81 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>
-            <ui:define name="Datos">Datos de la fiscalia</ui:define>
+            <ui:define name="Datos">Datos de la Fiscalia</ui:define>
         </title>
     </h:head>
     <h:body>
         <ui:composition template="../../templates/plantillaInternaCenter.xhtml">
-            <ui:define name="top">Datos de la fiscalia</ui:define>
+            <ui:define name="top">Denuncias recolectadas de la Fiscalia</ui:define>
             <ui:define name="contenido">
                 <p:growl id="mensajes" autoUpdate="true" showDetail="true"/>
                 <h:form id="frmdatos" style="alignment-adjust: central">
                     <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
                     <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();" />
-                    <p:panel id="pnlBusqueda" header="Búsquedas...">
+                    <p:panel id="pnlBusqueda">
                         <p:panelGrid columns="3">
                             <p:outputLabel value="Seleccione un año: "/>
-                            <p:selectOneMenu value="#{ctrlFiscaliaAnioSubcircuito.aniosel}">
+                            <p:selectOneMenu value="#{ctrlFiscaliaAnioSubcircuito.anioSel}">
                                 <f:selectItem itemValue="#{null}" itemLabel="Seleccione un año...."/>
-                                <f:selectItem itemValue="2013" itemLabel="2010"/>
+                                <f:selectItem itemValue="2013" itemLabel="2013"/>
                                 <f:selectItem itemValue="2014" itemLabel="2014"/>
-                                <f:selectItem itemValue="2015" itemLabel="2015"/>                                                                                                
+                                <f:selectItem itemValue="2015" itemLabel="2015"/>   
+                                <f:selectItem itemValue="2016" itemLabel="2016"/> 
                             </p:selectOneMenu>
                             <p:commandButton id="btnBuscar" icon="ui-icon-search" style="width:50px"  
                                              title="Graficar " action="#{ctrlFiscaliaAnioSubcircuito.graficar()}" 
                                              update=":frmdatos:pnlGraficos, @form"/>                                   
                         </p:panelGrid>
                     </p:panel>
+                    <p:fieldset legend="Total Denuncias" style="margin-bottom:20px">
+                        <h:panelGrid columns="1" cellpadding="5">                          
+                            <h:outputText value="#{ctrlFiscaliaAnioSubcircuito.totalDenuncias}" />
+                        </h:panelGrid>
+                    </p:fieldset>
 
-                    <p:panel id="pnlGraficos" header="Estadísticas por Subcircuitos" style="margin-bottom: 25px">
+                    <p:panel id="pnlGraficos" >
 
                         <p:accordionPanel style="max-height: 800px;max-width: 1200px">
-                          
-                            <p:tab title="Detalle general por circuitos" >
+                            <p:tab title="Detalle general por subcircuitos" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:lineChart   value="#{ctrlFiscaliaAnioSubcircuito.graficaSubcircuito}" legendPosition="n" 
+                                <p:lineChart   value="#{ctrlFiscaliaAnioSubcircuito.graficaSubcircuitos}" legendPosition="n" 
                                                title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                               xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
+                                               xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias"/>   
                             </p:tab>                                                                                           
                             
                             <p:tab title="Detalle general por subcircuitos (Cuadro de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:barChart   value="#{ctrlFiscaliaAnioSubcircuito.graficaSubcircuito}" legendPosition="n" 
+                                <p:barChart   value="#{ctrlFiscaliaAnioSubcircuito.graficaSubcircuitosGenero}" legendPosition="n" 
                                               title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                              xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
+                                              xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
                             </p:tab>
                             
-                            
                             <p:tab title="Detalle general por subcircuitos género" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:lineChart   value="#{ctrlFiscaliaAnioSubcircuito.graficaSubcircuitoGenero}" legendPosition="n" 
+                                <p:lineChart   value="#{ctrlFiscaliaAnioSubcircuito.graficaSubcircuitosGenero}" legendPosition="n" 
                                                title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                               xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>   
+                                               xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias"/> 
+                                <h:panelGrid columns="2" cellpadding="5"> 
+                                    <h:outputText value="MASCULINO: " />
+                                    <h:outputText value="#{ctrlFiscaliaAnioSubcircuito.masculinoTotal}" title="MASCULINO" />
+                                    <h:outputText value="FEMENINO: " />
+                                    <h:outputText value="#{ctrlFiscaliaAnioSubcircuito.femeninoTotal}" title="FEMENINO" />
+                                </h:panelGrid>
                             </p:tab>                                                                                           
                             
                             <p:tab title="Detalle general por subcircuitos género(Cuadro de Barras)" >
                                 <p:ajaxStatus onstart="dlgStatus.show();" oncomplete="dlgStatus.hide();"/>
-                                <p:barChart   value="#{ctrlFiscaliaAnioSubcircuito.graficaSubcircuitoGenero}" legendPosition="n" 
+                                <p:barChart   value="#{ctrlFiscaliaAnioSubcircuito.graficaSubcircuitosGenero}" legendPosition="n" 
                                               title="Detalle por subcircuitos" style="height:450px;width:1100px;text-decoration-style: dashed"
-                                              xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias" animate="true"/>  
+                                              xaxisLabel="Subcircuito" xaxisAngle="90" yaxisLabel="# Denuncias"/>  
                                 <h:outputScript  library="jqplot-plugins" name="jqplot.pointLabels.min.js" />
+                                <h:panelGrid columns="2" cellpadding="5"> 
+                                    <h:outputText value="MASCULINO: " />
+                                    <h:outputText value="#{ctrlFiscaliaAnioSubcircuito.masculinoTotal}" title="MASCULINO" />
+                                    <h:outputText value="FEMENINO: " />
+                                    <h:outputText value="#{ctrlFiscaliaAnioSubcircuito.femeninoTotal}" title="FEMENINO" />
+                                </h:panelGrid>
                             </p:tab>
                             <script type="text/javascript">
                                 function my_ext() {

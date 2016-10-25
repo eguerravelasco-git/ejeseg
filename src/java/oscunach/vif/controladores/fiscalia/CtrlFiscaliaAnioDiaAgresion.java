@@ -12,6 +12,7 @@ import javax.faces.bean.RequestScoped;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import oscunach.vif.busquedas.FBFichaFiscalia;
+import oscunach.vif.entidades.FichaVif;
 import recursos.MesesDias;
 
 /**
@@ -26,6 +27,43 @@ public class CtrlFiscaliaAnioDiaAgresion {
     private int aniosel;
     private CartesianChartModel graficarDiaAgrecion;
     private CartesianChartModel graficarDiaAgrecionGenero;
+
+    private ArrayList<FichaVif> lst2;
+    private int totalDenuncias;
+    private int femeninoTotal;
+    private int masculinoTotal;
+
+    public ArrayList<FichaVif> getLst2() {
+        return lst2;
+    }
+
+    public void setLst2(ArrayList<FichaVif> lst2) {
+        this.lst2 = lst2;
+    }
+
+    public int getTotalDenuncias() {
+        return totalDenuncias;
+    }
+
+    public void setTotalDenuncias(int totalDenuncias) {
+        this.totalDenuncias = totalDenuncias;
+    }
+
+    public int getFemeninoTotal() {
+        return femeninoTotal;
+    }
+
+    public void setFemeninoTotal(int femeninoTotal) {
+        this.femeninoTotal = femeninoTotal;
+    }
+
+    public int getMasculinoTotal() {
+        return masculinoTotal;
+    }
+
+    public void setMasculinoTotal(int masculinoTotal) {
+        this.masculinoTotal = masculinoTotal;
+    }
 
     public ArrayList<String> getLst() {
         return lst;
@@ -66,6 +104,7 @@ public class CtrlFiscaliaAnioDiaAgresion {
 
     private void reinit() {
         this.lst = new ArrayList<String>();
+        this.lst2 = new ArrayList<FichaVif>();
         this.graficar();
     }
 
@@ -92,35 +131,41 @@ public class CtrlFiscaliaAnioDiaAgresion {
         return model;
     }
 
-    
-    private CartesianChartModel diaAgresion2(int anio){
+    private CartesianChartModel diaAgresion2(int anio) {
         CartesianChartModel grafico = new CartesianChartModel();
         try {
-            lst=MesesDias.obtenerDias();
-            ChartSeries t=new ChartSeries();
+            lst = MesesDias.obtenerDias();
+            this.lst2 = FBFichaFiscalia.obtenerDatosDadoAnio(anio);
+            this.totalDenuncias = lst2.size();
+            ChartSeries t = new ChartSeries();
             t.setLabel("Dias de agresión");
-            for (int i=0;i<lst.size();i++){
+            for (int i = 0; i < lst.size(); i++) {
                 t.set(lst.get(i), FBFichaFiscalia.obtenerFichaDadoAnioDiaAgrecion(anio, lst.get(i)).size());
-                System.out.println("dia: "+lst.get(i)+" dimensión: "+ FBFichaFiscalia.obtenerFichaDadoAnioDiaAgrecion(anio, lst.get(i)).size());
+                System.out.println("dia: " + lst.get(i) + " dimensión: " + FBFichaFiscalia.obtenerFichaDadoAnioDiaAgrecion(anio, lst.get(i)).size());
             }
             grafico.addSeries(t);
         } catch (Exception e) {
         }
-        return  grafico;
+        return grafico;
     }
+
     private CartesianChartModel diaAgrecionGenero(int anio) {
         CartesianChartModel model = new CartesianChartModel();
         try {
             lst = MesesDias.obtenerDias();
+            this.lst2 = FBFichaFiscalia.obtenerDatosDadoAnio(anio);
+            this.totalDenuncias = lst2.size();
             ChartSeries femenino = new ChartSeries();
             femenino.setLabel("Femenino");
             for (int i = 0; i < lst.size(); i++) {
                 femenino.set(lst.get(i), FBFichaFiscalia.obtenerFichaDadoAnioDiaAgrecionGenero(anio, lst.get(i), "Femenino").size());
+                femeninoTotal = femeninoTotal + FBFichaFiscalia.obtenerFichaDadoAnioDiaAgrecionGenero(anio, lst.get(i), "Femenino").size();
             }
             ChartSeries masculino = new ChartSeries();
             masculino.setLabel("Masculino");
             for (int i = 0; i < lst.size(); i++) {
                 masculino.set(lst.get(i), FBFichaFiscalia.obtenerFichaDadoAnioDiaAgrecionGenero(anio, lst.get(i), "Masculino").size());
+                masculinoTotal = masculinoTotal + FBFichaFiscalia.obtenerFichaDadoAnioDiaAgrecionGenero(anio, lst.get(i), "Masculino").size();
             }
             model.addSeries(femenino);
             model.addSeries(masculino);

@@ -50,12 +50,6 @@ public class FBFichaFiscalia {
         return lst;
     }
     
-    
-    
-    
-    
-
-
     public static ArrayList<FichaVif> obtenerFichaDadoAnioCircuito(int pin_anio, String pin_circuito) throws Exception {
         ArrayList<FichaVif> lst = new ArrayList<FichaVif>();
         try {
@@ -376,7 +370,7 @@ public class FBFichaFiscalia {
         ArrayList<FichaVif> lst = new ArrayList<FichaVif>();
         try {
             ArrayList<Parametro> lstP = new ArrayList<Parametro>();
-            String sql = "select * from vif.select_ficha_dado_anio_subcircuito(?,?,?)";
+            String sql = "select * from vif.select_ficha_dado_anio_subcircuito_genero(?,?,?)";
             lstP.add(new Parametro(1, pin_anio));
             lstP.add(new Parametro(2, pin_subcircuito));
             lstP.add(new Parametro(3, pin_sexo_victima));

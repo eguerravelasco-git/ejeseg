@@ -12,6 +12,7 @@ import javax.faces.bean.RequestScoped;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import oscunach.vif.busquedas.FBFichaFiscalia;
+import oscunach.vif.entidades.FichaVif;
 import recursos.MesesDias;
 
 /**
@@ -26,6 +27,42 @@ public class CtrlFiscaliaAnioMesAgrecion {
     private int aniosel;
     private CartesianChartModel graficarMes;
     private CartesianChartModel graficarMesGenero;
+    private ArrayList<FichaVif> lst2;
+    private int totalDenuncias;
+    private int femeninoTotal;
+    private int masculinoTotal;
+
+    public ArrayList<FichaVif> getLst2() {
+        return lst2;
+    }
+
+    public void setLst2(ArrayList<FichaVif> lst2) {
+        this.lst2 = lst2;
+    }
+
+    public int getTotalDenuncias() {
+        return totalDenuncias;
+    }
+
+    public void setTotalDenuncias(int totalDenuncias) {
+        this.totalDenuncias = totalDenuncias;
+    }
+
+    public int getFemeninoTotal() {
+        return femeninoTotal;
+    }
+
+    public void setFemeninoTotal(int femeninoTotal) {
+        this.femeninoTotal = femeninoTotal;
+    }
+
+    public int getMasculinoTotal() {
+        return masculinoTotal;
+    }
+
+    public void setMasculinoTotal(int masculinoTotal) {
+        this.masculinoTotal = masculinoTotal;
+    }
 
     public ArrayList<String> getLts() {
         return lts;
@@ -60,19 +97,22 @@ public class CtrlFiscaliaAnioMesAgrecion {
     }
 
     public CtrlFiscaliaAnioMesAgrecion() {
+        this.lst2 = new ArrayList<FichaVif>();
         this.graficar();
     }
-    
+
     @PostConstruct
-    public void graficar(){
-        graficarMes=mesAgrecion(aniosel);
-        graficarMesGenero=mesAgrecionGenero(aniosel);
+    public void graficar() {
+        graficarMes = mesAgrecion(aniosel);
+        graficarMesGenero = mesAgrecionGenero(aniosel);
     }
 
     private CartesianChartModel mesAgrecion(int anio) {
         CartesianChartModel model = new CartesianChartModel();
         try {
             lts = MesesDias.obtenerMeses();
+            this.lst2 = FBFichaFiscalia.obtenerDatosDadoAnio(anio);
+            this.totalDenuncias = lst2.size();
             ChartSeries mes = new ChartSeries();
             mes.setLabel("Mes Agrecion");
             for (int i = 0; i < lts.size(); i++) {
@@ -81,7 +121,7 @@ public class CtrlFiscaliaAnioMesAgrecion {
             }
             model.addSeries(mes);
         } catch (Exception e) {
-             System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
 
         return model;
@@ -92,21 +132,25 @@ public class CtrlFiscaliaAnioMesAgrecion {
         CartesianChartModel model = new CartesianChartModel();
         try {
             lts = MesesDias.obtenerMeses();
+            this.lst2 = FBFichaFiscalia.obtenerDatosDadoAnio(anio);
+            this.totalDenuncias = lst2.size();
             ChartSeries femenino = new ChartSeries();
             femenino.setLabel("Femenino");
             for (int i = 0; i < lts.size(); i++) {
                 femenino.set(lts.get(i), FBFichaFiscalia.obtenerFichaDadoAnioMesAgresionGenero(anio, lts.get(i), "Femenino").size());
+                femeninoTotal= femeninoTotal+FBFichaFiscalia.obtenerFichaDadoAnioMesAgresionGenero(anio, lts.get(i), "Femenino").size();
             }
             ChartSeries masculino = new ChartSeries();
             masculino.setLabel("Masculino");
             for (int i = 0; i < lts.size(); i++) {
                 masculino.set(lts.get(i), FBFichaFiscalia.obtenerFichaDadoAnioMesAgresionGenero(anio, lts.get(i), "Maculino").size());
+                masculinoTotal=masculinoTotal+FBFichaFiscalia.obtenerFichaDadoAnioMesAgresionGenero(anio, lts.get(i), "Maculino").size();
             }
             model.addSeries(femenino);
             model.addSeries(masculino);
 
         } catch (Exception e) {
-             System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
         return model;
 

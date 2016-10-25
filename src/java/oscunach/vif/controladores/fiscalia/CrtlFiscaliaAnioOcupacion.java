@@ -28,6 +28,42 @@ public class CrtlFiscaliaAnioOcupacion {
     private int aniosel;
     private CartesianChartModel graficarOcupacion;
     private CartesianChartModel graficarOcupacioGewero;
+    private ArrayList<FichaVif> lst2;
+    private int totalDenuncias;
+    private int femeninoTotal;
+    private int masculinoTotal;
+
+    public ArrayList<FichaVif> getLst2() {
+        return lst2;
+    }
+
+    public void setLst2(ArrayList<FichaVif> lst2) {
+        this.lst2 = lst2;
+    }
+
+    public int getTotalDenuncias() {
+        return totalDenuncias;
+    }
+
+    public void setTotalDenuncias(int totalDenuncias) {
+        this.totalDenuncias = totalDenuncias;
+    }
+
+    public int getFemeninoTotal() {
+        return femeninoTotal;
+    }
+
+    public void setFemeninoTotal(int femeninoTotal) {
+        this.femeninoTotal = femeninoTotal;
+    }
+
+    public int getMasculinoTotal() {
+        return masculinoTotal;
+    }
+
+    public void setMasculinoTotal(int masculinoTotal) {
+        this.masculinoTotal = masculinoTotal;
+    }
 
     public ArrayList<String> getLst1() {
         return lst1;
@@ -78,6 +114,7 @@ public class CrtlFiscaliaAnioOcupacion {
     }
 
     public CrtlFiscaliaAnioOcupacion() {
+        this.lst2 = new ArrayList<FichaVif>();
         this.graficar();
     }
 
@@ -91,8 +128,10 @@ public class CrtlFiscaliaAnioOcupacion {
     private CartesianChartModel ocupaciones(int anio) {
         CartesianChartModel model = new CartesianChartModel();
         try {
-           // lst = FBFichaFiscalia.obtenerOcupacionesDadoAnio(anio);
+            // lst = FBFichaFiscalia.obtenerOcupacionesDadoAnio(anio);
             lst1 = Ocupaciones.enlistarOcupaciones();
+            this.lst2 = FBFichaFiscalia.obtenerDatosDadoAnio(anio);
+            this.totalDenuncias = lst2.size();
             ChartSeries ocupaciones = new ChartSeries();
             ocupaciones.setLabel("Ocupaciones");
             for (int i = 0; i < lst1.size(); i++) {
@@ -110,15 +149,19 @@ public class CrtlFiscaliaAnioOcupacion {
         try {
             //lst = FBFichaFiscalia.obtenerOcupacionesDadoAnio(anio);
             lst1 = Ocupaciones.enlistarOcupaciones();
+            this.lst2 = FBFichaFiscalia.obtenerDatosDadoAnio(anio);
+            this.totalDenuncias = lst2.size();
             ChartSeries masculino = new ChartSeries();
             masculino.setLabel("Masculino");
             for (int i = 0; i < lst1.size(); i++) {
                 masculino.set(lst1.get(i), FBFichaFiscalia.obtenerFichaDadoAnioOcupacionGenero(anio, lst1.get(i), "Masculino").size());
+                masculinoTotal=masculinoTotal+FBFichaFiscalia.obtenerFichaDadoAnioOcupacionGenero(anio, lst1.get(i), "Masculino").size();
             }
             ChartSeries femenino = new ChartSeries();
             femenino.setLabel("Femenino");
             for (int i = 0; i < lst1.size(); i++) {
                 femenino.set(lst1.get(i), FBFichaFiscalia.obtenerFichaDadoAnioOcupacionGenero(anio, lst1.get(i), "Femenino").size());
+                femeninoTotal= femeninoTotal+FBFichaFiscalia.obtenerFichaDadoAnioOcupacionGenero(anio, lst1.get(i), "Femenino").size();
             }
 
             model.addSeries(femenino);

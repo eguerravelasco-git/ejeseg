@@ -12,6 +12,7 @@ import javax.faces.bean.RequestScoped;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import oscunach.vif.busquedas.FBFichaFiscalia;
+import oscunach.vif.entidades.FichaVif;
 import recursos.Edades;
 import recursos.RangoEdades;
 
@@ -27,16 +28,50 @@ public class CtrlFiscaliaRangoEdades {
     private CartesianChartModel graficaEdades;
     private CartesianChartModel graficaEdadesGenero;
     private int anioSel;
-    
-    
-    
+    private ArrayList<FichaVif> lst1;
+    private int totalDenuncias;
+    private int femeninoTotal;
+    private int masculinoTotal;
+
+    public ArrayList<FichaVif> getLst1() {
+        return lst1;
+    }
+
+    public void setLst1(ArrayList<FichaVif> lst1) {
+        this.lst1 = lst1;
+    }
+
+    public int getTotalDenuncias() {
+        return totalDenuncias;
+    }
+
+    public void setTotalDenuncias(int totalDenuncias) {
+        this.totalDenuncias = totalDenuncias;
+    }
+
+    public int getFemeninoTotal() {
+        return femeninoTotal;
+    }
+
+    public void setFemeninoTotal(int femeninoTotal) {
+        this.femeninoTotal = femeninoTotal;
+    }
+
+    public int getMasculinoTotal() {
+        return masculinoTotal;
+    }
+
+    public void setMasculinoTotal(int masculinoTotal) {
+        this.masculinoTotal = masculinoTotal;
+    }
+
     public CtrlFiscaliaRangoEdades() {
         this.reinit();
     }
-    
-    
+
     private void reinit() {
         this.lstRangos = new ArrayList<RangoEdades>();
+        this.lst1 = new ArrayList<FichaVif>();
         this.graficar();
     }
 
@@ -52,7 +87,9 @@ public class CtrlFiscaliaRangoEdades {
             ChartSeries edades = new ChartSeries();
             edades.setLabel("Rango de Edades");
             lstRangos = Edades.obtenerRangoEdades();
-            for (int i = 0; i < lstRangos.size(); i++) {                
+            this.lst1 = FBFichaFiscalia.obtenerDatosDadoAnio(anio);
+            this.totalDenuncias = lst1.size();
+            for (int i = 0; i < lstRangos.size(); i++) {
                 edades.set(lstRangos.get(i).getEspecificacion(), FBFichaFiscalia.obtenerFichaDadoAnioRangoEdad(anio, lstRangos.get(i).getRango()).size());
             }
             model.addSeries(edades);
@@ -61,23 +98,27 @@ public class CtrlFiscaliaRangoEdades {
         }
         return model;
     }
-    
+
     private CartesianChartModel edadesGenero(int anio) {
         CartesianChartModel model = new CartesianChartModel();
         try {
             lstRangos = Edades.obtenerRangoEdades();
+            this.lst1 = FBFichaFiscalia.obtenerDatosDadoAnio(anio);
+            this.totalDenuncias = lst1.size();
             ChartSeries femenino = new ChartSeries();
-            femenino.setLabel("Femenino");            
-            for (int i = 0; i < lstRangos.size(); i++) {                
-                femenino.set(lstRangos.get(i).getEspecificacion(), FBFichaFiscalia.obtenerFichaDadoAnioRangoEdadGenero(anio, lstRangos.get(i).getRango(),"F").size());
+            femenino.setLabel("Femenino");
+            for (int i = 0; i < lstRangos.size(); i++) {
+                femenino.set(lstRangos.get(i).getEspecificacion(), FBFichaFiscalia.obtenerFichaDadoAnioRangoEdadGenero(anio, lstRangos.get(i).getRango(), "F").size());
+                femeninoTotal= femeninoTotal+FBFichaFiscalia.obtenerFichaDadoAnioRangoEdadGenero(anio, lstRangos.get(i).getRango(), "F").size();
             }
-            
+
             ChartSeries masculino = new ChartSeries();
-            masculino.setLabel("Masculino");            
-            for (int i = 0; i < lstRangos.size(); i++) {                
-                masculino.set(lstRangos.get(i).getEspecificacion(), FBFichaFiscalia.obtenerFichaDadoAnioRangoEdadGenero(anio, lstRangos.get(i).getRango(),"M").size());
+            masculino.setLabel("Masculino");
+            for (int i = 0; i < lstRangos.size(); i++) {
+                masculino.set(lstRangos.get(i).getEspecificacion(), FBFichaFiscalia.obtenerFichaDadoAnioRangoEdadGenero(anio, lstRangos.get(i).getRango(), "M").size());
+                masculinoTotal=masculinoTotal+FBFichaFiscalia.obtenerFichaDadoAnioRangoEdadGenero(anio, lstRangos.get(i).getRango(), "M").size();
             }
-            
+
             model.addSeries(femenino);
             model.addSeries(masculino);
         } catch (Exception e) {
@@ -85,11 +126,11 @@ public class CtrlFiscaliaRangoEdades {
         }
         return model;
     }
-    
+
     
     /*
-    ** get y set
-    */
+     ** get y set
+     */
 
     public ArrayList<RangoEdades> getLstRangos() {
         return lstRangos;
@@ -122,7 +163,7 @@ public class CtrlFiscaliaRangoEdades {
     public void setAnioSel(int anioSel) {
         this.anioSel = anioSel;
     }
-    
+
     
     
     

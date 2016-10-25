@@ -25,6 +25,42 @@ public class CtrlFiscaliaAnioEstadoCivil {
     private int aniosel;
     private CartesianChartModel graficarEstadoCivil;
     private CartesianChartModel graficarEstadoCivilGenero;
+    private ArrayList<FichaVif> lst1;
+    private int totalDenuncias;
+    private int femeninoTotal;
+    private int masculinoTotal;
+
+    public ArrayList<FichaVif> getLst1() {
+        return lst1;
+    }
+
+    public void setLst1(ArrayList<FichaVif> lst1) {
+        this.lst1 = lst1;
+    }
+
+    public int getTotalDenuncias() {
+        return totalDenuncias;
+    }
+
+    public void setTotalDenuncias(int totalDenuncias) {
+        this.totalDenuncias = totalDenuncias;
+    }
+
+    public int getFemeninoTotal() {
+        return femeninoTotal;
+    }
+
+    public void setFemeninoTotal(int femeninoTotal) {
+        this.femeninoTotal = femeninoTotal;
+    }
+
+    public int getMasculinoTotal() {
+        return masculinoTotal;
+    }
+
+    public void setMasculinoTotal(int masculinoTotal) {
+        this.masculinoTotal = masculinoTotal;
+    }
 
     public ArrayList<FichaVif> getLst() {
         return lst;
@@ -59,6 +95,7 @@ public class CtrlFiscaliaAnioEstadoCivil {
     }
 
     public CtrlFiscaliaAnioEstadoCivil() {
+        this.lst1 = new ArrayList<FichaVif>();
         this.graficar();
     }
 
@@ -72,6 +109,8 @@ public class CtrlFiscaliaAnioEstadoCivil {
         CartesianChartModel model = new CartesianChartModel();
         try {
             lst = FBFichaFiscalia.obtenerFchaEstadoCivilDadoAnio(anio);
+            this.lst1 = FBFichaFiscalia.obtenerDatosDadoAnio(anio);
+            this.totalDenuncias = lst1.size();
             ChartSeries estadoCivil = new ChartSeries();
             estadoCivil.setLabel("ESTADO CIVIL");
             for (int i = 0; i < lst.size(); i++) {
@@ -89,17 +128,21 @@ public class CtrlFiscaliaAnioEstadoCivil {
         CartesianChartModel model = new CartesianChartModel();
         try {
             lst = FBFichaFiscalia.obtenerFchaEstadoCivilDadoAnio(anio);
+            this.lst1 = FBFichaFiscalia.obtenerDatosDadoAnio(anio);
+            this.totalDenuncias = lst1.size();
             ChartSeries femenino = new ChartSeries();
             femenino.setLabel("Femenino");
             for (int i = 0; i < lst.size(); i++) {
 
                 femenino.set(lst.get(i).getEstado_civil_victima(), FBFichaFiscalia.obtenerFichaDadoAnioEstadoCivilGenero(anio, lst.get(i).getEstado_civil_victima(), "Femenino").size());
+                femeninoTotal= femeninoTotal+FBFichaFiscalia.obtenerFichaDadoAnioEstadoCivilGenero(anio, lst.get(i).getEstado_civil_victima(), "Femenino").size();
             }
 
             ChartSeries masculino = new ChartSeries();
             masculino.setLabel("Masculino");
             for (int i = 0; i < lst.size(); i++) {
                 masculino.set(lst.get(i).getEstado_civil_victima(), FBFichaFiscalia.obtenerFichaDadoAnioEstadoCivilGenero(anio, lst.get(i).getEstado_civil_victima(), "Masculino").size());
+                masculinoTotal=masculinoTotal+FBFichaFiscalia.obtenerFichaDadoAnioEstadoCivilGenero(anio, lst.get(i).getEstado_civil_victima(), "Masculino").size();
             }
             model.addSeries(femenino);
             model.addSeries(masculino);
